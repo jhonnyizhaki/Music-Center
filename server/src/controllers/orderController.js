@@ -80,7 +80,7 @@ export const deleteInstrumentFromOrder = async (req, res) => {
     }
 };
 
-// Get user's card
+// Get user order
 export const getUserOrder = async (req, res) => {
     try {
         const { userId } = req.params;
