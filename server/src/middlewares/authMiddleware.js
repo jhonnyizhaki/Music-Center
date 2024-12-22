@@ -23,3 +23,6 @@ export const adminAuthenticationMiddleware = (req, res, next) => {
 
   next();
 };
+
+export default authMiddleware
+

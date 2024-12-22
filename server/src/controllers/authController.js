@@ -12,9 +12,7 @@ export const register = async (req, res) => {
   } catch (error) {
     console.log(error.message);
 
-    res
-      .status(400)
-      .json({ message: "Registration failed", error: error.message });
+    res.status(400).json({ message: "Registration failed", error: error.message });
   }
 };
 
@@ -32,7 +30,7 @@ export const login = async (req, res) => {
     res.cookie('auth_token', token, {
       httpOnly: true,
       secure: true,
-      maxAge: 3600000,
+      maxAge: 3600,
     });
 
     res.status(200).json({

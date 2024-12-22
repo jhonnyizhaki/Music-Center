@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
-const instrumentSchema = new mongoose.Schema({
+const rentInstrumentSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         trim: true,
     },
-    price: {
+    rentPrice: {
         type: Number,
         required: true,
         min: 0,
@@ -35,6 +35,6 @@ const instrumentSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-const Instrument = mongoose.model('Instrument', instrumentSchema);
+const RentInstrument = mongoose.model('RentInstrument', rentInstrumentSchema);
 
-export default Instrument
+export default RentInstrument
