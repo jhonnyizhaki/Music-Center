@@ -1,0 +1,607 @@
+[{
+  "_id": {
+    "$oid": "675fece612e9b489c2fc947e"
+  },
+  "name": "Electric Guitar",
+  "price": 1500,
+  "category": "String instruments",
+  "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRdqUfvRvcUgfMiDaVl9etDwuT98I-ClTQ7G76V6-Z7_QOinzM4c07wvir5rphekhdrHnzGvLY35btuuA-vmzmdWOclRWcCyp1G2ffvrR06JmRBjbnjpWIY_rYaySBg_WemslCEFG0&usqp=CAc",
+  "stock": 10,
+  "createdAt": {
+    "$date": "2024-12-16T09:03:34.691Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-16T09:03:34.691Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c1"
+  },
+  "name": "Acoustic Guitar",
+  "price": 800,
+  "category": "String instruments",
+  "imageUrl": "https://orangewoodguitars.com/cdn/shop/files/BROOKLYN-S-FRONT-FULL_2048x.jpg?v=1729100291",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c2"
+  },
+  "name": "Bass Guitar",
+  "price": 1200,
+  "category": "String instruments",
+  "imageUrl": "image_url_3",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c3"
+  },
+  "name": "Violin",
+  "price": 500,
+  "category": "String instruments",
+  "imageUrl": "image_url_4",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c4"
+  },
+  "name": "Cello",
+  "price": 2500,
+  "category": "String instruments",
+  "imageUrl": "image_url_5",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c5"
+  },
+  "name": "Mandolin",
+  "price": 350,
+  "category": "String instruments",
+  "imageUrl": "image_url_6",
+  "stock": 12
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c6"
+  },
+  "name": "Banjo",
+  "price": 600,
+  "category": "String instruments",
+  "imageUrl": "image_url_7",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c7"
+  },
+  "name": "Ukulele",
+  "price": 150,
+  "category": "String instruments",
+  "imageUrl": "image_url_8",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c8"
+  },
+  "name": "Harp",
+  "price": 5000,
+  "category": "String instruments",
+  "imageUrl": "image_url_9",
+  "stock": 2
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5c9"
+  },
+  "name": "Sitar",
+  "price": 2000,
+  "category": "String instruments",
+  "imageUrl": "image_url_10",
+  "stock": 6
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ca"
+  },
+  "name": "Electric Keyboard",
+  "price": 400,
+  "category": "Keyboards",
+  "imageUrl": "image_url_11",
+  "stock": 25
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5cb"
+  },
+  "name": "Digital Piano",
+  "price": 800,
+  "category": "Keyboards",
+  "imageUrl": "image_url_12",
+  "stock": 12
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5cc"
+  },
+  "name": "Grand Piano",
+  "price": 5000,
+  "category": "Keyboards",
+  "imageUrl": "image_url_13",
+  "stock": 3
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5cd"
+  },
+  "name": "Upright Piano",
+  "price": 3000,
+  "category": "Keyboards",
+  "imageUrl": "image_url_14",
+  "stock": 4
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ce"
+  },
+  "name": "Organ",
+  "price": 1500,
+  "category": "Keyboards",
+  "imageUrl": "image_url_15",
+  "stock": 7
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5cf"
+  },
+  "name": "Synthesizer",
+  "price": 1000,
+  "category": "Keyboards",
+  "imageUrl": "image_url_16",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d0"
+  },
+  "name": "Electric Organ",
+  "price": 1200,
+  "category": "Keyboards",
+  "imageUrl": "image_url_17",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d1"
+  },
+  "name": "Clavichord",
+  "price": 2000,
+  "category": "Keyboards",
+  "imageUrl": "image_url_18",
+  "stock": 2
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d2"
+  },
+  "name": "Accordion",
+  "price": 650,
+  "category": "Keyboards",
+  "imageUrl": "image_url_19",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d3"
+  },
+  "name": "Mellotron",
+  "price": 2500,
+  "category": "Keyboards",
+  "imageUrl": "image_url_20",
+  "stock": 3
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d4"
+  },
+  "name": "Guitar Amplifier",
+  "price": 250,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_21",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d5"
+  },
+  "name": "Bass Amplifier",
+  "price": 350,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_22",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d6"
+  },
+  "name": "PA System",
+  "price": 500,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_23",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d7"
+  },
+  "name": "Speaker System",
+  "price": 700,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_24",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d8"
+  },
+  "name": "Subwoofer",
+  "price": 600,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_25",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5d9"
+  },
+  "name": "Microphone",
+  "price": 150,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_26",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5da"
+  },
+  "name": "Wireless Microphone",
+  "price": 250,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_27",
+  "stock": 12
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5db"
+  },
+  "name": "Audio Mixer",
+  "price": 300,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_28",
+  "stock": 6
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5dc"
+  },
+  "name": "Headphones",
+  "price": 100,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_29",
+  "stock": 40
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5dd"
+  },
+  "name": "Audio Interface",
+  "price": 200,
+  "category": "Sound amplification",
+  "imageUrl": "image_url_30",
+  "stock": 18
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5de"
+  },
+  "name": "Trumpet",
+  "price": 600,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_31",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5df"
+  },
+  "name": "Trombone",
+  "price": 700,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_32",
+  "stock": 4
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e0"
+  },
+  "name": "Saxophone",
+  "price": 800,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_33",
+  "stock": 6
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e1"
+  },
+  "name": "Flute",
+  "price": 200,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_34",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e2"
+  },
+  "name": "Clarinet",
+  "price": 250,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_35",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e3"
+  },
+  "name": "Oboe",
+  "price": 400,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_36",
+  "stock": 3
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e4"
+  },
+  "name": "Bassoon",
+  "price": 1200,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_37",
+  "stock": 2
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e5"
+  },
+  "name": "French Horn",
+  "price": 1000,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_38",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e6"
+  },
+  "name": "Piccolo",
+  "price": 350,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_39",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e7"
+  },
+  "name": "Tuba",
+  "price": 1500,
+  "category": "Wind instruments",
+  "imageUrl": "image_url_40",
+  "stock": 3
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e8"
+  },
+  "name": "Guitar Pick",
+  "price": 5,
+  "category": "Accessories",
+  "imageUrl": "image_url_41",
+  "stock": 100
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5e9"
+  },
+  "name": "Guitar Strap",
+  "price": 20,
+  "category": "Accessories",
+  "imageUrl": "image_url_42",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ea"
+  },
+  "name": "Violin Bow",
+  "price": 60,
+  "category": "Accessories",
+  "imageUrl": "image_url_43",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5eb"
+  },
+  "name": "Drumsticks",
+  "price": 10,
+  "category": "Accessories",
+  "imageUrl": "image_url_44",
+  "stock": 150
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ec"
+  },
+  "name": "Music Stand",
+  "price": 25,
+  "category": "Accessories",
+  "imageUrl": "image_url_45",
+  "stock": 40
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ed"
+  },
+  "name": "Metronome",
+  "price": 30,
+  "category": "Accessories",
+  "imageUrl": "image_url_46",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ee"
+  },
+  "name": "Guitar Tuner",
+  "price": 15,
+  "category": "Accessories",
+  "imageUrl": "image_url_47",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5ef"
+  },
+  "name": "Capo",
+  "price": 12,
+  "category": "Accessories",
+  "imageUrl": "image_url_48",
+  "stock": 70
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5f0"
+  },
+  "name": "Piano Bench",
+  "price": 100,
+  "category": "Accessories",
+  "imageUrl": "image_url_49",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fed0432140299650bc5f1"
+  },
+  "name": "Guitar Pedal",
+  "price": 120,
+  "category": "Accessories",
+  "imageUrl": "image_url_50",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc5fd"
+  },
+  "name": "Snare Drum",
+  "price": 300,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_1",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc5fe"
+  },
+  "name": "Bass Drum",
+  "price": 400,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_2",
+  "stock": 10
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc5ff"
+  },
+  "name": "Cymbals",
+  "price": 150,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_3",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc600"
+  },
+  "name": "Bongo Drums",
+  "price": 100,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_4",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc601"
+  },
+  "name": "Djembe",
+  "price": 180,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_5",
+  "stock": 12
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc602"
+  },
+  "name": "Congas",
+  "price": 220,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_6",
+  "stock": 8
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc603"
+  },
+  "name": "Timpani",
+  "price": 800,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_7",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc604"
+  },
+  "name": "Tambourine",
+  "price": 25,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_8",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc605"
+  },
+  "name": "Maracas",
+  "price": 15,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_9",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "675fee0232140299650bc606"
+  },
+  "name": "Triangle",
+  "price": 10,
+  "category": "Percussion instruments",
+  "imageUrl": "image_url_10",
+  "stock": 70
+}]
