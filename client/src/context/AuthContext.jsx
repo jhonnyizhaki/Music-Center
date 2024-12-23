@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
+import urls from "../constant/URLS"
 export const AuthContext = createContext()
 
 export const useAuth = () => {
@@ -14,20 +15,21 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   const register = async (userData) => {
-    const { data } = await axios.post(
-      "http://localhost:5000/auth/register",
-      userData
-    )
+    const { data } = await axios.post(urls.REGISTER, userData)
   }
 
   const login = async (userData) => {
-    await axios.post("http://localhost:5000/auth/login", userData)
+    await axios.post(urls.LOGIN, userData)
     await verifyToken()
   }
 
   const verifyToken = async () => {
-    const { data } = await axios.get("http://localhost:5000/auth/verify")
-    setUser(data)
+    try {
+      const { data } = await axios.get(urls.VERIFY)
+      setUser(data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const logout = () => {
