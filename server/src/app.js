@@ -30,7 +30,7 @@ app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
 app.use("/cart", cartRoute);
-app.use("/booking", practiceRoomBookingRoutes);
+app.use("/bookings", practiceRoomBookingRoutes);
 app.use('/orders', orderRoutes);
 export default app;
 
@@ -41,15 +41,14 @@ export default app;
 
 // get all instruments - GET - /instruments OK
 // get instrument by id - GET - /instruments:id OK
-// adding a new instrument - POST- /instruments  ?
-// edit an instruments - PUT -/instruments:id    ?
-// delete an instruments - DELETE - /instruments:id ?
-
-// get all categories - GET - /categories OK
-// get category by id - GET - /categories:id ?
-// create a new category - POST - /categories ?
-// update Category - PUT - /categories:id ?
-// delete a category - DELETE - /categories:id ?
+// edit an instruments - PUT -/instruments:id    OK
+// adding a new instrument - POST- /instruments OK
+// delete an instruments - DELETE - /instruments:id OK
+// get all categories - GET - /categories OOK
+// get category by id - GET - /categories:id OK
+// create a new category - POST - /categories OK
+// update Category - PUT - /categories:id OK
+// delete a category - DELETE - /categories:id OK
 
 // create booking - POST -  /booking ?
 // get Unavailable Dates -  /booking/getUnavailable ?

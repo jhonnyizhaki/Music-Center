@@ -1,19 +1,10 @@
 import mongoose from 'mongoose';
 
 const rentInstrumentSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    rentPrice: {
-        type: Number,
-        required: true,
-        min: 0,
-    },
+    name: { type: String, required: true, trim: true, },
+    rentPrice: { type: Number, required: true, min: 0, },
     category: {
-        type: String,
-        enum: [
+        type: String, enum: [
             'String instruments',
             'Keyboards',
             'Sound amplification',
@@ -24,15 +15,8 @@ const rentInstrumentSchema = new mongoose.Schema({
         ],
         required: true,
     },
-    imageUrl: {
-        type: String,
-        required: true,
-    },
-    stock: {
-        type: Number,
-        default: 0,
-        min: 0,
-    },
+    imageUrl: { type: String, required: true, },
+    stock: { type: Number, default: 0, min: 0, },
 }, { timestamps: true });
 
 const RentInstrument = mongoose.model('RentInstrument', rentInstrumentSchema);
