@@ -32,7 +32,7 @@
   "name": "Bass Guitar",
   "price": 1200,
   "category": "String instruments",
-  "imageUrl": "image_url_3",
+  "imageUrl": "https://www.wildguitars.co.il/wp-content/uploads/2022/04/Sterling-RAY35-PSK-R2-1.jpg",
   "stock": 8
 },
 {
@@ -42,7 +42,7 @@
   "name": "Violin",
   "price": 500,
   "category": "String instruments",
-  "imageUrl": "image_url_4",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrPjsrSH73RL3gEy5a_VsEP5S8PNK6rDA5Q&s",
   "stock": 20
 },
 {
@@ -52,17 +52,16 @@
   "name": "Cello",
   "price": 2500,
   "category": "String instruments",
-  "imageUrl": "image_url_5",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNwy0fxLylH6xtuSY88yRFW7nHmqsqawDjPw&s",
   "stock": 5
 },
 {
   "_id": {
-    "$oid": "675fed0432140299650bc5c5"
   },
   "name": "Mandolin",
   "price": 350,
   "category": "String instruments",
-  "imageUrl": "image_url_6",
+  "imageUrl": "https://eastwoodguitars.com/cdn/shop/products/mando_8016d7bb-8b94-44e7-becd-b398afa0b2ed.jpg?v=1687441976",
   "stock": 12
 },
 {
@@ -72,7 +71,7 @@
   "name": "Banjo",
   "price": 600,
   "category": "String instruments",
-  "imageUrl": "image_url_7",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbhmxzNwxXetwHU_7qlsn9xfuPkCliQvhIbw&s",
   "stock": 10
 },
 {
@@ -82,7 +81,7 @@
   "name": "Ukulele",
   "price": 150,
   "category": "String instruments",
-  "imageUrl": "image_url_8",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWYSJx4ZwWV1BtiU0oSfcyfX3bCjhH9PX9OA&s",
   "stock": 30
 },
 {
@@ -92,7 +91,7 @@
   "name": "Harp",
   "price": 5000,
   "category": "String instruments",
-  "imageUrl": "image_url_9",
+  "imageUrl": "https://www.kaufmanmusiccenter.org/images/uploads/news/1LH-PRINCE-WILLIAM-CG-SPECIAL-INSTRUMENT-600x750.jpg",
   "stock": 2
 },
 {
@@ -102,7 +101,7 @@
   "name": "Sitar",
   "price": 2000,
   "category": "String instruments",
-  "imageUrl": "image_url_10",
+  "imageUrl": "https://i0.wp.com/worldmusiccentral.org/wp-content/uploads/sitar_G-rosul.jpg?fit=368%2C750&ssl=1",
   "stock": 6
 },
 {
@@ -112,15 +111,15 @@
   "name": "Electric Keyboard",
   "price": 400,
   "category": "Keyboards",
-  "imageUrl": "image_url_11",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM4UtXQK7Z1Da5tP28caYXttq2l-_nFB_CIA&s",
   "stock": 25
 },
 {
   "_id": {
     "$oid": "675fed0432140299650bc5cb"
   },
-  "name": "Digital Piano",
-  "price": 800,
+  "name": "https://d3m9l0v76dty0.cloudfront.net/system/photos/3207970/original/f1a19438f4b1ba34a631dd5787ab1be6.jpg",
+  "price": 8000,
   "category": "Keyboards",
   "imageUrl": "image_url_12",
   "stock": 12
@@ -129,7 +128,7 @@
   "_id": {
     "$oid": "675fed0432140299650bc5cc"
   },
-  "name": "Grand Piano",
+  "name": "https://orpheusmusicgroup.com/cdn/shop/products/YamahaC6EBPL59466101.jpg?v=1677766764&width=1946",
   "price": 5000,
   "category": "Keyboards",
   "imageUrl": "image_url_13",
@@ -139,7 +138,7 @@
   "_id": {
     "$oid": "675fed0432140299650bc5cd"
   },
-  "name": "Upright Piano",
+  "name": "https://luxury-pianos.com/wp-content/uploads/2022/08/Lucid-iDyllic-upright_001.webp",
   "price": 3000,
   "category": "Keyboards",
   "imageUrl": "image_url_14",
@@ -152,7 +151,7 @@
   "name": "Organ",
   "price": 1500,
   "category": "Keyboards",
-  "imageUrl": "image_url_15",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpViruUJTwasR2i_7xHogotV4GmSFHxhqE_w&s",
   "stock": 7
 },
 {
@@ -162,7 +161,7 @@
   "name": "Synthesizer",
   "price": 1000,
   "category": "Keyboards",
-  "imageUrl": "image_url_16",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1OD6lYcQYyx8iKXpx5Y__9mPkIvtb0aDRTg&s",
   "stock": 20
 },
 {

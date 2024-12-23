@@ -74,7 +74,6 @@ body {
 .logo {
   background-color: #090000;
   background-image: url("LOGO.png");
-  
   background-position: center; 
   background-repeat: no-repeat; 
   width: 100%; 
@@ -212,7 +211,27 @@ footer {
   align-items: center;
   color: white;
 }
-
+.select {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #af934c;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #e2dfd8;
+} 
+.option {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #af934c;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  
+}
 .page-layout {
   position: relative;
   display: flex;
@@ -274,11 +293,16 @@ footer {
 }
 
 /* עיצוב המחיר */
-.card .price {
-  font-size: 16px;
-  font-weight: bold;
-  color: #1a73e8;
+.card .input-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
+
+  input{
+    width: 50%;
+  }
 }
 
 /* עיצוב כפתור הוספה לעגלה */
@@ -288,7 +312,7 @@ footer {
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-  background-color: #1a73e8;
+  background-color: #514206;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -296,7 +320,7 @@ footer {
 }
 
 .card .add-to-cart:hover {
-  background-color: #155bb5;
+  background-color: #af934c;
 }
 
 /* עיצוב כפתור הוספה לעגלה */
