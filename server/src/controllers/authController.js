@@ -27,10 +27,11 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
+
     res.cookie('auth_token', token, {
       httpOnly: true,
       secure: true,
-      maxAge: 3600,
+      sameSite: "strict"
     });
 
     res.status(200).json({
@@ -47,8 +48,9 @@ export const verify = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+    user.password = "******"
 
-    return res.status(200).json({ message: 'Token is valid', user: req.user });
+    return res.status(200).json({ message: 'Token is valid', user });
   } catch (error) {
     console.error('Verification error:', error);
     return res.status(500).json({ message: 'Internal server error' });
