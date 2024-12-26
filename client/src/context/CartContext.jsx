@@ -47,18 +47,27 @@ export const CartProvider = ({ children }) => {
     }
   }
 
-  // הסרה מהעגלה
-  // const removeFromCart = (product) => {
-  //   setCartItems(cartItems.filter((item) => item !== product))
-  // }
-  const removeFromCart = (product) => {
-    for (let item of cartItems) {
-      if (item.count > 1) {
-        item.count--
-        return setCartItems([...cartItems])
+  const removeFromCart = async (instrumentId) => {
+    try {
+      if (!urls.REMOVE_FROM_CART) {
+        throw new Error("Remove from cart URL is not defined")
       }
+
+      console.log(
+        "Removing item with URL:",
+        `${urls.REMOVE_FROM_CART}/${instrumentId}`
+      )
+
+      const response = await axios.delete(
+        `${urls.REMOVE_FROM_CART}/${instrumentId}`
+      )
+
+      if (response.status === 200) {
+        await fetchUserCart()
+      }
+    } catch (error) {
+      console.error("Error removing item from cart:", error)
     }
-    setCartItems(cartItems.filter((item) => item !== product))
   }
 
   useEffect(() => {
@@ -66,7 +75,9 @@ export const CartProvider = ({ children }) => {
   }, [])
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateItemQuantity }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, updateItemQuantity, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   )
