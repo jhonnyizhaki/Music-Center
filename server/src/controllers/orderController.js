@@ -8,21 +8,17 @@ export const addOrder = async (req, res) => {
         // 
         const { items } = req.body;// item[] = {id, quantity}
         let totalPrice = 0
-        for (const i in items) {
-            const item = items[i]
-            const instrument = await Instrument.findById(item.id).select({
-                price: 1
-            })
+        for (const [index, item] of items.entries()) {
+            const instrument = await Instrument.findById(item.id)
             if (!instrument) return res.status(404).json({ message: 'Instrument not found' });
+            if (item.quantity > instrument.stock) return res.status(400).json({ message: 'not a valid quantity' })
+            items[index].instrumentStock = instrument.stock
             totalPrice += instrument.price * item.quantity
         }
 
-
-        console.log({
-            userId: req.user.id,
-            items,
-            totalPrice,
-        })
+        for (const item of items) {
+            await Instrument.findOneAndUpdate({ id: item.id }, { stock: item.instrumentStock - item.quantity })
+        }
 
         const newOrder = new Order({
             userId,
@@ -32,7 +28,6 @@ export const addOrder = async (req, res) => {
         await newOrder.save()
         res.status(201).json({ message: 'Order Created', newOrder });
     } catch (error) {
-        console.log("Banana eror", error)
         res.status(500).json({ message: 'Server error', error });
     }
 };
