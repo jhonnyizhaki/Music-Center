@@ -29,33 +29,30 @@ connectDB();
 app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
-app.use("/cart", cartRoute);
+app.use("/carts", cartRoute);
 app.use("/bookings", practiceRoomBookingRoutes);
 app.use('/orders', orderRoutes);
 export default app;
 
 
 
-// register - POST - auth/register OK
-// login - POST - auth/login OK
+// register - POST - /auth/register OK
+// login - POST - /auth/login OK
+// logout - POST - /auth/logout OK
 
 // get all instruments - GET - /instruments OK
 // get instrument by id - GET - /instruments:id OK
-// edit an instruments - PUT -/instruments:id    OK
-// adding a new instrument - POST- /instruments OK
-// delete an instruments - DELETE - /instruments:id OK
+// edit an instruments - PUT -/instruments:id    OK - admin
+// adding a new instrument - POST- /instruments OK - admin
+// delete an instruments - DELETE - /instruments:id OK - admin
+
 // get all categories - GET - /categories OOK
 // get category by id - GET - /categories:id OK
-// create a new category - POST - /categories OK
-// update Category - PUT - /categories:id OK
-// delete a category - DELETE - /categories:id OK
+// create a new category - POST - /categories OK - admin
+// update Category - PUT - /categories:id OK - admin
+// delete a category - DELETE - /categories:id OK - admin
 
-// create booking - POST -  /booking ?
+// create booking - POST -  /booking OK
 // get Unavailable Dates -  /booking/getUnavailable ?
 
 // create a new order - POST - /orders/add ?
-
-
-
-
-

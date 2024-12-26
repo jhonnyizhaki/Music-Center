@@ -55,4 +55,11 @@ export const verify = async (req, res) => {
     console.error('Verification error:', error);
     return res.status(500).json({ message: 'Internal server error' });
   }
+
 };
+
+
+export const logout = async (req, res) => {
+  res.clearCookie("auth_token")
+  return res.status(201).json()
+}

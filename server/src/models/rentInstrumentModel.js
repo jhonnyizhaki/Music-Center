@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-const rentInstrumentSchema = new mongoose.Schema({
-    name: { type: String, required: true, trim: true, },
-    rentPrice: { type: Number, required: true, min: 0, },
+export const rentInstrumentSchema = new mongoose.Schema({
+    name: { type: String, required: true, trim: true },
+    rentPrice: { type: Number, required: true, min: 0 },
     category: {
         type: String, enum: [
             'String instruments',
@@ -22,3 +22,4 @@ const rentInstrumentSchema = new mongoose.Schema({
 const RentInstrument = mongoose.model('RentInstrument', rentInstrumentSchema);
 
 export default RentInstrument
+
