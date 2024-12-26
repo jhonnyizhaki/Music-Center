@@ -47,8 +47,8 @@ const Instruments = ({ params }) => {
       <h1>Instruments</h1>
       <SelectInstrumentsCategory setSelectedCategory={setSelectedCategory} />
       <div className="cards-container">
-        {showInstruments.map((instrument) => (
-          <InstrumentCard key={instrument._id} instrument={instrument} />
+        {showInstruments.map((instrument,i) => (
+          <InstrumentCard key={i} instrument={instrument} />
         ))}
       </div>
     </div>

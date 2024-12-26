@@ -3,14 +3,16 @@ import { useCart } from "../context/CartContext"
 
 const ShopCart = () => {
   const { cart } = useCart()
+  console.log("Cart data:", cart)
+  console.log("First item in cart:", cart?.items?.[0])
 
   return (
     <div>
       <h1 className="title">Shop Cart</h1>
       <div className="cards-container">
-        {cart?.items.map(({ instrumentId: inst, quantity }) => {
-          return <CartItem key={inst._id} item={{ ...inst, quantity }} />
-        })}
+        {cart?.items?.map((item) => (
+          <CartItem key={item._id} item={item} />
+        ))}
       </div>
     </div>
   )
@@ -19,39 +21,50 @@ const ShopCart = () => {
 export default ShopCart
 
 const CartItem = ({ item }) => {
-  const { updateItemQuantity } = useCart()
+  const { updateItemQuantity, removeFromCart } = useCart()
   const [newQuantity, setNewQuantity] = useState(item.quantity)
-  const handleOnCLick = (e) => {
-    updateItemQuantity(item._id, newQuantity)
+  const instrument = item.instrumentId
+
+  if (!instrument) return null
+
+  const handleOnClick = (e) => {
+    updateItemQuantity(instrument._id, newQuantity)
+  }
+
+  const handleDelete = () => {
+    removeFromCart(instrument._id)
   }
 
   const handleQuantityInputChange = (e) => {
-    if (e.target.value > item.stock) {
-      setNewQuantity(item.stock)
+    if (e.target.value > instrument.stock) {
+      setNewQuantity(instrument.stock)
     } else if (e.target.value === "" || e.target.value < 1) {
       setNewQuantity(1)
     } else {
-      setNewQuantity(e.target.value)
+      setNewQuantity(parseInt(e.target.value))
     }
   }
 
   return (
     <div className="card">
-      <img src={item.imageUrl} alt={item.name} />
-      <h3>{item.name}</h3>
-      <p className="category">{item.category}</p>
-      <p className="price">₪{item.price}</p>
+      <img src={instrument.imageUrl} alt={instrument.name} />
+      <h3>{instrument.name}</h3>
+      <p className="category">{instrument.category}</p>
+      <p className="price">₪{instrument.price}</p>
       <div>
         <input
           type="number"
           min={1}
-          max={item.stock}
+          max={instrument.stock}
           value={newQuantity}
           onChange={handleQuantityInputChange}
         />
-        <button onClick={handleOnCLick}>change quantity</button>
+        <button onClick={handleOnClick}>שנה כמות</button>
+        <button onClick={handleDelete} className="delete-btn">
+          מחק מוצר
+        </button>
       </div>
-      <p>Total price: ₪{item.price * item.quantity}</p>
+      <p>מחיר כולל: ₪{instrument.price * item.quantity}</p>
     </div>
   )
 }
