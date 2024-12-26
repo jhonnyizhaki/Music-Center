@@ -312,7 +312,7 @@ footer {
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-  background-color: #514206;
+  background-color: #000000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -343,6 +343,7 @@ footer {
 
 .instrumentH1{
   text-align: center;
+ 
 
 }
 h1{

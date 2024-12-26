@@ -35,12 +35,10 @@ const Navbar = () => {
         <Link
           to="/shopcart"
           onClick={() => setPage("shopcart")}
-          className={`cart-icon ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
+          className={` ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
         >
-          <img src="cart-icon.svg" alt="Cart" />
-          {/* {cartItems.length > 0 && (
-            <span className="cart-count">{cartItems.length} </span>
-          )} */}
+          {/* <img src="cart-icon.svg" alt="Cart" /> */}cart
+         
         </Link>
       </div>
 

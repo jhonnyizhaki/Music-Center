@@ -13,7 +13,6 @@ import axios from "axios"
 axios.defaults.withCredentials = true
 
 const App = () => {
-
     const [selectedCategory, setSelectedCategory] = useState("all");
   
   return (
