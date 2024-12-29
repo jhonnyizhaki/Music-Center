@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useCart } from "../context/CartContext"
-
+import axios from "axios"
+import urls from "../constant/URLS" 
 const ShopCart = () => {
   const { cart } = useCart()
   console.log("Cart data:", cart)
@@ -10,17 +11,50 @@ const ShopCart = () => {
     <div>
       <h1 className="title">Shop Cart</h1>
       <div className="cards-container">
-        {cart?.items?.map((item) => (
-          <CartItem key={item._id} item={item} />
+        {cart?.items?.map((item, i) => (
+          <div key={i}>
+            <CartItem item={item} />
+          </div>
         ))}
       </div>
+      <div className="wf">
+
+      <button
+        className="botton"
+        onClick={async ()=>{
+          try {
+            const reqBody = {
+              items:cart?.items.map((item)=>({
+                id:item.instrumentId._id,
+                quantity: item.quantity                   
+              }))
+            }
+            console.log("reqBody",reqBody)
+            const serverResponse = await axios.post(urls.CREATE_ORDER, reqBody)
+            
+            const redirectUrl =  serverResponse.data.redirectUrl
+            console.log(redirectUrl);
+            
+            window.location.href = redirectUrl.href
+              
+          } catch (error) {
+            console.log(error)  
+            throw error
+          }
+          // )
+          
+          
+        }}
+        >Submit</button>
+        </div>
     </div>
   )
 }
 
 export default ShopCart
 
-const CartItem = ({ item }) => {
+
+const CartItem = ({ item,key }) => {
   const { updateItemQuantity, removeFromCart } = useCart()
   const [newQuantity, setNewQuantity] = useState(item.quantity)
   const instrument = item.instrumentId
@@ -68,3 +102,15 @@ const CartItem = ({ item }) => {
     </div>
   )
 }
+// _id
+// Object
+// name
+// "Mandolin"
+// price
+// 350
+// category
+// "String instruments"
+// imageUrl
+// "https://eastwoodguitars.com/cdn/shop/products/mando_8016d7bb-8b94-44e7…"
+// stock
+// 12

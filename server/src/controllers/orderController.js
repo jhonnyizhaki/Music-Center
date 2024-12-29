@@ -39,6 +39,7 @@ export const addOrder = async (req, res) => {
     try {
         // 
         const { items } = req.body;// item[] = {id, quantity}
+        
         let totalPrice = 0
         for (const [index, item] of items.entries()) {
             const instrument = await Instrument.findById(item.id)
@@ -59,19 +60,11 @@ export const addOrder = async (req, res) => {
             itemsForMap.push({instrumentId: item.id ,quantity: item.quantity} )
         }
 
+        console.log("items",items)
+        console.log("totalPrice",totalPrice)
+        console.log("email",req.user.email)
 
-        const paypalOrder = {
-            body: {
-                intent: CheckoutPaymentIntent.CAPTURE,
-                payer: {
-                    emailAddress: req.user.email,
-                },
-                purchaseUnits: [
-                  
-                ],
-            },
-        }
-        const paypalResponse =await paypal.orders.ordersCreate({body:{
+        const paypalResponse = await paypal.orders.ordersCreate({body:{
             intent:CheckoutPaymentIntent.CAPTURE,
             payer:{
                 emailAddress: req.user.email

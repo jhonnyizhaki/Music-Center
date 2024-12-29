@@ -7,8 +7,9 @@ export default {
     VERIFY: `${BASE_URL}/auth/verify`,
     INSTRUMENTS: `${BASE_URL}/instruments`,
     CATEGORIES: `${BASE_URL}/categories`,
-    CART: `${BASE_URL}/cart`,
-    ADD_TO_CART: `${BASE_URL}/cart`,
-    UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/cart`,
-    REMOVE_FROM_CART: `${BASE_URL}/cart`,
+    CART: `${BASE_URL}/carts`,
+    ADD_TO_CART: `${BASE_URL}/carts`,
+    UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/carts`,
+    REMOVE_FROM_CART: `${BASE_URL}/carts`,
+    CREATE_ORDER:`${BASE_URL}/orders/add`
 }
