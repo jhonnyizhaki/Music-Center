@@ -1,6 +1,38 @@
 import Order from '../models/orderModel.js';
 import Instrument from '../models/instrumentModel.js';
+import paypal from "../config/paypal.js"
+import {CheckoutPaymentIntent} from '@paypal/paypal-server-sdk'
+import axios from 'axios';
+const PAYPAL_BASE_URL = "https://api-m.sandbox.paypal.com"
 
+async function generateAccessToken() {
+    const response = await axios({
+        url: PAYPAL_BASE_URL + '/v1/oauth2/token',
+        method: 'post',
+        data: 'grant_type=client_credentials',
+        auth: {
+            username: process.env.PAYPAL_ID,
+            password: process.env.PAYPAL_SECRET
+        }
+    })
+
+    return response.data.access_token
+}
+
+async function capturePayment(orderId) {
+    const accessToken = await generateAccessToken()
+
+    const response = await axios({
+        url: PAYPAL_BASE_URL + `/v2/checkout/orders/${orderId}/capture`,
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+
+    return response.data
+}
 
 // Add or create a card with an instrument
 export const addOrder = async (req, res) => {
@@ -8,33 +40,77 @@ export const addOrder = async (req, res) => {
         // 
         const { items } = req.body;// item[] = {id, quantity}
         let totalPrice = 0
-        for (const i in items) {
-            const item = items[i]
-            const instrument = await Instrument.findById(item.id).select({
-                price: 1
-            })
+        for (const [index, item] of items.entries()) {
+            const instrument = await Instrument.findById(item.id)
             if (!instrument) return res.status(404).json({ message: 'Instrument not found' });
+            if (item.quantity > instrument.stock) return res.status(400).json({ message: 'not a valid quantity' })
+            items[index].instrumentStock = instrument.stock
+            items[index].name = instrument.name
+            items[index].imageUrl = instrument.imageUrl
+            items[index].price = instrument.price
             totalPrice += instrument.price * item.quantity
+
+            
+        }
+
+        let itemsForMap = []
+        for (const item of items) {
+            await Instrument.findOneAndUpdate({ _id: item.id }, { stock: item.instrumentStock - item.quantity })
+            itemsForMap.push({instrumentId: item.id ,quantity: item.quantity} )
         }
 
 
-        console.log({
-            userId: req.user.id,
-            items,
-            totalPrice,
-        })
+        const paypalOrder = {
+            body: {
+                intent: CheckoutPaymentIntent.CAPTURE,
+                payer: {
+                    emailAddress: req.user.email,
+                },
+                purchaseUnits: [
+                  
+                ],
+            },
+        }
+        const paypalResponse =await paypal.orders.ordersCreate({body:{
+            intent:CheckoutPaymentIntent.CAPTURE,
+            payer:{
+                emailAddress: req.user.email
+            },
+
+            purchaseUnits: [{
+                amount:{
+                    currencyCode:"ILS",
+                    value:totalPrice.toString()
+
+                },
+                        // items: items.map((item)=>({
+                        //     name:    item.name,
+                        //     unitAmount: {
+                        //       currencyCode: 'ILS',
+                        //       value: item.price.toString(),
+                        //     },
+                        //     quantity: item.quantity.toString(),
+                // }))
+            }],
+            applicationContext:{
+                brandName:"music center",
+                cancelUrl:"http://localhost:5000/orders/approvePayment",
+                returnUrl:"http://localhost:5000/orders/approvePayment",
+                userAction:"PAY_NOW"
+            }
+        }})
 
         const newOrder = new Order({
-            userId,
-            items: items.map((i) => ({ ...i, instrumentId: i.id })),
+            userId: req.user.id,
+            items: itemsForMap,
             totalPrice,
+            paypalId: paypalResponse.result.id
         })
         await newOrder.save()
-
-        
-        res.status(201).json({ message: 'Order Created', newOrder });
+        const redirectUrl = paypalResponse.result.links.find((link)=>link.rel === "approve")
+        res.status(201).json({ message: 'Order Created',redirectUrl, newOrder });
     } catch (error) {
-        console.log("Banana eror", error)
+        console.log(error)
         res.status(500).json({ message: 'Server error', error });
     }
 };
@@ -61,6 +137,27 @@ export const updateInstrumentInOrder = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+// Approve payment
+ export const approvePayment = async (req, res) => {
+    try {
+        console.log(req.query.token);
+        // const { userId, instrumentId } = req.body;
+        const approvedOrder = await capturePayment(req.query.token)
+
+        await Order.findOneAndUpdate({paypalId:approvedOrder.id},{isPaid:true})
+        console.log(approvedOrder);
+        
+
+        res.status(200).json({ message: 'payment approved' });
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).json({ message: 'Server error', error });
+    }
+};
+
+
 
 // Delete an instrument from the card
 export const deleteInstrumentFromOrder = async (req, res) => {

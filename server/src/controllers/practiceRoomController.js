@@ -1,13 +1,32 @@
 import PracticeRoom from '../models/practiceRoomModel.js';
 import Booking from '../models/practiceRoomBookingModel.js';
 import { isBefore, isAfter, addHours } from "date-fns"
+import RentInstrument from '../models/rentInstrumentModel.js';
+import Artist from '../models/artistModel.js';
 // Create a new booking
 export const createBooking = async (req, res) => {
     try {
-        const { participantsCount, instruments, startDate, howLong, isVIP } = req.body;
+        const { participantsCount, instruments, artists, startDate, howLong, isVIP } = req.body;
         const endDate = addHours(startDate, howLong)
 
         const room = await machRoom(startDate, endDate, isVIP, participantsCount)
+
+        for(const artist of artists){
+            const existingArtist = await Artist.findById(artist)
+            if (!artist) return res.status(404).json({ message: 'artist not found' });
+        }
+
+        for (const [index, item] of instruments.entries()) {
+            const instrument = await RentInstrument.findById(item.id)
+            if (!instrument) return res.status(404).json({ message: 'Instrument not found' });
+            if (item.quantity > instrument.stock) return res.status(400).json({ message: 'not a valid quantity' })
+            instruments[index].instrumentStock = instrument.stock
+            totalPrice += instrument.price * item.quantity
+        }
+
+        for (const item of instruments) {
+            await RentInstrument.findOneAndUpdate({ id: item.id }, { stock: item.instrumentStock - item.quantity })
+        }
 
         console.log("room number", room.roomNumber);
         console.log("room", room);
@@ -19,7 +38,8 @@ export const createBooking = async (req, res) => {
             startTime: startDate,
             endTime: endDate,
             userId: req.user.id,
-            howLong
+            howLong,
+            artists
 
         });
 
@@ -63,7 +83,7 @@ async function machRoom(startDate, endDate, isVIP, participantsCount) {
 //get Unavailable Date 
 export const getUnavailableDates = async (req, res) => {
     try {
-        const existingBookings = await Booking.find({});
+        const existingBookings = await Booking.find({}).select({ startTime: 1, endTime: 1, _id: 0 });
         res.status(200).json(existingBookings);
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
@@ -79,4 +99,6 @@ export const getBookings = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+
 //need to check
