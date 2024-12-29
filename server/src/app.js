@@ -46,13 +46,15 @@ export default app;
 // adding a new instrument - POST- /instruments OK - admin
 // delete an instruments - DELETE - /instruments:id OK - admin
 
-// get all categories - GET - /categories OOK
+// get all categories - GET - /categories OK
 // get category by id - GET - /categories:id OK
 // create a new category - POST - /categories OK - admin
 // update Category - PUT - /categories:id OK - admin
 // delete a category - DELETE - /categories:id OK - admin
 
 // create booking - POST -  /booking OK
-// get Unavailable Dates -  /booking/getUnavailable ?
+// get Unavailable Dates -  /booking/getUnavailable OK
 
 // create a new order - POST - /orders/add ?
+
+

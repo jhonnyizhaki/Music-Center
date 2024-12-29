@@ -14,15 +14,18 @@ export const addOrder = async (req, res) => {
             if (item.quantity > instrument.stock) return res.status(400).json({ message: 'not a valid quantity' })
             items[index].instrumentStock = instrument.stock
             totalPrice += instrument.price * item.quantity
+            
         }
 
+        let itemsForMap = []
         for (const item of items) {
-            await Instrument.findOneAndUpdate({ id: item.id }, { stock: item.instrumentStock - item.quantity })
+            await Instrument.findOneAndUpdate({ _id: item.id }, { stock: item.instrumentStock - item.quantity })
+            itemsForMap.push({instrumentId: item.id ,quantity: item.quantity} )
         }
 
         const newOrder = new Order({
-            userId,
-            items: items.map((i) => ({ ...i, instrumentId: i.id })),
+            userId: req.user.id,
+            items: itemsForMap,
             totalPrice,
         })
         await newOrder.save()
