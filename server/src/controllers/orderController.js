@@ -30,6 +30,8 @@ export const addOrder = async (req, res) => {
             totalPrice,
         })
         await newOrder.save()
+
+        
         res.status(201).json({ message: 'Order Created', newOrder });
     } catch (error) {
         console.log("Banana eror", error)
