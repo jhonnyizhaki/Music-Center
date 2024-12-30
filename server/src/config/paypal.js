@@ -3,8 +3,6 @@ import "dotenv/config";
 
 // import Paypal from "@paypal/paypal-server-sdk"
 // const client = new Paypal.Client({
-console.log("PAYPAL_ID",process.env.PAYPAL_ID);
-console.log("PAYPAL_SECRET",process.env.PAYPAL_SECRET);
 
 const paypalClient = new Client({
     clientCredentialsAuthCredentials: {
