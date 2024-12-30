@@ -3,15 +3,15 @@ import { useCart } from "../context/CartContext"
 import axios from "axios"
 import urls from "../constant/URLS"
 const ShopCart = () => {
-  const { cart } = useCart()
+  const { cart, totalPrice } = useCart()
 
   const handlePurchase = async () => {
     try {
       const reqBody = {
         items: cart?.items.map(({ instrumentId: { _id }, quantity }) => ({
           id: _id,
-          quantity
-        }))
+          quantity,
+        })),
       }
       const serverResponse = await axios.post(urls.CREATE_ORDER, reqBody)
       const redirectUrl = serverResponse.data.redirectUrl
@@ -20,29 +20,33 @@ const ShopCart = () => {
       console.log(error)
     }
   }
-  return (
-    <div>
-      <h1 className="title">Shop Cart</h1>
-      <div className="cards-container">
-        {cart?.items?.map((item, i) => (
-          <div key={i}>
-            <CartItem item={item} />
-          </div>
-        ))}
-      </div>
-      <div className="wf">
 
-        <button
-          className="botton"
-          onClick={handlePurchase}
-        >Submit</button>
+  console.log(cart)
+
+  return (
+    <div className="shop-cart-page">
+      <h1 className="title">Shop Cart</h1>
+      <div className="cart-layout">
+        <div className="purchase-info">
+          <h2>Order Summary</h2>
+          <p>
+            Total price: <span className="total-price">₪{totalPrice}</span>
+          </p>
+          <button className="botton" onClick={handlePurchase}>
+            Purchase Now
+          </button>
+        </div>
+        <div className="cards-container">
+          {cart?.items?.map((item, i) => (
+            <CartItem key={i} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   )
 }
 
 export default ShopCart
-
 
 const CartItem = ({ item, key }) => {
   const { updateItemQuantity, removeFromCart } = useCart()
