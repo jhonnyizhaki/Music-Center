@@ -32,14 +32,14 @@ const Navbar = () => {
         >
           Studios
         </Link>
-        <Link
+        {user && <Link
           to="/shopcart"
           onClick={() => setPage("shopcart")}
           className={` ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
         >
-          {/* <img src="cart-icon.svg" alt="Cart" /> */}cart
-         
-        </Link>
+          cart
+
+        </Link>}
       </div>
 
       <div>

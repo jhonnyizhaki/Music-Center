@@ -1,12 +1,25 @@
 import { useState } from "react"
 import { useCart } from "../context/CartContext"
 import axios from "axios"
-import urls from "../constant/URLS" 
+import urls from "../constant/URLS"
 const ShopCart = () => {
   const { cart } = useCart()
-  console.log("Cart data:", cart)
-  console.log("First item in cart:", cart?.items?.[0])
 
+  const handlePurchase = async () => {
+    try {
+      const reqBody = {
+        items: cart?.items.map(({ instrumentId: { _id }, quantity }) => ({
+          id: _id,
+          quantity
+        }))
+      }
+      const serverResponse = await axios.post(urls.CREATE_ORDER, reqBody)
+      const redirectUrl = serverResponse.data.redirectUrl
+      window.location.href = redirectUrl.href
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div>
       <h1 className="title">Shop Cart</h1>
@@ -19,34 +32,11 @@ const ShopCart = () => {
       </div>
       <div className="wf">
 
-      <button
-        className="botton"
-        onClick={async ()=>{
-          try {
-            const reqBody = {
-              items:cart?.items.map((item)=>({
-                id:item.instrumentId._id,
-                quantity: item.quantity                   
-              }))
-            }
-            console.log("reqBody",reqBody)
-            const serverResponse = await axios.post(urls.CREATE_ORDER, reqBody)
-            
-            const redirectUrl =  serverResponse.data.redirectUrl
-            console.log(redirectUrl);
-            
-            window.location.href = redirectUrl.href
-              
-          } catch (error) {
-            console.log(error)  
-            throw error
-          }
-          // )
-          
-          
-        }}
+        <button
+          className="botton"
+          onClick={handlePurchase}
         >Submit</button>
-        </div>
+      </div>
     </div>
   )
 }
@@ -54,7 +44,7 @@ const ShopCart = () => {
 export default ShopCart
 
 
-const CartItem = ({ item,key }) => {
+const CartItem = ({ item, key }) => {
   const { updateItemQuantity, removeFromCart } = useCart()
   const [newQuantity, setNewQuantity] = useState(item.quantity)
   const instrument = item.instrumentId
