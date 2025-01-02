@@ -32,7 +32,7 @@ const Navbar = () => {
         >
           Practice Room
         </Link>
-        <Link
+        {user && <Link
           to="/shopcart"
           onClick={() => setPage("shopcart")}
           className={` ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}

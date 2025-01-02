@@ -1,18 +1,21 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
+import { useCart } from "../context/CartContext"
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const { login } = useAuth()
+  const { fetchUserCart } = useCart()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       await login({ email, password })
+      await fetchUserCart()
       navigate("/")
     } catch (error) {
       setError("Failed to log in")
