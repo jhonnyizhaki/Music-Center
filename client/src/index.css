@@ -28,7 +28,8 @@ body {
   height: 50px;
 }
 
-.navbar a, .username {
+.navbar a,
+.username {
   text-decoration: none;
   margin-right: 15px;
   font-size: 16px;
@@ -45,7 +46,7 @@ body {
   color: white;
 }
 
-.itsTheCurrentPage{
+.itsTheCurrentPage {
   color: #af934c;
 }
 
@@ -69,18 +70,15 @@ body {
   font-weight: bold;
 }
 
-
-
 .logo {
   background-color: #090000;
   background-image: url("LOGO.png");
-  background-position: center; 
-  background-repeat: no-repeat; 
-  width: 100%; 
-  height: 185px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 185px;
   color: #f4f4f9;
 }
-
 
 .button {
   background-color: #4caf50;
@@ -91,7 +89,7 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
-.logoutBtn{
+.logoutBtn {
   background-color: #09000000;
   color: white;
   padding: 10px 20px;
@@ -101,7 +99,7 @@ body {
   font-size: 16px;
 }
 .logoutBtn:hover {
- color: #fb0505;
+  color: #fb0505;
 }
 .title {
   text-align: center;
@@ -220,7 +218,7 @@ footer {
   border-radius: 5px;
   font-size: 14px;
   background-color: #e2dfd8;
-} 
+}
 .option {
   box-sizing: border-box;
   width: 20%;
@@ -230,7 +228,6 @@ footer {
   border-radius: 5px;
   font-size: 14px;
   background-color: #f9f9f9;
-  
 }
 .page-layout {
   position: relative;
@@ -244,13 +241,54 @@ footer {
 }
 
 /* עיצוב למכולת הכרטיסיות */
+.cart-layout {
+  max-width: 90vw;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+}
+
+.purchase-info {
+  position: sticky;
+  top: 20px;
+  flex-shrink: 0;
+  flex-basis: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  .total-price {
+    font-size: larger;
+    font-weight: 600;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+}
+
+.shop-cart-page {
+  background-color: #cfbe9641;
+  .title {
+    margin: 0;
+    padding-block: 25px;
+  }
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   gap: 20px;
-  padding: 20px;
-  background-color: #cfbe9641;
 }
 
 /* עיצוב לכל כרטיס */
@@ -263,7 +301,9 @@ footer {
   overflow: hidden;
   background-color: #fff;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -300,7 +340,7 @@ footer {
   justify-content: center;
   margin-bottom: 10px;
 
-  input{
+  input {
     width: 50%;
   }
 }
@@ -341,11 +381,9 @@ footer {
   background-color: #155bb5;
 } */
 
-.instrumentH1{
+.instrumentH1 {
   text-align: center;
- 
-
 }
-h1{
+h1 {
   color: #a4832e;
 }
