@@ -349,3 +349,13 @@ footer {
 h1{
   color: #a4832e;
 }
+
+.navbar a svg {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+/* Update the existing hover style to also affect the SVG */
+.navbar a:hover svg {
+  color: #af934c;
+}

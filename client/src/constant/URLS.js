@@ -11,4 +11,6 @@ export default {
     ADD_TO_CART: `${BASE_URL}/cart`,
     UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/cart/:instrumentId`,
     REMOVE_FROM_CART: `${BASE_URL}/cart/:instrumentId`,
+    BOOKINGS: `${BASE_URL}/bookings`,
+    GET_UNAVAILABLE_DATES: `${BASE_URL}/bookings/getUnavailable`,
 }
