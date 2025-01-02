@@ -3,14 +3,20 @@ import { useCart } from "../context/CartContext"
 
 const ShopCart = () => {
   const { cart } = useCart()
-  console.log("Cart data:", cart)
-  console.log("First item in cart:", cart?.items?.[0])
+
+  if (!cart) {
+    return <div>Loading...</div>
+  }
+
+  if (cart.items.length === 0) {
+    return <div>העגלה ריקה</div>
+  }
 
   return (
     <div>
       <h1 className="title">Shop Cart</h1>
       <div className="cards-container">
-        {cart?.items?.map((item) => (
+        {cart.items.map((item) => (
           <CartItem key={item._id} item={item} />
         ))}
       </div>

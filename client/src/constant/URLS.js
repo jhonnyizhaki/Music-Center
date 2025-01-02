@@ -9,6 +9,6 @@ export default {
     CATEGORIES: `${BASE_URL}/categories`,
     CART: `${BASE_URL}/cart`,
     ADD_TO_CART: `${BASE_URL}/cart`,
-    UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/cart`,
-    REMOVE_FROM_CART: `${BASE_URL}/cart`,
+    UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/cart/:instrumentId`,
+    REMOVE_FROM_CART: `${BASE_URL}/cart/:instrumentId`,
 }

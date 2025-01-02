@@ -93,7 +93,7 @@ export const updateCartItemQuantity = async (req, res) => {
             { $set: { 'items.$.quantity': quantity } }  // Update the quantity of the specific item in the array
         );
 
-        if (result.nModified === 0) {
+        if (result.modifiedCount === 0) {
             return res.status(404).json({ message: 'Item not found in the cart or no change made' });
         }
 
