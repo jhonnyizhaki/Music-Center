@@ -1,39 +1,9 @@
 import Order from '../models/orderModel.js';
 import Instrument from '../models/instrumentModel.js';
-import paypal from "../config/paypal.js"
-import { CheckoutPaymentIntent } from '@paypal/paypal-server-sdk'
-import axios from 'axios';
 import Cart from '../models/cartModel.js';
-const PAYPAL_BASE_URL = "https://api-m.sandbox.paypal.com"
+import payment from '../helpers/payment.js';
 
-async function generateAccessToken() {
-    const response = await axios({
-        url: PAYPAL_BASE_URL + '/v1/oauth2/token',
-        method: 'post',
-        data: 'grant_type=client_credentials',
-        auth: {
-            username: process.env.PAYPAL_ID,
-            password: process.env.PAYPAL_SECRET
-        }
-    })
 
-    return response.data.access_token
-}
-
-async function capturePayment(orderId) {
-    const accessToken = await generateAccessToken()
-
-    const response = await axios({
-        url: PAYPAL_BASE_URL + `/v2/checkout/orders/${orderId}/capture`,
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + accessToken
-        }
-    })
-
-    return response.data
-}
 
 // Add or create a card with an instrument
 export const addOrder = async (req, res) => {
@@ -42,10 +12,11 @@ export const addOrder = async (req, res) => {
 
         // check all items if there is enough in stock
         const quantityErrors = []
-        for (const [index, item] of items.entries()) {
+        for (const item of items) {
             const instrument = await Instrument.findById(item.id)
 
             if (!instrument)
+                
                 return res.status(404).json({ message: 'Instrument not found' });
 
             if (item.quantity > instrument.stock) {
@@ -67,49 +38,19 @@ export const addOrder = async (req, res) => {
             totalPrice += instrument.price * item.quantity
         }
 
-        const paypalResponse = await paypal.orders.ordersCreate({
-            body: {
-                intent: CheckoutPaymentIntent.CAPTURE,
-                payer: {
-                    emailAddress: req.user.email
-                },
-
-                purchaseUnits: [{
-                    amount: {
-                        currencyCode: "ILS",
-                        value: totalPrice.toString()
-                    },
-                    // items: items.map((item)=>({
-                    //     name:    item.name,
-                    //     unitAmount: {
-                    //       currencyCode: 'ILS',
-                    //       value: item.price.toString(),
-                    //     },
-                    //     quantity: item.quantity.toString(),
-                    // }))
-                }],
-                applicationContext: {
-                    brandName: "music center",
-                    cancelUrl: "http://localhost:5000/orders/approvePayment",
-                    returnUrl: "http://localhost:5173",
-                    userAction: "PAY_NOW"
-                }
-            }
-        })
-
-
+        const paypalOrder = await payment.createPaypalOrder(req.user.email, totalPrice)
 
         const newOrder = new Order({
             userId: req.user.id,
             items: itemsForMap,
             totalPrice,
-            paypalId: paypalResponse.result.id
+            paypalId: paypalOrder.result.id
         })
+
         await newOrder.save()
-        const redirectUrl = paypalResponse.result.links.find((link) => link.rel === "approve")
         await Cart.updateMany({}, { $set: { items: [] } });
 
-
+        const redirectUrl = paypalOrder.result.links.find((link) => link.rel === "approve")
         res.status(201).json({ message: 'Order Created', redirectUrl, newOrder });
     } catch (error) {
         console.log(error)
@@ -124,19 +65,19 @@ export const updateInstrumentInOrder = async (req, res) => {
     try {
         const { userId, instrumentId, quantity } = req.body;
 
-        const card = await Card.findOne({ userId });
-        if (!card) return res.status(404).json({ message: 'Card not found' });
+        const cart = await Cart.findOne({ userId });
+        if (!cart) return res.status(404).json({ message: 'Card not found' });
 
         const item = card.items.find(item => item.instrumentId.toString() === instrumentId);
         if (!item) return res.status(404).json({ message: 'Instrument not found in card' });
 
         // Update quantity
         item.quantity = quantity;
-        card.updatedAt = new Date();
+        cart.updatedAt = new Date();
 
-        await card.save();
+        await cart.save();
 
-        res.status(200).json({ message: 'Card updated successfully', card });
+        res.status(200).json({ message: 'Card updated successfully', cart });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }
@@ -147,7 +88,7 @@ export const approvePayment = async (req, res) => {
     try {
         console.log(req.query.token);
         // const { userId, instrumentId } = req.body;
-        const approvedOrder = await capturePayment(req.query.token)
+        const approvedOrder = await payment.capturePayment(req.query.token)
 
         await Order.findOneAndUpdate({ paypalId: approvedOrder.id }, { isPaid: true })
         console.log(approvedOrder);
@@ -168,7 +109,7 @@ export const deleteInstrumentFromOrder = async (req, res) => {
     try {
         const { userId, instrumentId } = req.body;
 
-        const card = await Card.findOne({ userId });
+        const card = await Cart.findOne({ userId });
         if (!card) return res.status(404).json({ message: 'Card not found' });
 
         // Remove the instrument from the card
@@ -188,10 +129,10 @@ export const getUserOrder = async (req, res) => {
     try {
         const { userId } = req.params;
 
-        const card = await Card.findOne({ userId }).populate('items.instrumentId');
-        if (!card) return res.status(404).json({ message: 'Card not found' });
+        const cart = await Cart.findOne({ userId }).populate('items.instrumentId');
+        if (!cart) return res.status(404).json({ message: 'Cart not found' });
 
-        res.status(200).json({ card });
+        res.status(200).json({ cart });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }
