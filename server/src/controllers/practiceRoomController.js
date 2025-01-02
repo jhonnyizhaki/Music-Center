@@ -1,82 +1,102 @@
-import PracticeRoom from '../models/practiceRoomModel.js';
-import Booking from '../models/practiceRoomBookingModel.js';
-import { isBefore, isAfter, addHours } from "date-fns"
-// Create a new booking
+import Booking from '../models/PracticeRoomBookingModel.js';
+import Instrument from '../models/instrumentModel.js';
+
 export const createBooking = async (req, res) => {
     try {
-        const { participantsCount, instruments, startDate, howLong, isVIP } = req.body;
-        const endDate = addHours(startDate, howLong)
+        const {
+            participants,
+            rentInstruments,
+            date,
+            time,
+            howLong,
+            isVIP,
+        } = req.body;
 
-        const room = await machRoom(startDate, endDate, isVIP, participantsCount)
+        // יצירת תאריכי התחלה וסיום
+        const startDateTime = new Date(`${date}T${time}`);
+        const endDateTime = new Date(startDateTime.getTime() + howLong * 60 * 60 * 1000);
 
-        console.log("room number", room.roomNumber);
-        console.log("room", room);
+        // בדיקה אם החדר פנוי
+        const existingBooking = await Booking.findOne({
+            $or: [
+                {
+                    startTime: { $lt: endDateTime },
+                    endTime: { $gt: startDateTime }
+                }
+            ]
+        });
 
+        if (existingBooking) {
+            return res.status(400).json({ message: "החדר תפוס בזמן המבוקש" });
+        }
+
+        // חישוב מחיר כולל
+        let totalPrice = isVIP ? 200 : 100; // מחיר בסיס לשעה
+        totalPrice *= howLong; // כפול מספר שעות
+
+        // הוספת מחיר כלי הנגינה
+        if (rentInstruments && rentInstruments.length > 0) {
+            const instruments = await Instrument.find({
+                _id: { $in: rentInstruments }
+            });
+            
+            const instrumentsPrice = instruments.reduce((sum, instrument) => {
+                return sum + (instrument.price * howLong);
+            }, 0);
+
+            totalPrice += instrumentsPrice;
+        }
+
+        // יצירת ההזמנה
         const booking = new Booking({
-            roomNumber: room.roomNumber,
-            participants: participantsCount,
-            instruments,
-            startTime: startDate,
-            endTime: endDate,
-            userId: req.user.id,
-            howLong
-
+            userId: req.user._id,
+            roomNumber: isVIP ? 1 : 2, // לדוגמה
+            participants,
+            rentInstruments: rentInstruments.map(id => ({ instrumentId: id })),
+            date,
+            time,
+            startTime: startDateTime,
+            endTime: endDateTime,
+            isVIP,
+            totalPrice
         });
 
         await booking.save();
-        res.status(201).json({ message: 'Booking created successfully', booking });
+
+        res.status(201).json({
+            message: "ההזמנה נוצרה בהצלחה",
+            booking
+        });
+
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error creating booking:', error);
+        res.status(500).json({ message: "אירעה שגיאה ביצירת ההזמנה" });
     }
-}
+};
 
-async function machRoom(startDate, endDate, isVIP, participantsCount) {
-    const allRooms = await PracticeRoom.find({})
-    const allBookings = await Booking.find({})
-    let availableRooms = allRooms
-    //
-    availableRooms = availableRooms.filter((room) => room.isVIP === isVIP)
-    console.log("after isVIP", availableRooms);
-    if (!availableRooms.length) throw new Error("no rooms match isVIP check")
-    availableRooms = availableRooms.filter((room) => room.capacity >= participantsCount)
-    console.log("after participantsCount", availableRooms);
-    if (!availableRooms.length) throw new Error("no rooms match participantsCount check")
-
-
-    availableRooms = availableRooms.filter((room) => {
-        for (const booking of allBookings) {
-            if (booking.roomNumber === room.roomNumber) {
-                if (isAfter(endDate, booking.startTime) && isBefore(startDate, booking.endTime)) {
-                    return false
-                }
-            }
-        }
-        return true
-    })
-    if (!availableRooms.length) throw new Error("the requested rooms are booked ")
-    const room = availableRooms[0] ?? null
-    return room
-}
-
-
-//get Unavailable Date 
 export const getUnavailableDates = async (req, res) => {
     try {
-        const existingBookings = await Booking.find({});
-        res.status(200).json(existingBookings);
+        const bookings = await Booking.find({
+            endTime: { $gte: new Date() }
+        })
+        .sort({ startTime: 1 });
+
+        res.json(bookings);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error fetching unavailable dates:', error);
+        res.status(500).json({ message: "אירעה שגיאה בקבלת התאריכים התפוסים" });
     }
 };
 
-// Get all bookings for admin
 export const getBookings = async (req, res) => {
     try {
-        const bookings = await PracticeRoom.find().populate('userId', 'name email');
-        res.status(200).json(bookings);
+        const bookings = await Booking.find()
+            .populate('userId')
+            .sort({ startTime: -1 });
+            
+        res.json(bookings);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error fetching bookings:', error);
+        res.status(500).json({ message: "אירעה שגיאה בקבלת ההזמנות" });
     }
 };
-//need to check
