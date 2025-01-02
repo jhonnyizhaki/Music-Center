@@ -39,9 +39,15 @@ export default app;
 // register - POST - /auth/register OK
 // login - POST - /auth/login OK
 // logout - POST - /auth/logout OK
+// register - POST - /auth/register OK
+// login - POST - /auth/login OK
+// logout - POST - /auth/logout OK
 
 // get all instruments - GET - /instruments OK
 // get instrument by id - GET - /instruments:id OK
+// edit an instruments - PUT -/instruments:id    OK - admin
+// adding a new instrument - POST- /instruments OK - admin
+// delete an instruments - DELETE - /instruments:id OK - admin
 // edit an instruments - PUT -/instruments:id    OK - admin
 // adding a new instrument - POST- /instruments OK - admin
 // delete an instruments - DELETE - /instruments:id OK - admin

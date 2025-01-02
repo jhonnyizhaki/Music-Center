@@ -4,7 +4,7 @@ import { authMiddleware } from '../middlewares/authMiddleware.js'
 
 const router = express.Router();
 
-// Add item to cart
+
 router.get("/", authMiddleware, getCart);
 router.post("/", authMiddleware, addToCart);
 router.put("/clear", authMiddleware, clearCart);

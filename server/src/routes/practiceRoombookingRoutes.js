@@ -7,7 +7,7 @@ const router = express.Router();
 
 // User routes
 router.post('/', authMiddleware, createBooking);
-router.get('/getUnavailable', getUnavailableDates)
+router.get('/getUnavailable', authMiddleware, getUnavailableDates)
 //router.delete('/', authMiddleware, deleteBooking);//To do
 //router.patch('/', authMiddleware, editBooking);//To do
 
