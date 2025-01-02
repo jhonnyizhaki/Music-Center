@@ -17,7 +17,7 @@ const ImageSlider = () => {
   const [imageIndex, setImageIndex] = useState(0)
 
   const images = [
-    "/image11.jpg", "/image12.jpg",
+    "/image1.jpg", "/image12.jpg",
      "/image13.jpg,", "/image14.jpg",
       "/image15.jpg", "/image16.jpg", 
       "/image17.jpg", "/image18.jpg",
