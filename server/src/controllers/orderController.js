@@ -107,18 +107,14 @@ export const approvePayment = async (req, res) => {
 // Delete an instrument from the card
 export const deleteInstrumentFromOrder = async (req, res) => {
     try {
-        const { userId, instrumentId } = req.body;
+        const { orderId, instrumentId } = req.body;
+        const existingOrder = await Order.findById(orderId).select('items');
+        console.log(existingOrder);
+        if (!existingOrder) return res.status(404).json({ message: 'Order not found' });
+        const updatedItems = existingOrder.items.filter(item => item.instrumentId.toString() !== instrumentId);
+        await Order.findByIdAndUpdate(orderId, { items: updatedItems });
 
-        const card = await Cart.findOne({ userId });
-        if (!card) return res.status(404).json({ message: 'Card not found' });
-
-        // Remove the instrument from the card
-        card.items = card.items.filter(item => item.instrumentId.toString() !== instrumentId);
-        card.updatedAt = new Date();
-
-        await card.save();
-
-        res.status(200).json({ message: 'Instrument removed from card', card });
+        res.status(200).json({ message: 'Instrument removed from order'});
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }
@@ -137,3 +133,26 @@ export const getUserOrder = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+
+export const getOrders = async (req, res) => {
+    try {
+        const orders = await Order.find().populate("userId").populate("items.instrumentId") ?? [];
+        res.status(200).json({ orders });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+};
+
+
+export const deleteOrders = async (req, res) => {
+    try {
+        const body = req.body;
+        await Order.findByIdAndDelete(body.id);
+        res.status(200).json();
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Server error', error });
+    }
+};
+
