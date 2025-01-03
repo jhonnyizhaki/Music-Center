@@ -9,7 +9,7 @@ import cartRoute from "./routes/cartRoutes.js";
 import practiceRoomBookingRoutes from "./routes/practiceRoomBookingRoutes.js";
 import dotenv from "dotenv";
 import orderRoutes from "./routes/orderRoutes.js";
-
+import RentInstrumentRoutes from "./routes/rentInstrumentsRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -31,7 +31,8 @@ app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
 app.use("/cart", cartRoute);
 app.use("/bookings", practiceRoomBookingRoutes);
-app.use('/orders', orderRoutes);
+app.use("/orders", orderRoutes);
+app.use("/rentInstruments", RentInstrumentRoutes) 
 export default app;
 
 
