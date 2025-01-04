@@ -10,16 +10,19 @@ import practiceRoomBookingRoutes from "./routes/practiceRoomBookingRoutes.js";
 import dotenv from "dotenv";
 import orderRoutes from "./routes/orderRoutes.js";
 import RentInstrumentRoutes from "./routes/rentInstrumentsRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(cookieParser());
-app.use(cors({
+app.use(
+  cors({
     origin: true,
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Connect to MongoDB
@@ -32,10 +35,9 @@ app.use("/categories", categoriesRoute);
 app.use("/cart", cartRoute);
 app.use("/bookings", practiceRoomBookingRoutes);
 app.use("/orders", orderRoutes);
-app.use("/rentInstruments", RentInstrumentRoutes) 
+app.use("/rentInstruments", RentInstrumentRoutes);
+app.use("/users", userRoutes);
 export default app;
-
-
 
 // register - POST - /auth/register OK
 // login - POST - /auth/login OK
