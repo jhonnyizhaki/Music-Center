@@ -32,7 +32,7 @@ connectDB();
 app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
-app.use("/carts", cartRoute);
+app.use("/cart", cartRoute);
 app.use("/bookings", practiceRoomBookingRoutes);
 app.use("/orders", orderRoutes);
 app.use("/rentInstruments", RentInstrumentRoutes);

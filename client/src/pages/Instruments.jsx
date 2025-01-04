@@ -47,7 +47,7 @@ const Instruments = ({ params }) => {
       <h1>Instruments</h1>
       <SelectInstrumentsCategory setSelectedCategory={setSelectedCategory} />
       <div className="cards-container">
-        {showInstruments.map((instrument,i) => (
+        {showInstruments.map((instrument, i) => (
           <InstrumentCard key={i} instrument={instrument} />
         ))}
       </div>
@@ -62,14 +62,25 @@ const InstrumentCard = ({ instrument }) => {
   const { addToCart } = useCart()
 
   const handleQuantityInputChange = (e) => {
-    if (e.target.value > instrument.stock) {
+    const value = parseInt(e.target.value)
+    if (value > instrument.stock) {
       setQuantity(instrument.stock)
-    } else if (e.target.value === "" || e.target.value < 1) {
+    } else if (isNaN(value) || value < 1) {
       setQuantity(1)
     } else {
-      setQuantity(e.target.value)
+      setQuantity(value)
     }
   }
+
+  // const handleQuantityInputChange = (e) => {
+  //   if (e.target.value > instrument.stock) {
+  //     setQuantity(instrument.stock)
+  //   } else if (e.target.value === "" || e.target.value < 1) {
+  //     setQuantity(1)
+  //   } else {
+  //     setQuantity(e.target.value)
+  //   }
+  // }
 
   return (
     <div className="card">
