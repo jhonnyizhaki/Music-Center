@@ -74,67 +74,40 @@ export const addToCart = async (req, res) => {
 };
 
 export const updateCartItemQuantity = async (req, res) => {
- 
-    try {
-        const { instrumentId } = req.params; // Get the instrumentId from the URL params
-        const { quantity } = req.body; // Get the quantity from the body
 
-        if (!instrumentId) {
-            return res.status(400).json({ message: 'Instrument ID is required' });
-        }
+  try {
+    const { instrumentId } = req.params; // Get the instrumentId from the URL params
+    const { quantity } = req.body; // Get the quantity from the body
 
-        if (!quantity || quantity <= 0) {
-            return res.status(400).json({ message: 'Quantity must be a positive number' });
-        }
-
-        const instrument = await Instrument.findById(instrumentId);
-        if (!instrument) {
-            return res.status(404).json({ message: 'Instrument not found' });
-        }
-
-        const result = await Cart.updateOne(
-            { userId: req.user.id, 'items.instrumentId': instrumentId },
-            { $set: { 'items.$.quantity': quantity } }  // Update the quantity of the specific item in the array
-        );
-
-        if (result.modifiedCount === 0) {
-            return res.status(404).json({ message: 'Item not found in the cart or no change made' });
-        }
-
-        return res.status(200).json({ message: 'Cart item updated' });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Server error', error });
+    if (!instrumentId) {
+      return res.status(400).json({ message: 'Instrument ID is required' });
     }
 
     if (!quantity || quantity <= 0) {
-      return res
-        .status(400)
-        .json({ message: "Quantity must be a positive number" });
+      return res.status(400).json({ message: 'Quantity must be a positive number' });
     }
 
     const instrument = await Instrument.findById(instrumentId);
     if (!instrument) {
-      return res.status(404).json({ message: "Instrument not found" });
+      return res.status(404).json({ message: 'Instrument not found' });
     }
 
     const result = await Cart.updateOne(
-      { userId: req.user.id, "items.instrumentId": instrumentId },
-      { $set: { "items.$.quantity": quantity } } // Update the quantity of the specific item in the array
+      { userId: req.user.id, 'items.instrumentId': instrumentId },
+      { $set: { 'items.$.quantity': quantity } }  // Update the quantity of the specific item in the array
     );
 
-    if (result.nModified === 0) {
-      return res
-        .status(404)
-        .json({ message: "Item not found in the cart or no change made" });
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: 'Item not found in the cart or no change made' });
     }
 
-    return res.status(200).json({ message: "Cart item updated" });
+    return res.status(200).json({ message: 'Cart item updated' });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Server error", error });
+    return res.status(500).json({ message: 'Server error', error });
   }
-};
+
+}
 
 // Remove an item from the cart
 export const removeCartItem = async (req, res) => {

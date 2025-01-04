@@ -18,7 +18,6 @@ function UsersPage() {
                     <input type="checkbox" className="checkbox" />
                   </label>
                 </th>
-                <th>Name</th>
                 <th>Contact</th>
                 <th>ID</th>
                 <th>Role</th>
@@ -35,30 +34,7 @@ function UsersPage() {
                         <input type="checkbox" className="checkbox" />
                       </label>
                     </th>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div
-                            className="mask mask-squircle h-12 w-12 font-semibold relative"
-                            style={{
-                              backgroundColor: generateColorFromPhone(
-                                user.phone
-                              ).hex,
-                            }}
-                          >
-                            <p className="absolute inset-0 flex items-center justify-center text-xl text-base-content/50">
-                              {user.name.at(0)}
-                            </p>
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">{user.name}</div>
-                          <div className="text-sm opacity-50">
-                            United States
-                          </div>
-                        </div>
-                      </div>
-                    </td>
+
                     <td>
                       <span className="badge badge-ghost badge-sm">
                         <a href={`mailto:${user.email}`}>{user.email}</a>
