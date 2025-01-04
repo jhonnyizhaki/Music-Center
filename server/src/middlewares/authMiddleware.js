@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const authMiddleware = (req, res, next) => {
   const token = req.cookies.auth_token;
-  
+
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -13,18 +13,17 @@ export const authMiddleware = (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(403).json({ message: "Invalid token" });
   }
 };
 
 export const adminAuthenticationMiddleware = (req, res, next) => {
-  if (req.user.role !== 'admin') {
+  if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Admins only." });
   }
 
   next();
 };
 
-export default authMiddleware
-
+export default authMiddleware;

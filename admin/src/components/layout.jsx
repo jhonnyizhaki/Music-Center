@@ -1,8 +1,10 @@
-import { HiDotsHorizontal } from "react-icons/hi";
+import { FiBox, FiHome, FiUsers } from "react-icons/fi";
 import { IoMenu } from "react-icons/io5";
 import { Outlet } from "react-router";
+import user from "../helpers/user";
 
 function Layout(p) {
+  // if (!user) window.location.href = "/login";
   return (
     <div className="drawer">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -16,12 +18,12 @@ function Layout(p) {
               >
                 <IoMenu size={24} />
               </label>
-              <a className="btn btn-ghost text-xl">Admin</a>
+              <a className="btn btn-ghost text-xl" href="/">
+                Admin
+              </a>
             </div>
             <div className="flex-none">
-              <button className="btn btn-square btn-ghost">
-                <HiDotsHorizontal size={24} />
-              </button>
+              <button className="btn btn-square btn-ghost"></button>
             </div>
           </div>
           <Outlet />
@@ -35,10 +37,23 @@ function Layout(p) {
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <li>
-            <a href="/">Home</a>
+            <a href="/">
+              <FiHome size={18} />
+              <span>Home</span>
+            </a>
           </li>
           <li>
-            <a href="/orders">Orders</a>
+            <a href="/orders">
+              <FiBox size={18} />
+              <span>Orders</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/users">
+              <FiUsers size={18} />
+              <span>Users</span>
+            </a>
           </li>
         </ul>
       </div>
