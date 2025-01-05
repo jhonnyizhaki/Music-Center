@@ -19,7 +19,12 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
+app.use(
+  cors({
     origin: true,
+    credentials: true,
+  })
+);
     credentials: true,
   })
 );
@@ -29,14 +34,14 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/instruments", instrumentsRoute);
-app.use("/categories", categoriesRoute);
-app.use("/cart", cartRoute);
-app.use("/bookings", practiceRoomBookingRoutes);
-app.use("/orders", orderRoutes);
-app.use("/rentInstruments", RentInstrumentRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/instruments", instrumentsRoute);
+app.use("/api/categories", categoriesRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/bookings", practiceRoomBookingRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/rentInstruments", RentInstrumentRoutes);
+app.use("/api/users", userRoutes);
 export default app;
 
 // register - POST - /auth/register OK
@@ -65,3 +70,4 @@ export default app;
 // get Unavailable Dates -  /booking/getUnavailable ?
 
 // create a new order - POST - /orders/add ?
+

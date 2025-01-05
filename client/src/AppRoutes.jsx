@@ -7,25 +7,41 @@ import ShopCart from "./components/ShopCart.jsx"
 import Register from "./pages/Register.jsx"
 import Home from "./pages/Home.jsx"
 import { useAuth } from "./context/AuthContext.jsx"
+import PracticeRoomBooking from "./components/PracticeRoomBooking.jsx"
 
 export default function AppRoutes() {
-    const [selectedCategory, setSelectedCategory] = useState("all");
-    const { user } = useAuth()
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const { user } = useAuth()
 
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="/instruments" element={<Instruments params={{ selectedCategory, setSelectedCategory }} />} />
-                    <Route path="*" element={<h1>404 Not Found</h1>} />
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route
+            path="/practiceRoomBooking"
+            element={<PracticeRoomBooking />}
+          />
+          <Route
+            path="/instruments"
+            element={
+              <Instruments params={{ selectedCategory, setSelectedCategory }} />
+            }
+          />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
 
-                    {user && <Route path="/shopcart" element={<ShopCart params={{ selectedCategory, setSelectedCategory }} />} />
-                    }
-                </Route>
-            </Routes>
-        </Router>
-    )
+          {user && (
+            <Route
+              path="/shopcart"
+              element={
+                <ShopCart params={{ selectedCategory, setSelectedCategory }} />
+              }
+            />
+          )}
+        </Route>
+      </Routes>
+    </Router>
+  )
 }

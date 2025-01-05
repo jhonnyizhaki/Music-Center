@@ -5,6 +5,41 @@ import RentInstrument from '../models/rentInstrumentModel.js';
 import Artist from '../models/artistModel.js';
 import validators from '../helpers/validators.js';
 import { z } from 'zod';
+
+async function machRoom(startDate, endDate, isVIP, participantsCount) {
+  try {
+    // מדיקת חדרים תפוסים בטווח התאריכים
+    const bookedRooms = await Booking.distinct('roomNumber', {
+      $or: [
+        {
+          startTime: { $lte: endDate },
+          endTime: { $gte: startDate }
+        }
+      ]
+    });
+
+    // מצא חדר פנוי שמתאים לדרישות
+    const availableRoom = await PracticeRoom.findOne({
+      isVIP: isVIP,
+      capacity: { $gte: participantsCount },
+      roomNumber: { $nin: bookedRooms }
+    });
+
+    if (!availableRoom) {
+      throw new Error('אין חדרים פנויים שמתאימים לדרישות שלך');
+    }
+
+    return {
+      roomNumber: availableRoom.roomNumber,
+      capacity: availableRoom.capacity,
+      isVIP: availableRoom.isVIP,
+      pricePerHour: availableRoom.pricePerHour
+    };
+  } catch (error) {
+    throw new Error(`שגיאה בקביעת חדר: ${error.message}`);
+  }
+}
+
 // Create a new booking
 
 const schema = z.object({
@@ -57,7 +92,12 @@ export const createBooking = async (req, res) => {
         });
 
         await booking.save();
-        res.status(201).json({ message: 'Booking created successfully', booking });
+
+        res.status(201).json({
+            message: "ההזמנה נוצרה בהצלחה",
+            booking
+        });
+
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: 'Server error', error });
@@ -95,22 +135,32 @@ async function machRoom(startDate, endDate, isVIP, participantsCount) {
 
 
 //get Unavailable Date 
+        console.error('Error creating booking:', error);
+        res.status(500).json({ message: "אירעה שגיאה ביצירת ההזמנה" });
+    }
+};
+
 export const getUnavailableDates = async (req, res) => {
     try {
         const existingBookings = await Booking.find({}).select({ startTime: 1, endTime: 1, _id: 0 });
         res.status(200).json(existingBookings);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error fetching unavailable dates:', error);
+        res.status(500).json({ message: "אירעה שגיאה בקבלת התאריכים התפוסים" });
     }
 };
 // Orders
 
 export const getBookings = async (req, res) => {
     try {
-        const bookings = await PracticeRoom.find().populate('userId', 'name email');
-        res.status(200).json(bookings);
+        const bookings = await Booking.find()
+            .populate('userId')
+            .sort({ startTime: -1 });
+            
+        res.json(bookings);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error fetching bookings:', error);
+        res.status(500).json({ message: "אירעה שגיאה בקבלת ההזמנות" });
     }
 };
 
