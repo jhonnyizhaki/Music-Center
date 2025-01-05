@@ -1,46 +1,26 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import styles from "./Home.module.css"
-import CardInstruments from "../components/ShopCart"
 
 const Home = () => {
   return (
-    <div>
-      <ImageSlider />
-      {/* <CardInstruments /> */}
+    <div className={styles.homeContainer}>
+      <VideoBackground />
+      {/* תוכן נוסף של דף הבית */}
     </div>
   )
 }
 
 export default Home
 
-const ImageSlider = () => {
-  const [imageIndex, setImageIndex] = useState(0)
-
-  const images = [
-    "/image1.jpg", "/image12.jpg",
-     "/image13.jpg,", "/image14.jpg",
-      "/image15.jpg", "/image16.jpg", 
-      "/image17.jpg", "/image18.jpg",
-      "/image19.jpg"]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setImageIndex((prev) => (prev + 1) % images.length)
-    }, 4000)
-
-    return () => clearInterval(interval)
-  }, [])
+const VideoBackground = () => {
   return (
-    <div className={styles.slideshowContainer}>
-      {images.map((image, index) => (
-        <div
-          key={image}
-          className={`${styles.slide} ${index === imageIndex ? styles.active : ""}`}
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
-        />
-      ))}
+    <div className={styles.videoContainer}>
+      <video autoPlay muted loop playsInline className={styles.videoBackground}>
+        <source src="https://videocdn.cdnpk.net/videos/27b481b9-a546-5d48-8c9d-a0d1dcb363b1/horizontal/previews/watermarked/large.mp4" type="video/mp4" />
+        הדפדפן שלך לא תומך בתגית וידאו.
+      </video>
+      {/* שכבת כהות אופציונלית מעל הוידאו */}
+      <div className={styles.overlay}></div>
     </div>
   )
 }

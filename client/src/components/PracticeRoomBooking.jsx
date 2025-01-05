@@ -34,9 +34,10 @@ const PracticeRoomBooking = () => {
       const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES, {
         withCredentials: true,
       })
-      setUnavailableDates(data)
+      setUnavailableDates(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error("Error fetching unavailable dates:", error)
+      setUnavailableDates([])
     }
   }
 
@@ -380,7 +381,7 @@ const PracticeRoomBooking = () => {
           </button>
         </form>
 
-        {unavailableDates.length > 0 && (
+        {Array.isArray(unavailableDates) && unavailableDates.length > 0 && (
           <div className={styles["unavailable-dates"]}>
             <h3>תאריכים תפוסים:</h3>
             <ul>
