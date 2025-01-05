@@ -7,6 +7,7 @@ const Navbar = () => {
   const { user, logout } = useAuth()
   const [page, setPage] = useState("home")
   const { cart } = useCart()
+  console.log(user)
 
   // חישוב סך הפריטים בעגלה - נולל כמויות
   const cartItemsCount =
@@ -67,12 +68,21 @@ const Navbar = () => {
 
         <div>
           {user ? (
-            <>
+            <div className="flex">
               <span className="email">{user.email}</span>
               <button className="logoutBtn" onClick={logout}>
                 Logout
+
               </button>
-            </>
+              {user.user.role === "admin" && (
+
+                <a href="http://localhost:5001" className="logoutBtn">
+                  Admin
+                </a>
+              )}
+
+
+            </div>
           ) : (
             <>
               <Link

@@ -7,8 +7,8 @@ function OrdersPage() {
   const ordersHook = useOrdersPage();
 
   return (
-    <div className="card w-full h-4/5 overflow-hidden">
-      <div className="grid grid-cols-4 xl:grid-cols-5 gap-4 p-4 ">
+    <div className="card w-full h-4/5 overflow-hidden border-2 border-base-300 rounded-xl">
+      <div className="grid grid-cols-4 xl:grid-cols-5 gap-4 p-6">
         {ordersHook.orders.length ? (
           <>
             <OrderDialog ordersHook={ordersHook} />
@@ -28,18 +28,20 @@ function OrdersPage() {
 
 function OrderCard({ ordersHook, order }) {
   return (
-    <div className="card bg-base-100  shadow-xl">
+    <div className="card bg-base-100 shadow-xl overflow-hidden">
       <div className="card-body flex flex-col gap-5">
-        <h2 className="card-title text-xs">{order._id}</h2>
+        <h2 className="card-title text-xs flex overflow-x-auto scrollbar-hide">
+          <span className="shrink-0">Order ID: </span>
+          <span className="whitespace-nowrap">{order._id}</span>
+        </h2>
         <div className="bg-base-200 p-2 rounded-lg">
-          {/* {order.userId.name} {order.userId.email} */}
-          <div className="font-light flex gap-4">
-            <span>name:</span>
-            {order.userId.name}
+          <div className="font-light flex gap-4 overflow-hidden">
+            <span className="shrink-0">name:</span>
+            <span className="truncate">{order.userId.name}</span>
           </div>
-          <div className="font-light flex gap-4">
-            <span>email:</span>
-            {order.userId.email}
+          <div className="font-light flex gap-4 overflow-x-auto scrollbar-hide">
+            <span className="shrink-0">email:</span>
+            <span className="whitespace-nowrap">{order.userId.email}</span>
           </div>
         </div>
         <div className="card-actions justify-end">
@@ -104,7 +106,7 @@ function OrderDialog({ ordersHook }) {
                         </th>
                         <th>
                           {ordersHook.selectedInstrumentId ===
-                          item.instrumentId._id ? (
+                            item.instrumentId._id ? (
                             <input
                               className="input input-bordered input-sm w-14"
                               type="number"
@@ -119,7 +121,7 @@ function OrderDialog({ ordersHook }) {
                         <th>{item.instrumentId.price}₪</th>
                         <th>
                           {ordersHook.selectedInstrumentId ===
-                          item.instrumentId._id ? (
+                            item.instrumentId._id ? (
                             <button
                               className="btn btn-sm btn-success  btn-square"
                               onClick={

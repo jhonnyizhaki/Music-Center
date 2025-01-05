@@ -41,12 +41,14 @@ export const login = async (req, res) => {
 
     res.cookie(
       "user",
-      {
+     
+      encodeURI(JSON.stringify({
         id: user._id,
         name: user.name,
         role: user.role,
         email: user.email,
-      },
+      }))
+      ,
       {
         httpOnly: false,
       }

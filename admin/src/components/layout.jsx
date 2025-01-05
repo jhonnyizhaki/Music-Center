@@ -4,7 +4,8 @@ import { Outlet } from "react-router";
 import user from "../helpers/user";
 
 function Layout(p) {
-  // if (!user) window.location.href = "/login";
+  console.log(user)
+  if (!user || user.role !== "admin") window.location.href = "http://localhost:5173/login";
   return (
     <div className="drawer">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
