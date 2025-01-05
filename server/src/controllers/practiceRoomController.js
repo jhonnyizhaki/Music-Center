@@ -3,6 +3,41 @@ import Booking from '../models/practiceRoomBookingModel.js';
 import { isBefore, isAfter, addHours } from "date-fns"
 import RentInstrument from '../models/rentInstrumentModel.js';
 import Artist from '../models/artistModel.js';
+
+async function machRoom(startDate, endDate, isVIP, participantsCount) {
+  try {
+    // מדיקת חדרים תפוסים בטווח התאריכים
+    const bookedRooms = await Booking.distinct('roomNumber', {
+      $or: [
+        {
+          startTime: { $lte: endDate },
+          endTime: { $gte: startDate }
+        }
+      ]
+    });
+
+    // מצא חדר פנוי שמתאים לדרישות
+    const availableRoom = await PracticeRoom.findOne({
+      isVIP: isVIP,
+      capacity: { $gte: participantsCount },
+      roomNumber: { $nin: bookedRooms }
+    });
+
+    if (!availableRoom) {
+      throw new Error('אין חדרים פנויים שמתאימים לדרישות שלך');
+    }
+
+    return {
+      roomNumber: availableRoom.roomNumber,
+      capacity: availableRoom.capacity,
+      isVIP: availableRoom.isVIP,
+      pricePerHour: availableRoom.pricePerHour
+    };
+  } catch (error) {
+    throw new Error(`שגיאה בקביעת חדר: ${error.message}`);
+  }
+}
+
 // Create a new booking
 export const createBooking = async (req, res) => {
     try {

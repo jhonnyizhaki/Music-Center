@@ -6,7 +6,11 @@ import { useCart } from "../context/CartContext"
 const Navbar = () => {
   const { user, logout } = useAuth()
   const [page, setPage] = useState("home")
-  const { cartItems } = useCart()
+  const { cart } = useCart()
+
+  // חישוב סך הפריטים בעגלה - נולל כמויות
+  const cartItemsCount =
+    cart?.items?.reduce((total, item) => total + (item?.quantity || 0), 0) || 0
 
   return (
     <>
@@ -37,8 +41,11 @@ const Navbar = () => {
             <Link
               to="/shopcart"
               onClick={() => setPage("shopcart")}
-              className={` ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
+              className={`cart-icon-container ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
             >
+              {cartItemsCount > 0 && (
+                <span className="cart-counter">{cartItemsCount}</span>
+              )}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

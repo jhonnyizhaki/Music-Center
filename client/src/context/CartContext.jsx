@@ -37,11 +37,10 @@ export const CartProvider = ({ children }) => {
 
   const updateItemQuantity = async (instrumentId, quantity) => {
     try {
-      const { data } = await axios.put(
-        `${urls.UPDATE_CART_ITEM_QUANTITY}/${instrumentId}`,
-        { quantity }
-      )
-      fetchUserCart()
+      await axios.put(`${urls.UPDATE_CART_ITEM_QUANTITY}/${instrumentId}`, {
+        quantity,
+      })
+      await fetchUserCart()
     } catch (error) {
       console.error(error)
     }
@@ -82,10 +81,12 @@ export const CartProvider = ({ children }) => {
         updateItemQuantity,
         removeFromCart,
         fetchUserCart,
-        totalPrice: cart?.items.reduce(
-          (total, item) => total + item.instrumentId.price * item.quantity,
-          0
-        ),
+        totalPrice:
+          cart?.items?.reduce(
+            (total, item) =>
+              total + (item?.instrumentId?.price || 0) * (item?.quantity || 0),
+            0
+          ) || 0,
       }}
     >
       {children}

@@ -62,7 +62,7 @@ body {
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: red;
+  background-color: #af934c;
   color: white;
   border-radius: 50%;
   padding: 4px 8px;
@@ -397,4 +397,22 @@ h1 {
 /* Update the existing hover style to also affect the SVG */
 .navbar a:hover svg {
   color: #af934c;
+}
+
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  min-width: 16px;
+  text-align: center;
 }

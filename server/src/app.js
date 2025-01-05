@@ -16,25 +16,25 @@ const app = express();
 
 // Middleware
 app.use(cookieParser());
-app.use(cors({
+app.use(
+  cors({
     origin: true,
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/instruments", instrumentsRoute);
-app.use("/categories", categoriesRoute);
-app.use("/cart", cartRoute);
-app.use("/bookings", practiceRoomBookingRoutes);
-app.use('/orders', orderRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/instruments", instrumentsRoute);
+app.use("/api/categories", categoriesRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/bookings", practiceRoomBookingRoutes);
+app.use("/api/orders", orderRoutes);
 export default app;
-
-
 
 // register - POST - /auth/register OK
 // login - POST - /auth/login OK
