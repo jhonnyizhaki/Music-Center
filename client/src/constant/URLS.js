@@ -1,7 +1,10 @@
 const BASE_URL = "http://localhost:5000"
+const BACKGROUND_VIDEO =
+  "https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
 
 export default {
   BASE_URL,
+  BACKGROUND_VIDEO,
   LOGIN: `${BASE_URL}/api/auth/login`,
   LOGOUT: `${BASE_URL}/api/auth/logout`,
   REGISTER: `${BASE_URL}/api/auth/register`,

@@ -292,7 +292,7 @@ const PracticeRoomBooking = () => {
                 </div>
 
                 <div className={styles["instruments-grid"]}>
-                  {filteredInstruments.map((instrument) => {
+                  {filteredInstruments.map((instrument, index) => {
                     const isSelected = bookingData.rentInstruments.some(
                       (item) => item.instrumentId === instrument._id
                     )
@@ -301,10 +301,7 @@ const PracticeRoomBooking = () => {
                     )?.withArtist
 
                     return (
-                      <div
-                        key={instrument._id}
-                        className={styles["instrument-card"]}
-                      >
+                      <div key={index} className={styles["instrument-card"]}>
                         <h4 className={styles["name"]}>
                           {getInstrumentIcon(instrument.category)}
                           <span>{instrument.name}</span>
@@ -347,29 +344,30 @@ const PracticeRoomBooking = () => {
 
           <div className={styles["selected-instruments"]}>
             <h4>כלי נגינה שנבחרו:</h4>
-            {bookingData.rentInstruments.map(({ instrumentId, withArtist }) => {
-              const instrument = instruments.find((i) => i._id === instrumentId)
-              if (!instrument) return null
+            {bookingData.rentInstruments.map(
+              ({ instrumentId, withArtist }, index) => {
+                const instrument = instruments.find(
+                  (i) => i._id === instrumentId
+                )
+                if (!instrument) return null
 
-              return (
-                <div
-                  key={instrumentId}
-                  className={styles["selected-instrument"]}
-                >
-                  <span>{instrument.name}</span>
-                  {withArtist && (
-                    <span className={styles["with-artist"]}>כולל אמן</span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => handleInstrumentChange(instrumentId)}
-                    className={styles["remove-btn"]}
-                  >
-                    הסר
-                  </button>
-                </div>
-              )
-            })}
+                return (
+                  <div key={index} className={styles["selected-instrument"]}>
+                    <span>{instrument.name}</span>
+                    {withArtist && (
+                      <span className={styles["with-artist"]}>כולל אמן</span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleInstrumentChange(instrumentId)}
+                      className={styles["remove-btn"]}
+                    >
+                      הסר
+                    </button>
+                  </div>
+                )
+              }
+            )}
           </div>
 
           <div className={styles["total-price"]}>
@@ -385,10 +383,8 @@ const PracticeRoomBooking = () => {
           <div className={styles["unavailable-dates"]}>
             <h3>תאריכים תפוסים:</h3>
             <ul>
-              {unavailableDates.map((booking) => (
-                <li
-                  key={booking._id || `${booking.startTime}-${booking.endTime}`}
-                >
+              {unavailableDates.map((booking, index) => (
+                <li key={index}>
                   {new Date(booking.startTime).toLocaleString()} -
                   {new Date(booking.endTime).toLocaleString()}
                 </li>

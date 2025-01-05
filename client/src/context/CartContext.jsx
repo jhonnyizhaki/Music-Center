@@ -69,6 +69,15 @@ export const CartProvider = ({ children }) => {
     }
   }
 
+  const clearCart = async () => {
+    try {
+      const response = await axios.put(`${urls.CART}/clear`)
+      setCart(response.data.cart)
+    } catch (error) {
+      console.error("Error clearing cart:", error)
+    }
+  }
+
   useEffect(() => {
     fetchUserCart()
   }, [])
@@ -80,13 +89,16 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateItemQuantity,
         removeFromCart,
+        clearCart,
         fetchUserCart,
-        totalPrice:
-          cart?.items?.reduce(
-            (total, item) =>
-              total + (item?.instrumentId?.price || 0) * (item?.quantity || 0),
-            0
-          ) || 0,
+        totalPrice: cart?.items?.length
+          ? cart.items.reduce(
+              (total, item) =>
+                total +
+                (item?.instrumentId?.price || 0) * (item?.quantity || 0),
+              0
+            )
+          : 0,
       }}
     >
       {children}

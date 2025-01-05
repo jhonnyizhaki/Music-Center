@@ -19,15 +19,11 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-app.use(
-  cors({
     origin: true,
     credentials: true,
   })
 );
-    credentials: true,
-  })
-);
+
 app.use(express.json());
 
 // Connect to MongoDB
@@ -70,4 +66,3 @@ export default app;
 // get Unavailable Dates -  /booking/getUnavailable ?
 
 // create a new order - POST - /orders/add ?
-

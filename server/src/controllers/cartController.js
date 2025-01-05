@@ -146,16 +146,13 @@ export const removeCartItem = async (req, res) => {
 // Clear all items from the cart
 export const clearCart = async (req, res) => {
   try {
-    const result = await Cart.updateOne(
-      { userId: req.user.id },
-      { $set: { items: [] } } // Clear all items from the cart
-    );
+    await Cart.updateOne({ userId: req.user.id }, { $set: { items: [] } });
 
-    if (result.nModified === 0) {
-      return res.status(404).json({ message: "Cart not found" });
-    }
-
-    return res.status(200).json({ message: "Cart cleared" });
+    // נחזיר עגלה ריקה
+    return res.status(200).json({
+      message: "Cart cleared",
+      cart: { items: [] },
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Server error", error });
