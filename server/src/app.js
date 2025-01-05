@@ -23,20 +23,21 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/instruments", instrumentsRoute);
-app.use("/categories", categoriesRoute);
-app.use("/carts", cartRoute);
-app.use("/bookings", practiceRoomBookingRoutes);
-app.use("/orders", orderRoutes);
-app.use("/rentInstruments", RentInstrumentRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/instruments", instrumentsRoute);
+app.use("/api/categories", categoriesRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/bookings", practiceRoomBookingRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/rentInstruments", RentInstrumentRoutes);
+app.use("/api/users", userRoutes);
 export default app;
 
 // register - POST - /auth/register OK

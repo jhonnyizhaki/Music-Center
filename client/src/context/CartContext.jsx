@@ -37,11 +37,10 @@ export const CartProvider = ({ children }) => {
 
   const updateItemQuantity = async (instrumentId, quantity) => {
     try {
-      const { data } = await axios.put(
-        `${urls.UPDATE_CART_ITEM_QUANTITY}/${instrumentId}`,
-        { quantity }
-      )
-      fetchUserCart()
+      await axios.put(`${urls.UPDATE_CART_ITEM_QUANTITY}/${instrumentId}`, {
+        quantity,
+      })
+      await fetchUserCart()
     } catch (error) {
       console.error(error)
     }
@@ -70,6 +69,15 @@ export const CartProvider = ({ children }) => {
     }
   }
 
+  const clearCart = async () => {
+    try {
+      const response = await axios.put(`${urls.CART}/clear`)
+      setCart(response.data.cart)
+    } catch (error) {
+      console.error("Error clearing cart:", error)
+    }
+  }
+
   useEffect(() => {
     fetchUserCart()
   }, [])
@@ -81,11 +89,16 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateItemQuantity,
         removeFromCart,
+        clearCart,
         fetchUserCart,
-        totalPrice: cart?.items.reduce(
-          (total, item) => total + item.instrumentId.price * item.quantity,
-          0
-        ),
+        totalPrice: cart?.items?.length
+          ? cart.items.reduce(
+              (total, item) =>
+                total +
+                (item?.instrumentId?.price || 0) * (item?.quantity || 0),
+              0
+            )
+          : 0,
       }}
     >
       {children}

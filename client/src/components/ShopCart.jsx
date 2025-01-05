@@ -3,7 +3,7 @@ import { useCart } from "../context/CartContext"
 import axios from "axios"
 import urls from "../constant/URLS"
 const ShopCart = () => {
-  const { cart, totalPrice } = useCart()
+  const { cart, totalPrice, clearCart } = useCart()
 
   const handlePurchase = async () => {
     try {
@@ -29,11 +29,25 @@ const ShopCart = () => {
       <div className="cart-layout">
         <div className="purchase-info">
           <h2>Order Summary</h2>
-          <p>
-            Total price: <span className="total-price">₪{totalPrice}</span>
-          </p>
-          <button className="botton" onClick={handlePurchase}>
+          <div className="summary-details">
+            <div className="summary-item">
+              <span>Items ({cart?.items?.length || 0})</span>
+              <span>₪{totalPrice}</span>
+            </div>
+            <div className="summary-item">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+          </div>
+          <div className="total-price">
+            <span>Total:</span>
+            <span>₪{totalPrice}</span>
+          </div>
+          <button className="purchase-button" onClick={handlePurchase}>
             Purchase Now
+          </button>
+          <button className="clear-cart" onClick={clearCart}>
+            Clear Cart
           </button>
         </div>
         <div className="cards-container">

@@ -1,16 +1,19 @@
 const BASE_URL = "http://localhost:5000"
+const BACKGROUND_VIDEO =
+  "https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
 
 export default {
-    BASE_URL,
-    LOGIN: `${BASE_URL}/auth/login`,
-    LOGOUT: `${BASE_URL}/auth/logout`,
-    REGISTER: `${BASE_URL}/auth/register`,
-    VERIFY: `${BASE_URL}/auth/verify`,
-    INSTRUMENTS: `${BASE_URL}/instruments`,
-    CATEGORIES: `${BASE_URL}/categories`,
-    CART: `${BASE_URL}/carts`,
-    ADD_TO_CART: `${BASE_URL}/carts`,
-    UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/carts`,
-    REMOVE_FROM_CART: `${BASE_URL}/carts`,
-    CREATE_ORDER: `${BASE_URL}/orders/add`
+  BASE_URL,
+  BACKGROUND_VIDEO,
+  LOGIN: `${BASE_URL}/api/auth/login`,
+  LOGOUT: `${BASE_URL}/api/auth/logout`,
+  REGISTER: `${BASE_URL}/api/auth/register`,
+  VERIFY: `${BASE_URL}/api/auth/verify`,
+  INSTRUMENTS: `${BASE_URL}/api/instruments`,
+  CATEGORIES: `${BASE_URL}/api/categories`,
+  CART: `${BASE_URL}/api/cart`,
+  ADD_TO_CART: `${BASE_URL}/api/cart/add`,
+  UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/api/cart/update`,
+  REMOVE_FROM_CART: `${BASE_URL}/api/cart/remove`,
+  CREATE_ORDER: `${BASE_URL}/api/orders/add`,
 }

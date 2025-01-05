@@ -4,10 +4,17 @@
 
 /* index.css */
 
-header img {
+.video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
   min-width: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.3; /* שקיפות הוידאו */
 }
 
 body {
@@ -15,17 +22,23 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #f4f4f9;
   overflow-x: hidden;
+  position: relative;
 }
 
 .navbar {
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: rgb(0, 0, 0);
+  backdrop-filter: blur(5px);
 }
 
 .navbar a,
@@ -62,7 +75,7 @@ body {
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: red;
+  background-color: #af934c;
   color: white;
   border-radius: 50%;
   padding: 4px 8px;
@@ -71,13 +84,15 @@ body {
 }
 
 .logo {
-  background-color: #090000;
+  background-color: rgb(9, 0, 0);
   background-image: url("LOGO.png");
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: 185px;
   color: #f4f4f9;
+  position: relative;
+  z-index: 1;
 }
 
 .button {
@@ -116,9 +131,10 @@ form {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 form h1 {
@@ -254,26 +270,79 @@ footer {
 
 .purchase-info {
   position: sticky;
-  top: 20px;
+  top: 80px;
   flex-shrink: 0;
-  flex-basis: 300px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  .total-price {
-    font-size: larger;
-    font-weight: 600;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
+  flex-basis: 350px;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.purchase-info h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #af934c;
+}
+
+.purchase-info .total-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #af934c;
+  margin: 20px 0;
+  display: block;
+}
+
+.purchase-info .purchase-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.purchase-info .purchase-button:hover {
+  background-color: #af934c;
+}
+
+.purchase-info .clear-cart {
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: #ff4444;
+  border: 1px solid #ff4444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.purchase-info .clear-cart:hover {
+  background-color: #ff4444;
+  color: white;
+}
+
+.purchase-info .summary-details {
+  margin: 20px 0;
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.purchase-info .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #666;
 }
 
 .shop-cart-page {
@@ -386,4 +455,39 @@ footer {
 }
 h1 {
   color: #a4832e;
+}
+
+
+.navbar a svg {
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+/* Update the existing hover style to also affect the SVG */
+.navbar a:hover svg {
+  color: #af934c;
+}
+
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
 }
