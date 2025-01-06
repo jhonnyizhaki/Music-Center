@@ -78,6 +78,11 @@ export const createBooking = async (req, res) => {
     console.log("room number", room.roomNumber);
     console.log("room", room);
 
+    const paypalOrder = await payment.createPaypalOrder(
+      req.user.email,
+      totalPrice
+    );
+
     const booking = new Booking({
       roomNumber: room.roomNumber,
       participants: participantsCount,
@@ -87,6 +92,8 @@ export const createBooking = async (req, res) => {
       userId: req.user.id,
       howLong,
       artists,
+      paypalId: paypalOrder.result.id,
+
     });
 
     await booking.save();

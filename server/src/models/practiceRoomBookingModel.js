@@ -52,7 +52,9 @@ const bookingSchema = new mongoose.Schema({
     totalPrice: { 
         type: Number, 
         required: true 
-    }
+    },
+    paypalId: {type: String, required: true}
+
 }, { timestamps: true });
 
 const Booking = mongoose.model('Booking', bookingSchema);

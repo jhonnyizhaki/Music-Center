@@ -374,7 +374,9 @@ const PracticeRoomBooking = () => {
             סה"כ לתשלום: ₪{calculateTotalPrice()}
           </div>
 
-          <button type="submit" className={styles["submit-btn"]}>
+          <button type="button" className={styles["submit-btn"]} onClick={async () => {
+
+          }} >
             הזמן חדר
           </button>
         </form>

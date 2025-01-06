@@ -51,8 +51,8 @@ async function createPaypalOrder(email, totalPrice) {
       ],
       applicationContext: {
         brandName: "music center",
-        cancelUrl: "http://localhost:5173/shopCart",
-        returnUrl: "http://localhost:5173/",
+        cancelUrl: "http://localhost:5000/orders/cancelOrder",
+        returnUrl: "http://localhost:5000/orders/approveOrder",
         userAction: "PAY_NOW",
       },
     },

@@ -4,7 +4,7 @@ import Cart from "../models/cartModel.js";
 import payment from "../helpers/payment.js";
 
 // Add or create a card with an instrument
-export const addOrder = async (req, res) => {
+export const crateOrder = async (req, res) => {
   try {
     const { items } = req.body; // item[] = {id, quantity}
 
@@ -53,7 +53,6 @@ export const addOrder = async (req, res) => {
     });
 
     await newOrder.save();
-    await Cart.updateMany({}, { $set: { items: [] } });
 
     const redirectUrl = paypalOrder.result.links.find(
       (link) => link.rel === "approve"
@@ -95,14 +94,19 @@ export const updateInstrumentInOrder = async (req, res) => {
 export const approveOrder = async (req, res) => {
   try {
     const approvedOrder = await payment.capturePayment(req.query.token);
-
+const updatedOrder =
     await Order.findOneAndUpdate(
-      { paypalId: approvedOrder.id },
-      { isPaid: true }
-    );
-    console.log(approvedOrder);
+      { paypalId: approvedOrder.id},
+      { isPaid: true },
+      {new: true}
 
-    res.status(200).redirect(process.env.FRONTEND_URL);
+      
+    );
+    console.log(approvedOrder.id)
+    await Cart.updateMany({userId: updatedOrder.userId}, { $set: { items: [] } });
+
+
+    res.status(200).redirect("http://localhost:5173");
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server error", error });
@@ -157,6 +161,16 @@ export const deleteOrders = async (req, res) => {
   try {
     const body = req.body;
     await Order.findByIdAndDelete(body.id);
+    res.status(200).json();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error", error });
+  }
+
+};
+export const cancelOrder = async (req, res) => {
+  try {
+    console.log(req.query)
     res.status(200).json();
   } catch (error) {
     console.log(error);
