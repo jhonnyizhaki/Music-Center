@@ -39,8 +39,8 @@ function useOrdersPage() {
 
     onRemoveInstrument: async (instrumentId) => {
       try {
-        await axios.delete(`${SERVER_URL}/orders/deleteINstrumentFromOrder`, {
-          data: { shownOrderId, instrumentId },
+        await axios.delete(`${SERVER_URL}/orders/deleteInstrumentFromOrder`, {
+          data: { orderId: shownOrderId, instrumentId },
           withCredentials: true,
         });
         const newOrders = orders.map((order) => {

@@ -28,7 +28,7 @@ router.put(
   updateInstrumentInOrder
 );
 router.delete(
-  "/deleteINstrumentFromOrder",
+  "/deleteInstrumentFromOrder",
   authMiddleware,
   adminAuthenticationMiddleware,
   deleteInstrumentFromOrder

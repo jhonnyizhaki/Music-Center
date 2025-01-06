@@ -146,7 +146,10 @@ function OrderDialog({ ordersHook }) {
                         <th>
                           <button
                             className="btn btn-sm  btn-error btn-square"
-                            onClick={ordersHook.actions.onRemoveInstrument}
+                            onClick={() => ordersHook.actions.onRemoveInstrument(
+                              ordersHook.orderToShow._id,
+                              item.instrumentId._id
+                            )}
                           >
                             <BiX size={20} />
                           </button>
