@@ -6,9 +6,6 @@ import urls from "../constant/URLS"
 const Layout = () => {
   return (
     <div className="page-layout">
-      <video autoPlay muted loop className="video-background">
-        <source src={urls.BACKGROUND_VIDEO} type="video/mp4" />
-      </video>
       <Link to="/">
         <div className="logo"></div>
       </Link>

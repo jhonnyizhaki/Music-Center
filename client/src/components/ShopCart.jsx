@@ -25,7 +25,7 @@ const ShopCart = () => {
 
   return (
     <div className="shop-cart-page">
-      <h1 className="title">Shop Cart</h1>
+      <h1 className="title">Shopping Cart</h1>
       <div className="cart-layout">
         <div className="purchase-info">
           <h2>Order Summary</h2>

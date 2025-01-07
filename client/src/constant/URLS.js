@@ -4,7 +4,7 @@ const BACKGROUND_VIDEO =
 
 export default {
   BASE_URL,
-  BACKGROUND_VIDEO,
+  BACKGROUND_VIDEO: "/videos/your-video-file.mp4",
   LOGIN: `${BASE_URL}/auth/login`,
   LOGOUT: `${BASE_URL}/auth/logout`,
   REGISTER: `${BASE_URL}/auth/register`,
