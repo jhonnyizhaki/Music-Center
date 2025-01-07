@@ -22,8 +22,10 @@ const Home = () => {
     fetchInstruments()
   }, [])
 
-  // גלילה אוטומטית
+  // גלילה אוטומטית - רק אם יש כלים
   useEffect(() => {
+    if (popularInstruments.length === 0) return
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex + 1 >= popularInstruments.length ? 0 : prevIndex + 1
@@ -47,6 +49,8 @@ const Home = () => {
 
   // מחשב אילו כלים להציג (3 כלים בכל פעם)
   const getVisibleInstruments = () => {
+    if (popularInstruments.length === 0) return []
+
     const result = []
     for (let i = 0; i < 3; i++) {
       const index = (currentIndex + i) % popularInstruments.length
@@ -86,16 +90,19 @@ const Home = () => {
               <FaChevronLeft />
             </button>
             <div className={styles.instrumentsGrid}>
-              {visibleInstruments.map((instrument, index) => (
-                <div
-                  key={`${currentIndex}-${index}`}
-                  className={styles.instrumentCard}
-                >
-                  <img src={instrument.imageUrl} alt={instrument.name} />
-                  <h3>{instrument.name}</h3>
-                  <p>{instrument.category}</p>
-                </div>
-              ))}
+              {visibleInstruments.map(
+                (instrument, index) =>
+                  instrument && (
+                    <div
+                      key={`${currentIndex}-${index}`}
+                      className={styles.instrumentCard}
+                    >
+                      <img src={instrument.imageUrl} alt={instrument.name} />
+                      <h3>{instrument.name}</h3>
+                      <p>{instrument.category}</p>
+                    </div>
+                  )
+              )}
             </div>
             <button
               className={styles.navButton}
@@ -105,7 +112,7 @@ const Home = () => {
               <FaChevronRight />
             </button>
           </div>
-          <Link to="/practice-room" className={styles.practiceRoomButton}>
+          <Link to="/practiceRoomBooking" className={styles.practiceRoomButton}>
             Book Practice Room
           </Link>
         </div>
