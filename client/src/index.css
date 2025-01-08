@@ -258,6 +258,10 @@ footer {
 
 .page-content {
   flex-grow: 1;
+  overflow: hidden;
+  
+
+  
 }
 
 /* עיצוב למכולת הכרטיסיות */
@@ -270,6 +274,7 @@ footer {
   align-items: flex-start;
   padding: 20px;
   gap: 20px;
+  
 }
 
 .purchase-info {
@@ -365,6 +370,7 @@ footer {
   gap: 20px;
   padding: 30px;
   align-items: center;
+
 }
 
 /* עיצוב לכל כרטיס */
@@ -459,9 +465,38 @@ footer {
 
 .instrumentH1 {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.87);
+  background-image: url("/public/images/instrument.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 10px;
+  margin-top: 0;
+}
+.instrumentH1-container {
+  background-color: rgba(255, 255, 255, 0.597);
+  width: min(40%, 250px);
+  margin: 0 auto 10px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 3px;
+  margin-top: 10px;
+  border: 1px solid #af934c;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.instrumentH1-title {
+  color: #a47f20;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 h1 {
-  color: #a4832e;
+  color: #a47f20;
+ 
+
 }
 
 
@@ -531,4 +566,50 @@ h1 {
 .delete-btn:hover{
   background-color: red;
   color: white;
+}
+
+.nav-icon {
+  width: 24%;
+  height: 24%;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+
+   
+
+}
+.nav-icon:hover {
+  opacity: 0.8;
+}
+.location-links {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* מרווח אחיד בין האלמנטים */
+}
+
+.footer-button-link {
+  margin-right: 5px; /* מרווח קטן בין הטקסט לאייקונים */
+}
+
+.nav-icon {
+  width: 28px; /* גודל אחיד לאייקונים */
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.nav-icon:hover {
+  transform: scale(1.8); /* אפקט הגדלה קל בהובר */
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .instrumentH1-container {
+    width: 20%;
+    padding: 12px;
+  }
 }

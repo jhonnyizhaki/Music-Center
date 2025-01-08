@@ -374,7 +374,9 @@ const PracticeRoomBooking = () => {
             Total Price: ₪{calculateTotalPrice()}
           </div>
 
-          <button type="submit" className={styles["submit-btn"]}>
+          <button type="submit" className={styles["submit-btn"]} 
+          
+          >
             Book Room
           </button>
         </form>

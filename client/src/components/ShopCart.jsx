@@ -114,7 +114,7 @@ const CartItem = ({ item }) => {
         </button>
         <img
           src="/bin.png"
-          alt="מחק מוצר"
+          alt="delete"
           onClick={() => handleDelete()}
           style={{
             cursor: "pointer",
@@ -123,7 +123,7 @@ const CartItem = ({ item }) => {
           }}
         />
       </div>
-      <p>מחיר כולל: ₪{instrument.price * item.quantity}</p>
+      <p>Total Price: ₪{instrument.price * item.quantity}</p>
     </div>
   )
 }

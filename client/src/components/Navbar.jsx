@@ -29,7 +29,7 @@ const Navbar = () => {
             onClick={() => setPage("instruments")}
             className={`${page === "instruments" ? "itsTheCurrentPage" : "white"}`}
           >
-            Products
+            Instruments
           </Link>
           <Link
             to="/practiceroombooking"

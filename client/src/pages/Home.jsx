@@ -99,7 +99,7 @@ const Home = () => {
                     >
                       <img src={instrument.imageUrl} alt={instrument.name} />
                       <h3>{instrument.name}</h3>
-                      <p>{instrument.category}</p>
+                      <p>{instrument.price}₪</p>
                     </div>
                   )
               )}

@@ -159,8 +159,12 @@
 }
 
 .practiceRoomButton {
-  background: linear-gradient(135deg, #af934c 0%, #8b7339 100%);
+  background-image: url("/public/images/practice-room.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   color: white;
+  
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -168,9 +172,11 @@
   font-weight: 600;
   transition: all 0.3s ease;
   text-align: center;
-  width: fit-content;
-  margin-top: 100px;
+  width: 50%;
+  height: 150%;
+  margin-top: 10%;
 }
+
 
 .practiceRoomButton:hover {
   transform: translateY(-2px);
