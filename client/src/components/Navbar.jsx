@@ -74,13 +74,12 @@ const Navbar = () => {
                 Logout
 
               </button>
+              
               {user.user.role === "admin" && (
-
                 <a href="http://localhost:5001" className="logoutBtn">
                   Admin
                 </a>
               )}
-
 
             </div>
           ) : (

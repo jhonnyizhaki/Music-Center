@@ -10,6 +10,7 @@ export default {
   REGISTER: `${BASE_URL}/auth/register`,
   VERIFY: `${BASE_URL}/auth/verify`,
   INSTRUMENTS: `${BASE_URL}/instruments`,
+  RENTINSTRUMENTS: `${BASE_URL}/rentinstruments`,
   CATEGORIES: `${BASE_URL}/categories`,
   CART: `${BASE_URL}/cart`,
   ADD_TO_CART: `${BASE_URL}/cart/add`,

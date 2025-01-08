@@ -120,7 +120,7 @@ const PracticeRoomBooking = () => {
             { instrumentId, withArtist: false },
           ],
         }
-      }
+      }z
     })
   }
 
