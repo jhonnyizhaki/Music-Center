@@ -101,7 +101,7 @@ const CartItem = ({ item, key }) => {
           value={newQuantity}
           onChange={handleQuantityInputChange}
         />
-        <button onClick={handleOnClick}>שנה כמות</button>
+        <button onClick={handleOnClick} className="edit-btn">שנה כמות</button>
         <button onClick={handleDelete} className="delete-btn">
           מחק מוצר
         </button>

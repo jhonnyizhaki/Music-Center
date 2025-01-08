@@ -509,3 +509,21 @@ h1 {
   padding: 10px;
   background-color: #af934c;
 }
+.edit-btn{
+  background-color: black;
+  color: white;
+
+}
+.edit-btn:hover{
+    background-color: #af934c;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.037);
+  
+}
+.delete-btn{
+  background-color: black;
+  color: white;
+}
+.delete-btn:hover{
+  background-color: red;
+  color: white;
+}
