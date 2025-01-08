@@ -62,7 +62,7 @@ const ShopCart = () => {
 
 export default ShopCart
 
-const CartItem = ({ item, key }) => {
+const CartItem = ({ item }) => {
   const { updateItemQuantity, removeFromCart } = useCart()
   const [newQuantity, setNewQuantity] = useState(item.quantity)
   const instrument = item.instrumentId
@@ -74,6 +74,7 @@ const CartItem = ({ item, key }) => {
   }
 
   const handleDelete = () => {
+    console.log("Deleting item:", instrument._id)
     removeFromCart(instrument._id)
   }
 
@@ -93,18 +94,34 @@ const CartItem = ({ item, key }) => {
       <h3>{instrument.name}</h3>
       <p className="category">{instrument.category}</p>
       <p className="price">₪{instrument.price}</p>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
         <input
           type="number"
           min={1}
           max={instrument.stock}
           value={newQuantity}
           onChange={handleQuantityInputChange}
+          style={{ width: "60px" }}
         />
-        <button onClick={handleOnClick} className="edit-btn">שנה כמות</button>
-        <button onClick={handleDelete} className="delete-btn">
-          מחק מוצר
+        <button onClick={handleOnClick} className="edit-btn">
+          Change Quantity
         </button>
+        <img
+          src="/bin.png"
+          alt="מחק מוצר"
+          onClick={() => handleDelete()}
+          style={{
+            cursor: "pointer",
+            width: "30px",
+            height: "30px",
+          }}
+        />
       </div>
       <p>מחיר כולל: ₪{instrument.price * item.quantity}</p>
     </div>

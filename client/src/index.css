@@ -512,6 +512,11 @@ h1 {
 .edit-btn{
   background-color: black;
   color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
 
 }
 .edit-btn:hover{

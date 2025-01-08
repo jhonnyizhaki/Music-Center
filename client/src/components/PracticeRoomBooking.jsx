@@ -301,6 +301,8 @@ const PracticeRoomBooking = () => {
                     )?.withArtist
 
                     return (
+                      <div className="both">
+                      <div className="div-add">
                       <div key={index} className={styles["instrument-card"]}>
                         <h4 className={styles["name"]}>
                           {getInstrumentIcon(instrument.category)}
@@ -322,8 +324,10 @@ const PracticeRoomBooking = () => {
                               }
                               disabled={!isSelected}
                             />
-                            כולל אמן (+150₪/ מחיר לשעה )
+                           <p className={styles["with-artist"]}> כולל אמן (+150₪/ מחיר לשעה )</p>
                           </label>
+                          </div>
+                          <div className="btn div">
                           <button
                             type="button"
                             onClick={() =>
@@ -333,6 +337,8 @@ const PracticeRoomBooking = () => {
                           >
                             {isSelected ? "הסר" : "בחר"}
                           </button>
+                          </div>
+                          </div>
                         </div>
                       </div>
                     )
