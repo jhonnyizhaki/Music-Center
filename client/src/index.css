@@ -8,6 +8,13 @@
 *{
   font-family: 'Poppins', sans-serif;
 }
+
+.links > a{
+  color: #fff;
+}
+
+
+
 .video-background {
   position: fixed;
   right: 0;
@@ -108,6 +115,7 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
 .logoutBtn {
   background-color: #09000000;
   color: white;
@@ -117,9 +125,11 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
 .logoutBtn:hover {
   color: #fb0505;
 }
+
 .title {
   text-align: center;
   font-size: 24px;
@@ -259,9 +269,6 @@ footer {
 .page-content {
   flex-grow: 1;
   overflow: hidden;
-  
-
-  
 }
 
 /* עיצוב למכולת הכרטיסיות */
@@ -577,10 +584,8 @@ h1 {
   margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 50%;
-
-   
-
 }
+
 .nav-icon:hover {
   opacity: 0.8;
 }
@@ -605,6 +610,11 @@ h1 {
 .nav-icon:hover {
   transform: scale(1.8); /* אפקט הגדלה קל בהובר */
   opacity: 0.8;
+}
+
+.hello-admin{
+  color: #af934c;
+  font-size: 20px !important;
 }
 
 @media (max-width: 768px) {
