@@ -4,12 +4,13 @@ const BACKGROUND_VIDEO =
 
 export default {
   BASE_URL,
-  BACKGROUND_VIDEO,
+  BACKGROUND_VIDEO: "/videos/your-video-file.mp4",
   LOGIN: `${BASE_URL}/auth/login`,
   LOGOUT: `${BASE_URL}/auth/logout`,
   REGISTER: `${BASE_URL}/auth/register`,
   VERIFY: `${BASE_URL}/auth/verify`,
   INSTRUMENTS: `${BASE_URL}/instruments`,
+  RENTINSTRUMENTS: `${BASE_URL}/rentinstruments`,
   CATEGORIES: `${BASE_URL}/categories`,
   CART: `${BASE_URL}/cart`,
   ADD_TO_CART: `${BASE_URL}/cart/add`,

@@ -75,11 +75,13 @@ const PracticeRoomBooking = () => {
       const { data } = await axios.post(urls.BOOKINGS, bookingPayload, {
         withCredentials: true,
       })
-      setSuccess("ההזמנה בוצעה בהצלחה!")
+      setSuccess("Booking successful!")
       setError("")
       fetchUnavailableDates()
     } catch (error) {
-      setError(error.response?.data?.message || "אירעה שגיאה בביצוע ההזמנה")
+      setError(
+        error.response?.data?.message || "An error occurred during booking"
+      )
       setSuccess("")
     }
   }
@@ -118,7 +120,7 @@ const PracticeRoomBooking = () => {
             { instrumentId, withArtist: false },
           ],
         }
-      }
+      }z
     })
   }
 
@@ -188,7 +190,7 @@ const PracticeRoomBooking = () => {
   if (!user) {
     return (
       <div className={styles["error-message"]}>
-        עליך להתחבר כדי להזמין חדר חזרות
+        Please login to book a practice room
       </div>
     )
   }
@@ -200,13 +202,13 @@ const PracticeRoomBooking = () => {
       </video>
 
       <div className={styles["booking-container"]}>
-        <h2>הזמנת חדר חזרות</h2>
+        <h2>Book a Practice Room</h2>
         {error && <div className={styles["error-message"]}>{error}</div>}
         {success && <div className={styles["success-message"]}>{success}</div>}
 
         <form onSubmit={handleSubmit} className={styles["booking-form"]}>
           <div className={styles["form-group"]}>
-            <label>מספר משתתפים:</label>
+            <label>Number of Participants:</label>
             <input
               type="number"
               name="participantsCount"
@@ -218,7 +220,7 @@ const PracticeRoomBooking = () => {
           </div>
 
           <div className={styles["form-group"]}>
-            <label>תאריך:</label>
+            <label>Date:</label>
             <input
               type="date"
               name="date"
@@ -229,7 +231,7 @@ const PracticeRoomBooking = () => {
           </div>
 
           <div className={styles["form-group"]}>
-            <label>שעת התחלה:</label>
+            <label>Start Time:</label>
             <input
               type="time"
               name="time"
@@ -240,7 +242,7 @@ const PracticeRoomBooking = () => {
           </div>
 
           <div className={styles["form-group"]}>
-            <label>משך זמן (שעות):</label>
+            <label>Duration (hours):</label>
             <input
               type="number"
               name="howLong"
@@ -257,38 +259,34 @@ const PracticeRoomBooking = () => {
             className={styles["rent-instruments-btn"]}
             onClick={() => setShowInstrumentModal(true)}
           >
-            השכרת כלי נגינה
+            Rent Instruments
           </button>
 
           {showInstrumentModal && (
             <div className={styles["modal"]}>
               <div className={styles["modal-content"]}>
                 <div className={styles["modal-header"]}>
-                  <h3>בחירת כלי נגינה להשכרה</h3>
+                  <h3 className="h">Select Instruments to Rent</h3>
                   <button
                     onClick={() => setShowInstrumentModal(false)}
                     className={styles["close-btn"]}
                   >
-                    ×
+                    <img
+                      src="/istockphoto-1210969290-1024x1024-removebg-preview.png"
+                      alt="Close"
+                      className={styles["close-icon"]}
+                    />
                   </button>
                 </div>
 
                 <div className={styles["filters"]}>
                   <input
                     type="text"
-                    placeholder="חיפוש כלי נגינה..."
+                    placeholder="Search instruments..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className={styles["search-input"]}
                   />
-
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className={styles["category-select"]}
-                  >
-                    <option value="all">כל הקטגוריות</option>
-                  </select>
                 </div>
 
                 <div className={styles["instruments-grid"]}>
@@ -307,7 +305,7 @@ const PracticeRoomBooking = () => {
                           <span>{instrument.name}</span>
                         </h4>
                         <p className={styles["price"]}>
-                          ₪{calculateHourlyRate(instrument.price)} / שעה
+                          ₪{calculateHourlyRate(instrument.price)} / hour
                         </p>
                         <div className={styles["card-actions"]}>
                           <label className={styles["artist-checkbox"]}>
@@ -322,7 +320,9 @@ const PracticeRoomBooking = () => {
                               }
                               disabled={!isSelected}
                             />
-                            כולל אמן (+150₪/ מחיר לשעה )
+                            <p className={styles["with-artist"]}>
+                              Include Artist (+₪150/hour)
+                            </p>
                           </label>
                           <button
                             type="button"
@@ -331,7 +331,7 @@ const PracticeRoomBooking = () => {
                             }
                             className={`${styles["select-btn"]} ${isSelected ? styles["selected"] : ""}`}
                           >
-                            {isSelected ? "הסר" : "בחר"}
+                            {isSelected ? "Remove" : "Select"}
                           </button>
                         </div>
                       </div>
@@ -343,7 +343,7 @@ const PracticeRoomBooking = () => {
           )}
 
           <div className={styles["selected-instruments"]}>
-            <h4>כלי נגינה שנבחרו:</h4>
+            <h4>Selected Instruments:</h4>
             {bookingData.rentInstruments.map(
               ({ instrumentId, withArtist }, index) => {
                 const instrument = instruments.find(
@@ -355,14 +355,14 @@ const PracticeRoomBooking = () => {
                   <div key={index} className={styles["selected-instrument"]}>
                     <span>{instrument.name}</span>
                     {withArtist && (
-                      <span className={styles["with-artist"]}>כולל אמן</span>
+                      <span className={styles["with-artist"]}>With Artist</span>
                     )}
                     <button
                       type="button"
                       onClick={() => handleInstrumentChange(instrumentId)}
                       className={styles["remove-btn"]}
                     >
-                      הסר
+                      Remove
                     </button>
                   </div>
                 )
@@ -371,19 +371,19 @@ const PracticeRoomBooking = () => {
           </div>
 
           <div className={styles["total-price"]}>
-            סה"כ לתשלום: ₪{calculateTotalPrice()}
+            Total Price: ₪{calculateTotalPrice()}
           </div>
 
-          <button type="button" className={styles["submit-btn"]} onClick={async () => {
-
-          }} >
-            הזמן חדר
+          <button type="submit" className={styles["submit-btn"]} 
+          
+          >
+            Book Room
           </button>
         </form>
 
         {Array.isArray(unavailableDates) && unavailableDates.length > 0 && (
           <div className={styles["unavailable-dates"]}>
-            <h3>תאריכים תפוסים:</h3>
+            <h3>Unavailable Dates:</h3>
             <ul>
               {unavailableDates.map((booking, index) => (
                 <li key={index}>

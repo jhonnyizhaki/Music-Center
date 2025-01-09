@@ -3,6 +3,17 @@
 @tailwind utilities; */
 
 /* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+.links > a{
+  color: #fff;
+}
+
+
 
 .video-background {
   position: fixed;
@@ -96,7 +107,7 @@ body {
 }
 
 .button {
-  background-color: #4caf50;
+  background-color: #81af4c;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -104,6 +115,7 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
 .logoutBtn {
   background-color: #09000000;
   color: white;
@@ -113,9 +125,11 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
 .logoutBtn:hover {
   color: #fb0505;
 }
+
 .title {
   text-align: center;
   font-size: 24px;
@@ -254,6 +268,7 @@ footer {
 
 .page-content {
   flex-grow: 1;
+  overflow: hidden;
 }
 
 /* עיצוב למכולת הכרטיסיות */
@@ -266,6 +281,7 @@ footer {
   align-items: flex-start;
   padding: 20px;
   gap: 20px;
+  
 }
 
 .purchase-info {
@@ -355,9 +371,13 @@ footer {
 
 .cards-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
   gap: 20px;
+  padding: 30px;
+  align-items: center;
+
 }
 
 /* עיצוב לכל כרטיס */
@@ -452,9 +472,38 @@ footer {
 
 .instrumentH1 {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.87);
+  background-image: url("/public/images/instrument.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 10px;
+  margin-top: 0;
+}
+.instrumentH1-container {
+  background-color: rgba(255, 255, 255, 0.597);
+  width: min(40%, 250px);
+  margin: 0 auto 10px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 3px;
+  margin-top: 10px;
+  border: 1px solid #af934c;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.instrumentH1-title {
+  color: #a47f20;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 h1 {
-  color: #a4832e;
+  color: #a47f20;
+ 
+
 }
 
 
@@ -490,4 +539,87 @@ h1 {
   text-decoration: none;
   display: block;
   width: 100%;
+}
+
+
+.footer-button-link {
+  text-decoration: none;
+  margin-left: 10%;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #af934c;
+}
+.edit-btn{
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
+
+}
+.edit-btn:hover{
+    background-color: #af934c;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.037);
+  
+}
+.delete-btn{
+  background-color: black;
+  color: white;
+}
+.delete-btn:hover{
+  background-color: red;
+  color: white;
+}
+
+.nav-icon {
+  width: 24%;
+  height: 24%;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.nav-icon:hover {
+  opacity: 0.8;
+}
+.location-links {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* מרווח אחיד בין האלמנטים */
+}
+
+.footer-button-link {
+  margin-right: 5px; /* מרווח קטן בין הטקסט לאייקונים */
+}
+
+.nav-icon {
+  width: 28px; /* גודל אחיד לאייקונים */
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.nav-icon:hover {
+  transform: scale(1.8); /* אפקט הגדלה קל בהובר */
+  opacity: 0.8;
+}
+
+.hello-admin{
+  color: #af934c;
+  font-size: 20px !important;
+}
+
+@media (max-width: 768px) {
+  .instrumentH1-container {
+    width: 20%;
+    padding: 12px;
+  }
 }

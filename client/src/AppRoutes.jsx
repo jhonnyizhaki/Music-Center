@@ -20,6 +20,7 @@ export default function AppRoutes() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          
           <Route
             path="/practiceRoomBooking"
             element={<PracticeRoomBooking />}

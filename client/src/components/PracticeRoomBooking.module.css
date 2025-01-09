@@ -3,6 +3,12 @@
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
+  background-image: url("/public/images/practice-room.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+ 
 }
 
 .background-video {
@@ -17,19 +23,21 @@
 }
 
 .booking-container {
-  max-width: 800px;
+  max-width: 500px;
   margin: 2rem auto;
+  margin-top: 50px;
   padding: 2.5rem;
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  text-align: center;
 }
 
 .booking-form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  
 }
 
 .form-group {
@@ -51,6 +59,7 @@
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  
 }
 
 .form-group input:focus {
@@ -153,13 +162,15 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  text-align: center;
 }
 
 .modal-content {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 2.5rem;
   border-radius: 15px;
+  padding: 10px;
   width: 90%;
+  text-align: center;
   max-width: 1200px;
   max-height: 90vh;
   overflow-y: auto;
@@ -171,19 +182,29 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
+  padding: 0;
+}
+
+.close-icon {
+  width: 15%;
+  height: 15%;
 }
 
 .filters {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  
 }
 
 .search-input,
@@ -203,9 +224,18 @@
   border: none;
   background-color: white;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
+  margin: 0.5rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: calc(100% - 1rem);
+  max-width: 600px;
+  position: relative;
+  padding-bottom: 3rem;
 }
 
 .instrument-card:hover {
@@ -214,10 +244,44 @@
 }
 
 .instrument-card img {
-  width: 100%;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+
+.instrument-card .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.instrument-card .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 100px;
+}
+
+.instrument-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.instrument-card .price {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.instrument-card button {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 120px;
+  padding: 0.5rem 1rem;
 }
 
 .card-actions {
@@ -250,6 +314,7 @@
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .select-btn.selected {
@@ -274,8 +339,9 @@
 }
 
 .with-artist {
-  color: #059669;
-  font-size: 0.9rem;
+  color: #1b1f1d;
+  font-size: 12px;
+
 }
 
 .remove-btn {
@@ -290,9 +356,13 @@
 .total-price {
   margin-top: 2rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #af934c 0%, #8b7339 100%);
-  color: white;
+color: rgb(107, 73, 9);
   border-radius: 8px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+} 
+.h3{
   font-size: 1.4rem;
   font-weight: bold;
   text-align: center;
