@@ -72,7 +72,7 @@ const PracticeRoomBooking = () => {
         userId: user?.id,
       }
 
-      const { data } = await axios.post(urls.BOOKINGS, bookingPayload, {
+      const { data } = await axios.post(urls.CREATE_BOOKING, bookingPayload, {
         withCredentials: true,
       })
       setSuccess("Booking successful!")

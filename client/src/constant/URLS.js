@@ -17,4 +17,5 @@ export default {
   UPDATE_CART_ITEM_QUANTITY: `${BASE_URL}/cart/update`,
   REMOVE_FROM_CART: `${BASE_URL}/cart/remove`,
   CREATE_ORDER: `${BASE_URL}/orders/add`,
+  CREATE_BOOKING: `${BASE_URL}/bookings`
 }
