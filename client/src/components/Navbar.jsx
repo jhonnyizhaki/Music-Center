@@ -83,19 +83,10 @@ const Navbar = () => {
               )}
 
               
-            {user.user.role === "admin" && (
+            {/* {user.user.role === "admin" && (
                 
-                <div className="links">
-                  <Link
-                    to="/orders"
-                    onClick={() => setPage("orders")}
-                    className={`${page === "orders" ? "itsTheCurrentPage" : "white"}`}
-                  >
-                    Orders
-                  </Link> 
-                  <a href="#">booking</a>
-                </div>
-              )}
+               
+              )} */}
               
             </div>
           ) : (
