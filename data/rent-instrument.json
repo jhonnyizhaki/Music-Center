@@ -1,0 +1,157 @@
+[
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc947e" },
+      "name": "Electric Guitar",
+      "price": 1500,
+      "category": "String instruments",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRdqUfvRvcUgfMiDaVl9etDwuT98I-ClTQ7G76V6-Z7_QOinzM4c07wvir5rphekhdrHnzGvLY35btuuA-vmzmdWOclRWcCyp1G2ffvrR06JmRBjbnjpWIY_rYaySBg_WemslCEFG0&usqp=CAc",
+      "stock": 10,
+      "createdAt": { "$date": "2024-12-16T09:03:34.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:34.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc947f" },
+      "name": "Acoustic Guitar",
+      "price": 1200,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/acoustic-guitar.jpg",
+      "stock": 8,
+      "createdAt": { "$date": "2024-12-16T09:03:35.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:35.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9480" },
+      "name": "Bass Guitar",
+      "price": 2000,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/bass-guitar.jpg",
+      "stock": 5,
+      "createdAt": { "$date": "2024-12-16T09:03:36.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:36.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9481" },
+      "name": "Ukulele",
+      "price": 300,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/ukulele.jpg",
+      "stock": 15,
+      "createdAt": { "$date": "2024-12-16T09:03:37.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:37.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9482" },
+      "name": "Violin",
+      "price": 800,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/violin.jpg",
+      "stock": 7,
+      "createdAt": { "$date": "2024-12-16T09:03:38.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:38.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9483" },
+      "name": "Cello",
+      "price": 2500,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/cello.jpg",
+      "stock": 3,
+      "createdAt": { "$date": "2024-12-16T09:03:39.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:39.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9484" },
+      "name": "Mandolin",
+      "price": 900,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/mandolin.jpg",
+      "stock": 6,
+      "createdAt": { "$date": "2024-12-16T09:03:40.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:40.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9485" },
+      "name": "Electric Bass",
+      "price": 2200,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/electric-bass.jpg",
+      "stock": 4,
+      "createdAt": { "$date": "2024-12-16T09:03:41.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:41.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9486" },
+      "name": "Classical Guitar",
+      "price": 1100,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/classical-guitar.jpg",
+      "stock": 9,
+      "createdAt": { "$date": "2024-12-16T09:03:42.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:42.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9487" },
+      "name": "Harp",
+      "price": 3000,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/harp.jpg",
+      "stock": 2,
+      "createdAt": { "$date": "2024-12-16T09:03:43.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:43.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9488" },
+      "name": "Double Bass",
+      "price": 4000,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/double-bass.jpg",
+      "stock": 1,
+      "createdAt": { "$date": "2024-12-16T09:03:44.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:44.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9489" },
+      "name": "Banjo",
+      "price": 700,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/banjo.jpg",
+      "stock": 12,
+      "createdAt": { "$date": "2024-12-16T09:03:45.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:45.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9490" },
+      "name": "12-String Guitar",
+      "price": 1800,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/12-string-guitar.jpg",
+      "stock": 5,
+      "createdAt": { "$date": "2024-12-16T09:03:46.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:46.691Z" },
+      "__v": 0
+    },
+    {
+      "_id": { "$oid": "675fece612e9b489c2fc9491" },
+      "name": "Lute",
+      "price": 1200,
+      "category": "String instruments",
+      "imageUrl": "https://example.com/lute.jpg",
+      "stock": 3,
+      "createdAt": { "$date": "2024-12-16T09:03:47.691Z" },
+      "updatedAt": { "$date": "2024-12-16T09:03:47.691Z" },
+      "__v": 0
+    }
+  ]
+  

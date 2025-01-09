@@ -32,6 +32,7 @@ export const getInstruments = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch instruments', error });
     }
 };
+
 export const getInstrumentById = async (req, res) => {
     try {
         const instrument = await Instrument.findById(req.params.id);

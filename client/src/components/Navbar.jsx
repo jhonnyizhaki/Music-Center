@@ -29,7 +29,7 @@ const Navbar = () => {
             onClick={() => setPage("instruments")}
             className={`${page === "instruments" ? "itsTheCurrentPage" : "white"}`}
           >
-            Products
+            Instruments
           </Link>
           <Link
             to="/practiceroombooking"
@@ -74,14 +74,20 @@ const Navbar = () => {
                 Logout
 
               </button>
-              {user.user.role === "admin" && (
 
-                <a href="http://localhost:5001" className="logoutBtn">
-                  Admin
+              {user.user.role === "admin" && (
+                
+                <a className="hello-admin">
+                  Hello Admin
                 </a>
               )}
 
-
+              
+            {/* {user.user.role === "admin" && (
+                
+               
+              )} */}
+              
             </div>
           ) : (
             <>
@@ -91,7 +97,7 @@ const Navbar = () => {
                 className={`${page === "login" ? "itsTheCurrentPage" : "white"}`}
               >
                 Login
-              </Link>
+              </Link> 
               <Link
                 to="/register"
                 onClick={() => setPage("register")}
