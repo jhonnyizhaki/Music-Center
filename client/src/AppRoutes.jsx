@@ -8,6 +8,7 @@ import Register from "./pages/Register.jsx"
 import Home from "./pages/Home.jsx"
 import { useAuth } from "./context/AuthContext.jsx"
 import PracticeRoomBooking from "./components/PracticeRoomBooking.jsx"
+import UserBookings from "./pages/UserBookings.jsx"
 
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -20,7 +21,8 @@ export default function AppRoutes() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          
+          <Route path="myBookings" element={<UserBookings />} />
+
           <Route
             path="/practiceRoomBooking"
             element={<PracticeRoomBooking />}

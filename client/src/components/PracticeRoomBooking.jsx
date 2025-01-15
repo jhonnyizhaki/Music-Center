@@ -78,6 +78,7 @@ const PracticeRoomBooking = () => {
       setSuccess("Booking successful!")
       setError("")
       fetchUnavailableDates()
+      window.location.href = data.redirectUrl
     } catch (error) {
       setError(
         error.response?.data?.message || "An error occurred during booking"
@@ -138,8 +139,7 @@ const PracticeRoomBooking = () => {
     bookingData.rentInstruments.forEach(({ instrumentId, withArtist }) => {
       const instrument = instruments.find((i) => i._id === instrumentId)
       if (instrument) {
-        total += calculateHourlyRate(instrument.price) * bookingData.howLong
-        console.log(instrument)
+        total += instrument.rentPrice * bookingData.howLong
 
         if (withArtist) {
           total += 150 * bookingData.howLong
@@ -217,7 +217,12 @@ const PracticeRoomBooking = () => {
               name="participantsCount"
               min="1"
               value={bookingData.participantsCount}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                setBookingData({
+                  ...bookingData,
+                  participantsCount: parseInt(e.target.value),
+                })
+              }}
               required
             />
           </div>

@@ -9,7 +9,6 @@ async function machRoom(startDate, endDate, isVIP, participantsCount) {
   try {
     const ms = new Date(1776626081761);
     const me = new Date(1776926081761);
-    console.log(ms, me);
 
     const conflictedBookings = await Booking.find({
       startTime: { $gte: ms },
@@ -21,7 +20,6 @@ async function machRoom(startDate, endDate, isVIP, participantsCount) {
       capacity: { $gte: participantsCount },
       // roomNumber: { $nin: [2] },
     });
-    console.log(availableRoom);
 
     if (!availableRoom) {
       console.error("filed to find room", { conflictedBookings }, availableRoom);
@@ -53,22 +51,18 @@ const machRoomSchema = z.object({
 });
 
 export const createBooking = async (req, res) => {
-  console.log(req.body);
-
   try {
     const { howLong, rentInstruments, isVIP, participantsCount, startDate } = machRoomSchema.parse(req.body);
-    console.log(startDate);
 
     const endDate = addHours(startDate, howLong);
     const date = new Date(1776626081761);
-    console.log(date);
 
     const room = await machRoom(date, endDate, isVIP, participantsCount);
 
     const instrumentsToInsert = [];
 
     let totalPrice = room.pricePerHour * howLong;
-    console.log("totalPrice before the instruments", room, howLong);
+
     if (rentInstruments)
       for (const item of rentInstruments) {
         const instrument = await RentInstrument.findById(item.id);
@@ -77,14 +71,12 @@ export const createBooking = async (req, res) => {
         instrumentsToInsert.push({ ...item, stock: instrument.stock });
         totalPrice += instrument.price * item.quantity;
       }
-    console.log("totalPrice after the instruments", totalPrice);
 
     for (const item of instrumentsToInsert) {
       await RentInstrument.findOneAndUpdate({ id: item.id }, { stock: item.stock - item.quantity });
     }
     const ms = new Date(startDate);
     const me = new Date(1776926081761);
-    console.log(ms, me, startDate);
     const paypalBooking = await payment.createPaypalBooking(req.user.email, totalPrice);
 
     const booking = new Booking({
@@ -95,6 +87,7 @@ export const createBooking = async (req, res) => {
       endTime: me,
       userId: req.user.id,
       howLong,
+      isVIP,
       paypalId: paypalBooking.result.id,
       totalPrice,
     });
@@ -106,7 +99,7 @@ export const createBooking = async (req, res) => {
     res.status(201).json({
       message: "room booked successfully",
       booking,
-      redirectUrl,
+      redirectUrl: redirectUrl.href,
     });
   } catch (error) {
     console.error("Error creating booking:", error);
@@ -115,16 +108,12 @@ export const createBooking = async (req, res) => {
 };
 
 export const approveBooking = async (req, res) => {
-  console.log("banana error");
-
   try {
     const approvedBooking = await payment.capturePayment(req.query.token);
     const updatedBooking = await Booking.findOneAndUpdate({ paypalId: approvedBooking.id }, { isPaid: true }, { new: true });
-    console.log(approvedBooking.id);
 
     res.status(200).redirect("http://localhost:5173");
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Server error", error });
   }
 };
@@ -143,9 +132,20 @@ export const getUnavailableDates = async (req, res) => {
   }
 };
 
-export const getBookings = async (req, res) => {
+export const getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find().populate("userId").sort({ startTime: -1 });
+
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({ message: "no room available" });
+  }
+};
+
+export const getBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find({ userId: req.user.id });
 
     res.json(bookings);
   } catch (error) {
