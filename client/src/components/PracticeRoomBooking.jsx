@@ -19,7 +19,7 @@ const PracticeRoomBooking = () => {
     howLong: 1,
     isVIP: false,
     roomNumber: null,
-    startTime: null,
+    startDate: null,
     endTime: null,
     userId: null,
     totalPrice: 0,
@@ -43,7 +43,7 @@ const PracticeRoomBooking = () => {
 
   const fetchInstruments = async () => {
     try {
-      const { data } = await axios.get(urls.INSTRUMENTS, {
+      const { data } = await axios.get(urls.RENTINSTRUMENTS, {
         withCredentials: true,
       })
       setInstruments(data)
@@ -60,14 +60,14 @@ const PracticeRoomBooking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const startDateTime = new Date(`${bookingData.date}T${bookingData.time}`)
+      const startDateTime = new Date(bookingData.date)
       const endDateTime = new Date(
         startDateTime.getTime() + bookingData.howLong * 60 * 60 * 1000
       )
 
       const bookingPayload = {
         ...bookingData,
-        startTime: startDateTime,
+        startDate: startDateTime,
         endTime: endDateTime,
         userId: user?.id,
       }
@@ -138,6 +138,8 @@ const PracticeRoomBooking = () => {
       const instrument = instruments.find((i) => i._id === instrumentId)
       if (instrument) {
         total += calculateHourlyRate(instrument.price) * bookingData.howLong
+        console.log(instrument);
+        
         if (withArtist) {
           total += 150 * bookingData.howLong
         }
@@ -305,7 +307,7 @@ const PracticeRoomBooking = () => {
                           <span>{instrument.name}</span>
                         </h4>
                         <p className={styles["price"]}>
-                          ₪{calculateHourlyRate(instrument.price)} / hour
+                          ₪{calculateHourlyRate(instrument.rentPrice)} / hour
                         </p>
                         <div className={styles["card-actions"]}>
                           <label className={styles["artist-checkbox"]}>
@@ -387,7 +389,7 @@ const PracticeRoomBooking = () => {
             <ul>
               {unavailableDates.map((booking, index) => (
                 <li key={index}>
-                  {new Date(booking.startTime).toLocaleString()} -
+                  {new Date(booking.startDate).toLocaleString()} -
                   {new Date(booking.endTime).toLocaleString()}
                 </li>
               ))}

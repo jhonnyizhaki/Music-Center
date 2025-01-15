@@ -4,7 +4,7 @@ import { boolean } from "zod";
 const rentInstrumentSchema = new mongoose.Schema({
   instrumentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Instrument",
+    ref: "RentInstrument",
     required: true,
   },
   quantity: { type: Number, required: true, default: 1 },
@@ -31,7 +31,6 @@ const bookingSchema = new mongoose.Schema(
     rentInstruments: [rentInstrumentSchema],
     startTime: {
       type: Date,
-      required: true,
     },
     endTime: {
       type: Date,
@@ -46,6 +45,7 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     paypalId: { type: String, required: true },
+    isPaid: { type: Boolean, required: true, default: false },
   },
   { timestamps: true }
 );

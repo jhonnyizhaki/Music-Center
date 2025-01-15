@@ -3,7 +3,6 @@ import Instrument from "../models/instrumentModel.js";
 import Cart from "../models/cartModel.js";
 import payment from "../helpers/payment.js";
 
-// Add or create a card with an instrument
 export const crateOrder = async (req, res) => {
   try {
     const { items } = req.body; // item[] = {id, quantity}
@@ -40,10 +39,7 @@ export const crateOrder = async (req, res) => {
       totalPrice += instrument.price * item.quantity;
     }
 
-    const paypalOrder = await payment.createPaypalOrder(
-      req.user.email,
-      totalPrice
-    );
+    const paypalOrder = await payment.createPaypalOrder(req.user.email, totalPrice);
 
     const newOrder = new Order({
       userId: req.user.id,
@@ -54,9 +50,7 @@ export const crateOrder = async (req, res) => {
 
     await newOrder.save();
 
-    const redirectUrl = paypalOrder.result.links.find(
-      (link) => link.rel === "approve"
-    );
+    const redirectUrl = paypalOrder.result.links.find((link) => link.rel === "approve");
     res.status(201).json({ message: "Order Created", redirectUrl, newOrder });
   } catch (error) {
     console.log(error);
@@ -72,11 +66,8 @@ export const updateInstrumentInOrder = async (req, res) => {
     const order = await Order.findById(orderId);
     if (!order) return res.status(404).json({ message: "Order not found" });
 
-    const item = order.items.find(
-      (item) => item.instrumentId.toString() === instrumentId
-    );
-    if (!item)
-      return res.status(404).json({ message: "Instrument not found in order" });
+    const item = order.items.find((item) => item.instrumentId.toString() === instrumentId);
+    if (!item) return res.status(404).json({ message: "Instrument not found in order" });
 
     // Update quantity
     item.quantity = quantity;
@@ -94,17 +85,9 @@ export const updateInstrumentInOrder = async (req, res) => {
 export const approveOrder = async (req, res) => {
   try {
     const approvedOrder = await payment.capturePayment(req.query.token);
-const updatedOrder =
-    await Order.findOneAndUpdate(
-      { paypalId: approvedOrder.id},
-      { isPaid: true },
-      {new: true}
-
-      
-    );
-    console.log(approvedOrder.id)
-    await Cart.updateMany({userId: updatedOrder.userId}, { $set: { items: [] } });
-
+    const updatedOrder = await Order.findOneAndUpdate({ paypalId: approvedOrder.id }, { isPaid: true }, { new: true });
+    console.log(approvedOrder.id);
+    await Cart.updateMany({ userId: updatedOrder.userId }, { $set: { items: [] } });
 
     res.status(200).redirect("http://localhost:5173");
   } catch (error) {
@@ -119,11 +102,8 @@ export const deleteInstrumentFromOrder = async (req, res) => {
     const { orderId, instrumentId } = req.body;
     const existingOrder = await Order.findById(orderId).select("items");
     console.log(existingOrder);
-    if (!existingOrder)
-      return res.status(404).json({ message: "Order not found" });
-    const updatedItems = existingOrder.items.filter(
-      (item) => item.instrumentId.toString() !== instrumentId
-    );
+    if (!existingOrder) return res.status(404).json({ message: "Order not found" });
+    const updatedItems = existingOrder.items.filter((item) => item.instrumentId.toString() !== instrumentId);
     await Order.findByIdAndUpdate(orderId, { items: updatedItems });
 
     res.status(200).json({ message: "Instrument removed from order" });
@@ -148,9 +128,7 @@ export const getUserOrder = async (req, res) => {
 
 export const getOrders = async (req, res) => {
   try {
-    const orders =
-      (await Order.find().populate("userId").populate("items.instrumentId")) ??
-      [];
+    const orders = (await Order.find().populate("userId").populate("items.instrumentId")) ?? [];
     res.status(200).json({ orders });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
@@ -166,11 +144,10 @@ export const deleteOrders = async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "Server error", error });
   }
-
 };
 export const cancelOrder = async (req, res) => {
   try {
-    console.log(req.query)
+    console.log(req.query);
     res.status(200).json();
   } catch (error) {
     console.log(error);

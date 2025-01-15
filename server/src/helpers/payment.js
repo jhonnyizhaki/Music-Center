@@ -60,6 +60,33 @@ async function createPaypalOrder(email, totalPrice) {
   return order;
 }
 
-const payment = { createPaypalOrder, generateAccessToken, capturePayment };
+async function createPaypalBooking(email, totalPrice) {
+  const booking = await paypal.orders.ordersCreate({
+    body: {
+      intent: CheckoutPaymentIntent.CAPTURE,
+      payer: {
+        emailAddress: email,
+      },
+
+      purchaseUnits: [
+        {
+          amount: {
+            currencyCode: "ILS",
+            value: totalPrice.toString(),
+          },
+        },
+      ],
+      applicationContext: {
+        brandName: "music center",
+        cancelUrl: "http://localhost:5000/orders/cancelOrder",
+        returnUrl: "http://localhost:5000/bookings/approveBooking",
+        userAction: "PAY_NOW",
+      },
+    },
+  });
+  return booking;
+}
+
+const payment = { createPaypalOrder, generateAccessToken, capturePayment, createPaypalBooking };
 
 export default payment;
