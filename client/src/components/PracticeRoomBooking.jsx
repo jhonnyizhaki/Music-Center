@@ -120,7 +120,8 @@ const PracticeRoomBooking = () => {
             { instrumentId, withArtist: false },
           ],
         }
-      }z
+      }
+      z
     })
   }
 
@@ -138,8 +139,8 @@ const PracticeRoomBooking = () => {
       const instrument = instruments.find((i) => i._id === instrumentId)
       if (instrument) {
         total += calculateHourlyRate(instrument.price) * bookingData.howLong
-        console.log(instrument);
-        
+        console.log(instrument)
+
         if (withArtist) {
           total += 150 * bookingData.howLong
         }
@@ -255,6 +256,15 @@ const PracticeRoomBooking = () => {
               required
             />
           </div>
+          <label htmlFor="isVIPinput">VIP room</label>
+          <input
+            type="checkbox"
+            id="isVIPinput"
+            value={bookingData.isVIP}
+            onChange={() => {
+              setBookingData({ ...bookingData, isVIP: !bookingData.isVIP })
+            }}
+          />
 
           <button
             type="button"
@@ -376,9 +386,7 @@ const PracticeRoomBooking = () => {
             Total Price: ₪{calculateTotalPrice()}
           </div>
 
-          <button type="submit" className={styles["submit-btn"]} 
-          
-          >
+          <button type="submit" className={styles["submit-btn"]}>
             Book Room
           </button>
         </form>
