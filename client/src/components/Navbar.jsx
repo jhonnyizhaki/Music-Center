@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { useCart } from "../context/CartContext"
+import { FaRegUser } from "react-icons/fa"
 
 const Navbar = () => {
   const { user, logout } = useAuth()
@@ -70,24 +71,35 @@ const Navbar = () => {
           {user ? (
             <div className="flex">
               <span className="email">{user.email}</span>
-              <button className="logoutBtn" onClick={logout}>
-                Logout
 
-              </button>
-
+              <Link
+                to="/profile"
+                className={`cart-icon-container ${page === "profile" ? "itsTheCurrentPage" : "white"}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-user-round"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+              </Link>
               {user.user.role === "admin" && (
-                
-                <a className="hello-admin">
-                  Hello Admin
-                </a>
+                <a className="hello-admin">Hello Admin</a>
               )}
 
-              
-            {/* {user.user.role === "admin" && (
+              {/* {user.user.role === "admin" && (
                 
                
               )} */}
-              
             </div>
           ) : (
             <>
@@ -97,7 +109,7 @@ const Navbar = () => {
                 className={`${page === "login" ? "itsTheCurrentPage" : "white"}`}
               >
                 Login
-              </Link> 
+              </Link>
               <Link
                 to="/register"
                 onClick={() => setPage("register")}
