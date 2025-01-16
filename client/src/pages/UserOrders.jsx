@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react"
 import urls from "../constant/URLS"
 import axios from "axios"
 
-const UserBookings = () => {
-  const [bookings, setBookings] = useState([])
+const UserOrders = () => {
+  const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
   useEffect(() => {
-    const fetchBookings = async () => {
+    const fetchOrders = async () => {
       try {
-        const response = await axios.get(urls.GET_USER_BOOKING)
-        setBookings(response.data)
+        const response = await axios.get(urls.GET_USER_ORDERS)
+        setOrders(response.data)
         setLoading(false)
       } catch (error) {
         console.error("Error fetching instruments:", error)
@@ -19,11 +19,11 @@ const UserBookings = () => {
         setLoading(false)
       }
     }
-    fetchBookings()
+    fetchOrders()
   })
   return (
-    <div>{loading ? <p>loading...</p> : <p>{JSON.stringify(bookings)}</p>}</div>
+    <div>{loading ? <p>loading...</p> : <p>{JSON.stringify(orders)}</p>}</div>
   )
 }
 
-export default UserBookings
+export default UserOrders

@@ -7,6 +7,9 @@ const MyProfile = () => {
   return (
     <div>
       <button onClick={logout}>Logout</button>
+      <a href="/myBookings">my bookings</a>
+      <a href="/orders">my orders</a>
+      {/* need to add a route */}
     </div>
   )
 }

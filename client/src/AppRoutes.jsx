@@ -9,7 +9,8 @@ import Home from "./pages/Home.jsx"
 import { useAuth } from "./context/AuthContext.jsx"
 import PracticeRoomBooking from "./components/PracticeRoomBooking.jsx"
 import UserBookings from "./pages/UserBookings.jsx"
-import MyProfile from "./pages/MyProfile.jsx"
+import UserProfile from "./pages/UserProfile.jsx"
+import UserOrders from "./pages/UserOrders.jsx"
 
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -46,7 +47,8 @@ export default function AppRoutes() {
                   />
                 }
               />
-              <Route path="/profile" element={<MyProfile />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/orders" element={<UserOrders />} />
             </>
           )}
         </Route>
