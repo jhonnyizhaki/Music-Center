@@ -11,6 +11,7 @@ import dotenv from "dotenv";
 import orderRoutes from "./routes/orderRoutes.js";
 import RentInstrumentRoutes from "./routes/rentInstrumentsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/bookings", practiceRoomBookingRoutes);
 app.use("/orders", orderRoutes);
 app.use("/rentInstruments", RentInstrumentRoutes);
 app.use("/users", userRoutes);
+app.use("/admin", adminRoutes);
 export default app;
 
 // register - POST - /auth/register OK

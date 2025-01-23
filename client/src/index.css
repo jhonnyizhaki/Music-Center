@@ -269,7 +269,6 @@ footer {
   overflow: hidden;
 }
 
-/* עיצוב למכולת הכרטיסיות */
 .cart-layout {
   max-width: 90vw;
   margin: 0 auto;
@@ -376,7 +375,6 @@ footer {
   align-items: center;
 }
 
-/* עיצוב לכל כרטיס */
 .card {
   padding: 5px;
   width: 220px;
@@ -396,28 +394,24 @@ footer {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.037);
 }
 
-/* עיצוב לתמונה */
 .card img {
   width: 100%;
   height: 250px;
   object-fit: contain;
 }
 
-/* עיצוב שם הכלי */
 .card h3 {
   font-size: 18px;
   margin: 10px 0;
   color: #333;
 }
 
-/* עיצוב הקטגוריה */
 .card .category {
   font-size: 14px;
   color: #888;
   margin-bottom: 10px;
 }
 
-/* עיצוב המחיר */
 .card .input-container {
   display: flex;
   gap: 10px;
@@ -430,7 +424,6 @@ footer {
   }
 }
 
-/* עיצוב כפתור הוספה לעגלה */
 .card .add-to-cart {
   display: inline-block;
   padding: 10px 15px;
@@ -448,23 +441,7 @@ footer {
   background-color: #af934c;
 }
 
-/* עיצוב כפתור הוספה לעגלה */
-/* .card .add-to-cart {
-  display: inline-block;
-  padding: 10px 15px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #1a73e8;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  transition: background-color 0.2s ease;
-}
 
-.card .add-to-cart:hover {  
-  background-color: #155bb5;
-} */
 
 .instrumentH1 {
   text-align: center;
@@ -582,15 +559,15 @@ h1 {
 .location-links {
   display: flex;
   align-items: center;
-  gap: 15px; /* מרווח אחיד בין האלמנטים */
+  gap: 15px; 
 }
 
 .footer-button-link {
-  margin-right: 5px; /* מרווח קטן בין הטקסט לאייקונים */
+  margin-right: 5px;
 }
 
 .nav-icon {
-  width: 28px; /* גודל אחיד לאייקונים */
+  width: 28px;
   height: 28px;
   object-fit: contain;
   vertical-align: middle;
@@ -598,7 +575,7 @@ h1 {
 }
 
 .nav-icon:hover {
-  transform: scale(1.8); /* אפקט הגדלה קל בהובר */
+  transform: scale(1.8);
   opacity: 0.8;
 }
 
@@ -616,4 +593,11 @@ h1 {
 
 .profile {
   width: 10;
+}
+.email{
+  color: #ddd;
+}
+.about{
+  color:#af934c;
+  
 }

@@ -1,0 +1,44 @@
+/* עיצוב כללי של התפריט */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #000; /* שחור */
+    color: #af934c; /* זהב */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* כותרת התפריט */
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #af934c; /* זהב */
+    font-weight: bold;
+  }
+  
+  /* עיצוב הפריטים */
+  .MuiListItemText-root {
+    color: #af934c; /* זהב */
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  .MuiListItem-root {
+    border-bottom: 1px solid #af934c; /* קו תחתון זהוב */
+  }
+  
+  .MuiListItem-root:hover {
+    background-color: #1c1c1c; /* שחור כהה */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* לינק פעיל */
+  .active {
+    font-weight: bold;
+    background-color: #af934c; /* זהב */
+    color: #000; /* שחור */
+    border-radius: 4px;
+    padding: 5px;
+  }
+  

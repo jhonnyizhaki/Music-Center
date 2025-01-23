@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   const verifyToken = async () => {
     try {
       const { data } = await axios.get(urls.VERIFY)
-      setUser(data)
+      setUser(data.user)
     } catch (error) {
       console.error(error)
     }

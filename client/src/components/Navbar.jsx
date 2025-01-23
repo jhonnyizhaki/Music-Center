@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { useAuth } from "../context/AuthContext"
-import { useCart } from "../context/CartContext"
-import { FaRegUser } from "react-icons/fa"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import AdminSidebar from "./AdminSidebar"; // Import AdminSidebar
 
 const Navbar = () => {
-  const { user, logout } = useAuth()
-  const [page, setPage] = useState("home")
-  const { cart } = useCart()
-  console.log(user)
+  const { user } = useAuth();
+  const [page, setPage] = useState("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+  const { cart } = useCart();
 
-  // חישוב סך הפריטים בעגלה - נולל כמויות
   const cartItemsCount =
-    cart?.items?.reduce((total, item) => total + (item?.quantity || 0), 0) || 0
+    cart?.items?.reduce((total, item) => total + (item?.quantity || 0), 0) || 0;
 
   return (
     <>
@@ -32,8 +31,9 @@ const Navbar = () => {
           >
             Instruments
           </Link>
+
           <Link
-            to="/practiceroombooking"
+            to="/practice-room-booking"
             onClick={() => setPage("bookings")}
             className={`${page === "bookings" ? "itsTheCurrentPage" : "white"}`}
           >
@@ -41,9 +41,9 @@ const Navbar = () => {
           </Link>
           {user && (
             <Link
-              to="/shopcart"
-              onClick={() => setPage("shopcart")}
-              className={`cart-icon-container ${page === "shopcart" ? "itsTheCurrentPage" : "white"}`}
+              to="/shop-cart"
+              onClick={() => setPage("shop-cart")}
+              className={`cart-icon-container ${page === "shop-cart" ? "itsTheCurrentPage" : "white"}`}
             >
               {cartItemsCount > 0 && (
                 <span className="cart-counter">{cartItemsCount}</span>
@@ -92,14 +92,17 @@ const Navbar = () => {
                   <path d="M20 21a8 8 0 0 0-16 0" />
                 </svg>
               </Link>
-              {user.user.role === "admin" && (
-                <a className="hello-admin">Hello Admin</a>
+              {user.role === "admin" && (
+                <span
+                  className={`${page === "admin" ? "itsTheCurrentPage" : "white"} link`}
+                  onClick={() => {
+                    setIsSidebarOpen(true); // Open the sidebar
+                    setPage("admin");
+                  }}
+                >
+                  Admin
+                </span>
               )}
-
-              {/* {user.user.role === "admin" && (
-                
-               
-              )} */}
             </div>
           ) : (
             <>
@@ -121,8 +124,14 @@ const Navbar = () => {
           )}
         </div>
       </nav>
-    </>
-  )
-}
 
-export default Navbar
+      {/* Display the sidebar */}
+      <AdminSidebar
+        isOpen={isSidebarOpen}
+        closeSidebar={() => setIsSidebarOpen(false)}
+      />
+    </>
+  );
+};
+
+export default Navbar;

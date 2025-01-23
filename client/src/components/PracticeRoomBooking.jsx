@@ -31,9 +31,7 @@ const PracticeRoomBooking = () => {
 
   const fetchUnavailableDates = async () => {
     try {
-      const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES, {
-        withCredentials: true,
-      })
+      const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES)
       setUnavailableDates(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error("Error fetching unavailable dates:", error)
@@ -43,9 +41,7 @@ const PracticeRoomBooking = () => {
 
   const fetchInstruments = async () => {
     try {
-      const { data } = await axios.get(urls.RENTINSTRUMENTS, {
-        withCredentials: true,
-      })
+      const { data } = await axios.get(urls.RENTINSTRUMENTS)
       setInstruments(data)
     } catch (error) {
       console.error("Error fetching instruments:", error)

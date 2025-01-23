@@ -1,17 +1,25 @@
-import AppRoutes from "./AppRoutes"
 import { AuthProvider } from "./context/AuthContext"
 import { CartProvider } from "./context/CartContext"
+import { NotificationProvider } from "./context/NotificationContext"
+import { RealTimeProvider } from "./context/RealTimeContext"
+import AppRoutes from "./routes/AppRoutes"
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import axios from "axios"
-import PracticeRoomBooking from "./components/PracticeRoomBooking"
 
 axios.defaults.withCredentials = true
 
-const App = () => {
-
+function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <AppRoutes />
+        <NotificationProvider>
+          <RealTimeProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <AppRoutes />
+            </LocalizationProvider>
+          </RealTimeProvider>
+        </NotificationProvider>
       </CartProvider>
     </AuthProvider>
   )

@@ -1,9 +1,18 @@
 import React from "react"
+import About from "../pages/About"
+import { Link } from "react-router-dom"
 
 const Footer = () => {
   return (
     <footer>
+       
       <p>&copy; 2024 Center Music. All rights reserved.</p>
+      <Link
+                  to="/about"
+                  className="about"
+                >
+                 About
+                </Link>
 
       <div className="location-links">
         <a
