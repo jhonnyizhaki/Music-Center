@@ -1,5 +1,10 @@
-import { useState } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { useEffect, useState } from "react"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom"
 import Layout from "./components/Layout.jsx"
 import Login from "./pages/Login.jsx"
 import Instruments from "./pages/Instruments.jsx"

@@ -73,6 +73,7 @@ const Navbar = () => {
               <span className="email">{user.email}</span>
 
               <Link
+                onClick={() => setPage("profile")}
                 to="/profile"
                 className={`cart-icon-container ${page === "profile" ? "itsTheCurrentPage" : "white"}`}
               >
