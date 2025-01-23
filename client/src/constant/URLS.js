@@ -1,16 +1,15 @@
-const BASE_URL = "http://localhost:5000"
-const BACKGROUND_VIDEO =
-  "https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
+import { Verified } from "@mui/icons-material"
 
-export default {
+const BASE_URL = "http://localhost:5000"
+
+const urls = {
   BASE_URL,
-  BACKGROUND_VIDEO: "/videos/your-video-file.mp4",
   LOGIN: `${BASE_URL}/auth/login`,
   LOGOUT: `${BASE_URL}/auth/logout`,
   REGISTER: `${BASE_URL}/auth/register`,
-  VERIFY: `${BASE_URL}/auth/verify`,
+  VERIFY:`${BASE_URL}/auth/verify`,
   INSTRUMENTS: `${BASE_URL}/instruments`,
-  RENTINSTRUMENTS: `${BASE_URL}/rentinstruments`,
+  RENTINSTRUMENTS: `${BASE_URL}/rent-instruments`,
   CATEGORIES: `${BASE_URL}/categories`,
   CART: `${BASE_URL}/cart`,
   ADD_TO_CART: `${BASE_URL}/cart/add`,
@@ -20,4 +19,21 @@ export default {
   GET_USER_ORDERS: `${BASE_URL}/orders/userOrders`,
   CREATE_BOOKING: `${BASE_URL}/bookings`,
   GET_USER_BOOKING: `${BASE_URL}/bookings/userBookings`,
+
+
+    
+  ORDERS: `${BASE_URL}/orders`,
+  ROOMS: `${BASE_URL}/rooms`,
+  ADMIN: {
+    STATS: `${BASE_URL}/admin/stats`,
+    USERS: `${BASE_URL}/admin/users`,
+    LOGS: `${BASE_URL}/admin/logs`,
+    ROOMS: `${BASE_URL}/admin/rooms`,
+    CONSULTATIONS: `${BASE_URL}/admin/consultations`,
+  },
+  CONTACT: `${BASE_URL}/contact`,
+  CONSULTATIONS: `${BASE_URL}/consultations`,
+  // TODO: change to real rent-instruments in server
 }
+
+export default urls

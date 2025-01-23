@@ -1,6 +1,17 @@
 {
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.0",
+    "@mui/lab": "^6.0.0-beta.23",
+    "@mui/material": "^6.4.0",
+    "@mui/x-charts": "^7.23.6",
+    "@mui/x-data-grid": "^7.23.6",
+    "@mui/x-date-pickers": "^7.23.6",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "leaflet": "^1.9.4",
-    "react-leaflet": "^5.0.0"
+    "react-leaflet": "^5.0.0",
+    "recharts": "^2.15.0"
   }
 }
