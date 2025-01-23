@@ -127,8 +127,6 @@ export const getUserOrder = async (req, res) => {
 };
 
 export const getUserOrders = async (req, res) => {
-  console.log("banana error");
-
   try {
     const orders = (await Order.find({ userId: req.user.id })) ?? [];
     res.status(200).json({ orders });
