@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer">
        
       <p>&copy; 2024 Center Music. All rights reserved.</p>
       <Link
@@ -13,13 +13,19 @@ const Footer = () => {
                 >
                  About
                 </Link>
+                <Link  
+                  to="/contact"
+                  className="contact"
+                >
+                 Contact
+                </Link>
 
       <div className="location-links">
         <a
-          className="footer-button-link"
+          
           href="https://www.google.com/maps/dir//Zvi+Nishri+St+6,+Tel+Aviv-Jaffa/@32.0545122,34.799405,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x151d4b11fe5cba8d:0x1b88d791c225c967!2m2!1d34.8019799!2d32.0545077?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
         >
-          our location
+          <img src="/google-maps.png" alt="Google Maps" className="nav-icon" />
         </a>
         <a
           href="https://www.waze.com/he/live-map/directions/%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91-%D7%99%D7%A4%D7%95?to=place.ws.il.20659.6"

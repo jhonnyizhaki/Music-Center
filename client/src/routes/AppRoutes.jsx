@@ -21,7 +21,7 @@ import AdminCategories from "../pages/admin/AdminCategories.jsx"
 import AdminProducts from "../pages/admin/AdminProducts.jsx"
 import { useState } from "react"
 import AdminActivityLog from "../components/AdminActivityLog.jsx"
-
+import NotFoundPage from "../../NotFoundPage.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { user } = useAuth();
@@ -70,8 +70,8 @@ export default function AppRoutes() {
 
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+<Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Router>
