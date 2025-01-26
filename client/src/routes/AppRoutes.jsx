@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import AdminRoutes from "./AdminRoutes.jsx"
 import Layout from "../components/Layout.jsx"
 import Login from "../pages/Login.jsx"
 import Register from "../pages/Register.jsx"
@@ -23,6 +22,7 @@ import { useState } from "react"
 import AdminActivityLog from "../components/AdminActivityLog.jsx"
 import InteractiveMap from "../components/InteractiveMap.jsx"
 import NotFoundPage from "../../NotFoundPage.jsx"
+import UserOrders from "../pages/UserOrders.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { user } = useAuth();
@@ -68,9 +68,10 @@ export default function AppRoutes() {
             </Route>
        
 
-
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="user-orders" element={<UserOrders />} />
+
 <Route path="contact" element={<Contact />} />
 <Route path="interactive-map" element={<InteractiveMap />} />
           <Route path="*" element={<NotFoundPage />} />

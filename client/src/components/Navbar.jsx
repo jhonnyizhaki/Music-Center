@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import AdminSidebar from "./AdminSidebar"; // Import AdminSidebar
+import UserSidebar from "./UserSidebar";
 
 const Navbar = () => {
   const { user } = useAuth();
   const [page, setPage] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+  const [sidebarType, setSidebarType] = useState(""); // Sidebar type
   const { cart } = useCart();
 
   const cartItemsCount =
@@ -73,8 +75,12 @@ const Navbar = () => {
               <span className="email">{user.email}</span>
 
               <Link
-                to="/profile"
                 className={`cart-icon-container ${page === "profile" ? "itsTheCurrentPage" : "white"}`}
+                onClick={() => {
+                  setSidebarType("user"); // Set sidebar type to user
+                  setIsSidebarOpen(true); // Open the sidebar
+                  setPage("user");
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +102,7 @@ const Navbar = () => {
                 <span
                   className={`${page === "admin" ? "itsTheCurrentPage" : "white"} link`}
                   onClick={() => {
+                    setSidebarType("admin"); // Set sidebar type to admin
                     setIsSidebarOpen(true); // Open the sidebar
                     setPage("admin");
                   }}
@@ -125,11 +132,19 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Display the sidebar */}
-      <AdminSidebar
-        isOpen={isSidebarOpen}
-        closeSidebar={() => setIsSidebarOpen(false)}
-      />
+      {/* Display the correct sidebar based on type */}
+      {sidebarType === "admin" && (
+        <AdminSidebar
+          isOpen={isSidebarOpen}
+          closeSidebar={() => setIsSidebarOpen(false)}
+        />
+      )}
+      {sidebarType === "user" && (
+        <UserSidebar
+          isOpen={isSidebarOpen}
+          closeSidebar={() => setIsSidebarOpen(false)}
+        />
+      )}
     </>
   );
 };

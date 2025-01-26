@@ -36,13 +36,13 @@ const AdminStats = () => {
     popularProducts: [],
     categoryStats: [],
   })
-  
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const response = await axios.get(`${urls.BASE_URL}/admin/stats`)
-        console.log("res.data", response.data);
-        
+        console.log("res.data", response.data)
+
         setStats(response.data)
       } catch (error) {
         console.error("Error fetching stats:", error)

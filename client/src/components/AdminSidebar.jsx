@@ -12,7 +12,7 @@ const AdminSidebar = ({ isOpen, closeSidebar }) => {
         </Typography>
         <List>
           <ListItem button component={NavLink} to="/" onClick={closeSidebar}>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Home" />
           </ListItem>
           <ListItem button component={NavLink} to="admin/orders" onClick={closeSidebar}>
             <ListItemText primary="Orders" />
