@@ -21,6 +21,7 @@ import AdminCategories from "../pages/admin/AdminCategories.jsx"
 import AdminProducts from "../pages/admin/AdminProducts.jsx"
 import { useState } from "react"
 import AdminActivityLog from "../components/AdminActivityLog.jsx"
+import InteractiveMap from "../components/InteractiveMap.jsx"
 import NotFoundPage from "../../NotFoundPage.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -71,6 +72,7 @@ export default function AppRoutes() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 <Route path="contact" element={<Contact />} />
+<Route path="interactive-map" element={<InteractiveMap />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

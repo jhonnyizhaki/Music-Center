@@ -5,6 +5,12 @@ import { Link } from "react-router-dom"
 const Footer = () => {
   return (
     <footer className="footer">
+       <Link
+                  to="/interactive-map"
+                  className="about"
+                >
+                Map
+                </Link>
        
       <p>&copy; 2024 Center Music. All rights reserved.</p>
       <Link

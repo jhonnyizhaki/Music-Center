@@ -9,10 +9,9 @@ const InteractiveMap = () => {
   }
 
   const defaultCenter = {
-    lat: 32.0853, // Your location coordinates
-    lng: 34.7818,
+    lat: 32.054580419200114, // Your location coordinates
+    lng: 34.801936980302195,
   }
-
   return (
     <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <Box sx={{ mt: 4 }}>
