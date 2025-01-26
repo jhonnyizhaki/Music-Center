@@ -18,7 +18,9 @@ import AdminUsers from "../pages/admin/AdminUsers.jsx"
 import AdminRooms from "../pages/admin/AdminRooms.jsx"
 import AdminStats from "../pages/admin/AdminStats.jsx"
 import AdminCategories from "../pages/admin/AdminCategories.jsx"
+import AdminProducts from "../pages/admin/AdminProducts.jsx"
 import { useState } from "react"
+import AdminActivityLog from "../components/AdminActivityLog.jsx"
 
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -60,6 +62,8 @@ export default function AppRoutes() {
       <Route path="rooms" element={<AdminRooms />} />
       <Route path="stats" element={<AdminStats />} />
       <Route path="edit-category" element={<AdminCategories />} />
+      <Route path="edit-products" element={<AdminProducts />} />
+      <Route path="admin-activity" element={<AdminActivityLog />} />
             </Route>
        
 

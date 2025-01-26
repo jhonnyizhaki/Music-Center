@@ -29,6 +29,12 @@ const AdminSidebar = ({ isOpen, closeSidebar }) => {
           <ListItem button component={NavLink} to="admin/edit-category" onClick={closeSidebar}>
             <ListItemText primary="edit-category" />
           </ListItem>
+          <ListItem button component={NavLink} to="admin/edit-products" onClick={closeSidebar}>
+            <ListItemText primary="edit-products" />
+          </ListItem>
+          <ListItem button component={NavLink} to="admin/admin-activity" onClick={closeSidebar}>
+            <ListItemText primary="admin-activity" />
+          </ListItem>
         </List>
       </div>
     </Drawer>
