@@ -20,23 +20,23 @@ import {
 const About = () => {
   const features = [
     {
-      icon: <Store sx={{ fontSize: 40, color: "primary.main" }} />,
+      icon: <Store sx={{ fontSize: 40, color: "#af934c" }} />,
       title: "Music Store",
       description:
         "Wide range of quality musical instruments for sale and rent",
     },
     {
-      icon: <MusicNote sx={{ fontSize: 40, color: "primary.main" }} />,
+      icon: <MusicNote sx={{ fontSize: 40, color: "#af934c" }} />,
       title: "Music Lessons",
       description: "Private and group lessons with professional teachers",
     },
     {
-      icon: <MeetingRoom sx={{ fontSize: 40, color: "primary.main" }} />,
+      icon: <MeetingRoom sx={{ fontSize: 40, color: "#af934c" }} />,
       title: "Practice Rooms",
       description: "Fully equipped practice rooms for rent with flexible hours",
     },
     {
-      icon: <Support sx={{ fontSize: 40, color: "primary.main" }} />,
+      icon: <Support sx={{ fontSize: 40, color: "#af934c" }} />,
       title: "Professional Support",
       description: "Expert team available for any question or issue",
     },
@@ -88,8 +88,7 @@ const About = () => {
       <Divider sx={{ my: 6 }} />
 
       <Typography variant="h4" textAlign="center" mb={4}>
-        השירותים שלנו
-      </Typography>
+Our Features      </Typography>
 
       <Grid container spacing={4}>
         {features.map((feature) => (

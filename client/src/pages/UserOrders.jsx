@@ -13,33 +13,30 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import { Visibility as VisibilityIcon } from "@mui/icons-material";
 import axios from "axios";
-import * as jwt_decode from "jwt-decode"; // הייבוא החדש של jwt-decode
+import * as jwt_decode from "jwt-decode"; // הייבוא של jwt-decode
 import urls from "./../constant/URLS";
 
-const AdminOrders = () => {
+const UserOrders = () => {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    fetchOrders();
+    fetchUserOrders();
   }, []);
 
-  const fetchOrders = async () => {
+  const fetchUserOrders = async () => {
     try {
-      // שליפת הטוקן מה-localStorage (או source אחר)
       const token = localStorage.getItem("authToken");
 
-      // אם הטוקן קיים, נמשיך
       if (token) {
-        // דיקוד הטוקן לקבלת מזהה המשתמש
-        const decodedToken = jwt_decode(token); // הדיקוד
-        const userId = decodedToken.userId; // הנחה שהמזהה נמצא בטוקן בשם 'userId'
+        const decodedToken = jwt_decode(token); // דיקוד הטוקן
+        const userId = decodedToken.userId; // שליפת מזהה המשתמש
 
-        // שליחת בקשה להזמנות של כל המשתמשים
+        // שליחת בקשה להזמנות
         const response = await axios.get(urls.ORDERS);
 
-        // סינון ההזמנות לפי מזהה המשתמש שהגיע מהטוקן
+        // סינון הזמנות של המשתמש הנוכחי בלבד
         const userOrders = response.data.orders.filter(
           (order) => order.userId === userId
         );
@@ -48,7 +45,7 @@ const AdminOrders = () => {
         console.error("No token found, user is not authenticated.");
       }
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      console.error("Error fetching user orders:", error);
     }
   };
 
@@ -58,8 +55,8 @@ const AdminOrders = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8, backgroundColor: "#f5f5f5" }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "#333", mb: 4 }}>
-        Your Orders
+      <Typography variant="h4" gutterBottom sx={{ color: "#333", mb: 4, textAlign: "center" }}>
+        <h1>Your Orders</h1>
       </Typography>
 
       <Box sx={{ height: 400, bgcolor: "white", borderRadius: "8px" }}>
@@ -68,16 +65,10 @@ const AdminOrders = () => {
           columns={[
             { field: "_id", headerName: "Order ID", width: 220 },
             {
-              field: "userId",
-              headerName: "User",
-              width: 220,
-              valueGetter: (params) => params?.email || "N/A",
-            },
-            {
               field: "totalPrice",
               headerName: "Total Price",
               width: 130,
-              valueGetter: (params) => `₪${params}`,
+              valueGetter: (params) => `₪${params.row.totalPrice}`,
             },
             {
               field: "isPaid",
@@ -85,12 +76,12 @@ const AdminOrders = () => {
               width: 130,
               renderCell: (params) => (
                 <Chip
-                  label={params ? "Paid" : "Pending"}
-                  color={params ? "success" : "warning"}
+                  label={params.row.isPaid ? "Paid" : "Pending"}
+                  color={params.row.isPaid ? "success" : "warning"}
                   sx={{
                     color: "white",
                     borderColor: "gold",
-                    backgroundColor: params ? "green" : "orange",
+                    backgroundColor: params.row.isPaid ? "green" : "orange",
                   }}
                 />
               ),
@@ -99,7 +90,7 @@ const AdminOrders = () => {
               field: "createdAt",
               headerName: "Order Date",
               width: 200,
-              valueGetter: (params) => formatDate(params),
+              valueGetter: (params) => formatDate(params.row.createdAt),
             },
             {
               field: "actions",
@@ -176,4 +167,4 @@ const AdminOrders = () => {
   );
 };
 
-export default AdminOrders;
+export default UserOrders;

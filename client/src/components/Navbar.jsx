@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import AdminSidebar from "./AdminSidebar"; // Import AdminSidebar
 import UserSidebar from "./UserSidebar";
+import AdminDashboardStats from "./admin/AdminDashboardStats";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -19,6 +20,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div>
+          
           <Link
             to="/"
             onClick={() => setPage("home")}
@@ -99,17 +101,22 @@ const Navbar = () => {
                 </svg>
               </Link>
               {user.role === "admin" && (
-                <span
-                  className={`${page === "admin" ? "itsTheCurrentPage" : "white"} link`}
-                  onClick={() => {
-                    setSidebarType("admin"); // Set sidebar type to admin
-                    setIsSidebarOpen(true); // Open the sidebar
-                    setPage("admin");
-                  }}
-                >
-                  Admin
-                </span>
-              )}
+  <Link
+ 
+
+    onClick={() => {
+      setSidebarType("admin");
+      setIsSidebarOpen(true);
+      setPage("admin");
+    }}
+    className={`${page === "admin" ? "itsTheCurrentPage" : "white"}`}
+
+  >
+     
+    ADMIN
+  </Link>
+)}
+
             </div>
           ) : (
             <>

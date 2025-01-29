@@ -91,9 +91,12 @@ const AdminUsers = () => {
   ]
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white", mb: 4 }}>
-        Manage Users
+    <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
+      <Typography
+       variant="h5"
+        gutterBottom 
+        sx={{ color: "white", mb: 4, textAlign: "center" }}>
+        <h1>Manage Users</h1>
       </Typography>
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
         <DataGrid

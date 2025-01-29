@@ -126,8 +126,8 @@ const AdminProducts = () => {
 
   return (
     <Box sx={{ height: 600, width: "100%", p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white" }}>
-        Manage Products
+      <Typography variant="h5" gutterBottom sx={{ color: "white" , mb: 4, textAlign: "center" }}>
+        <h1>Manage Products</h1>
       </Typography>
       <Button
         variant="contained"

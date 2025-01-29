@@ -95,8 +95,8 @@ const AdminCategories = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white", mb: 4 }}>
-        Manage Categories
+      <Typography variant="h5" gutterBottom sx={{ color: "white", mb: 4, textAlign: "center" }}>
+        <h1>Manage Categories</h1>
       </Typography>
       <Button
         variant="contained"
