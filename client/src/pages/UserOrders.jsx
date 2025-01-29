@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import {
   Box,
   Typography,
@@ -9,54 +9,40 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { Visibility as VisibilityIcon } from "@mui/icons-material";
-import axios from "axios";
-import * as jwt_decode from "jwt-decode"; // הייבוא של jwt-decode
-import urls from "./../constant/URLS";
+} from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { Visibility as VisibilityIcon } from "@mui/icons-material"
+import axios from "axios"
+import * as jwt_decode from "jwt-decode" // הייבוא החדש של jwt-decode
+import urls from "./../constant/URLS"
+import { useAuth } from "../context/AuthContext"
 
 const UserOrders = () => {
-  const [orders, setOrders] = useState([]);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false);
+  const [orders, setOrders] = useState([])
+  const [selectedOrder, setSelectedOrder] = useState(null)
+  const [openDialog, setOpenDialog] = useState(false)
 
   useEffect(() => {
-    fetchUserOrders();
-  }, []);
+    fetchOrders()
+  }, [])
 
-  const fetchUserOrders = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-
-      if (token) {
-        const decodedToken = jwt_decode(token); // דיקוד הטוקן
-        const userId = decodedToken.userId; // שליפת מזהה המשתמש
-
-        // שליחת בקשה להזמנות
-        const response = await axios.get(urls.ORDERS);
-
-        // סינון הזמנות של המשתמש הנוכחי בלבד
-        const userOrders = response.data.orders.filter(
-          (order) => order.userId === userId
-        );
-        setOrders(userOrders);
-      } else {
-        console.error("No token found, user is not authenticated.");
-      }
-    } catch (error) {
-      console.error("Error fetching user orders:", error);
-    }
-  };
+  const fetchOrders = async () => {
+    const serverRes = await axios.get(urls.BASE_URL + "/orders/userOrders")
+    setOrders(serverRes.data.orders)
+    console.log({ serverRes })
+  }
+  const { user } = useAuth()
 
   const formatDate = (date) => {
-    return new Date(date).toLocaleString();
-  };
+    const dateArray = `${date}`.split("T")
+    const result = `${dateArray[0].replaceAll("-", "/")} ${dateArray[1].split(".")[0].slice(0, 5)} `
+    return result
+  }
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8, backgroundColor: "#f5f5f5" }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "#333", mb: 4, textAlign: "center" }}>
-        <h1>Your Orders</h1>
+      <Typography variant="h4" gutterBottom sx={{ color: "#333", mb: 4 }}>
+        Your Orders
       </Typography>
 
       <Box sx={{ height: 400, bgcolor: "white", borderRadius: "8px" }}>
@@ -64,6 +50,12 @@ const UserOrders = () => {
           rows={orders}
           columns={[
             { field: "_id", headerName: "Order ID", width: 220 },
+            {
+              field: "userEmail",
+              headerName: "Email",
+              width: 220,
+              valueGetter: () => user.email || "N/A",
+            },
             {
               field: "totalPrice",
               headerName: "Total Price",
@@ -99,8 +91,8 @@ const UserOrders = () => {
               renderCell: (params) => (
                 <Button
                   onClick={() => {
-                    setSelectedOrder(params.row);
-                    setOpenDialog(true);
+                    setSelectedOrder(params.row)
+                    setOpenDialog(true)
                   }}
                   sx={{
                     color: "gold",
@@ -121,7 +113,12 @@ const UserOrders = () => {
       </Box>
 
       {/* Dialog for Order Details */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        maxWidth="md"
+        fullWidth
+      >
         <DialogTitle sx={{ color: "gold" }}>Order Details</DialogTitle>
         <DialogContent>
           {selectedOrder && (
@@ -140,9 +137,13 @@ const UserOrders = () => {
                     borderRadius: "8px",
                   }}
                 >
-                  <Typography>Name: {item.instrumentId?.name || "N/A"}</Typography>
+                  <Typography>
+                    Email: {item.instrumentId?.email || "get an email already"}
+                  </Typography>
                   <Typography>Quantity: {item.quantity}</Typography>
-                  <Typography>Price: ₪{item.instrumentId?.price || 0}</Typography>
+                  <Typography>
+                    Price: ₪{item.instrumentId?.price || 0}
+                  </Typography>
                 </Paper>
               ))}
               <Typography variant="h6" sx={{ mt: 2, color: "#333" }}>
@@ -152,7 +153,8 @@ const UserOrders = () => {
                 Order Date: {formatDate(selectedOrder.createdAt)}
               </Typography>
               <Typography sx={{ color: "#333" }}>
-                Payment Status: {selectedOrder.isPaid ? "Paid" : "Payment Pending"}
+                Payment Status:{" "}
+                {selectedOrder.isPaid ? "Paid" : "Payment Pending"}
               </Typography>
             </Box>
           )}
@@ -164,7 +166,7 @@ const UserOrders = () => {
         </DialogActions>
       </Dialog>
     </Box>
-  );
-};
+  )
+}
 
-export default UserOrders;
+export default UserOrders
