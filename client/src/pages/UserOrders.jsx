@@ -9,6 +9,10 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActions,
 } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { Visibility as VisibilityIcon } from "@mui/icons-material"
@@ -60,7 +64,7 @@ const UserOrders = () => {
               field: "totalPrice",
               headerName: "Total Price",
               width: 130,
-              valueGetter: (params) => `₪${params.row.totalPrice}`,
+              valueGetter: (params) => `₪${params}`,
             },
             {
               field: "isPaid",
@@ -68,12 +72,12 @@ const UserOrders = () => {
               width: 130,
               renderCell: (params) => (
                 <Chip
-                  label={params.row.isPaid ? "Paid" : "Pending"}
-                  color={params.row.isPaid ? "success" : "warning"}
+                  label={params ? "Paid" : "Pending"}
+                  color={params ? "success" : "warning"}
                   sx={{
                     color: "white",
                     borderColor: "gold",
-                    backgroundColor: params.row.isPaid ? "green" : "orange",
+                    backgroundColor: params ? "green" : "orange",
                   }}
                 />
               ),
@@ -82,7 +86,7 @@ const UserOrders = () => {
               field: "createdAt",
               headerName: "Order Date",
               width: 200,
-              valueGetter: (params) => formatDate(params.row.createdAt),
+              valueGetter: (params) => formatDate(params),
             },
             {
               field: "actions",
@@ -137,13 +141,13 @@ const UserOrders = () => {
                     borderRadius: "8px",
                   }}
                 >
-                  <Typography>
-                    Email: {item.instrumentId?.email || "get an email already"}
-                  </Typography>
-                  <Typography>Quantity: {item.quantity}</Typography>
-                  <Typography>
-                    Price: ₪{item.instrumentId?.price || 0}
-                  </Typography>
+                  <ProductCard
+                    product={{
+                      ...item.instrumentId,
+                      quantity: item.quantity,
+                      price: item.originalPrice ?? item.instrumentId.price,
+                    }}
+                  />
                 </Paper>
               ))}
               <Typography variant="h6" sx={{ mt: 2, color: "#333" }}>
@@ -166,6 +170,32 @@ const UserOrders = () => {
         </DialogActions>
       </Dialog>
     </Box>
+  )
+}
+function ProductCard({ product }) {
+  return (
+    <Card sx={{ maxWidth: 345, boxShadow: 3, borderRadius: 2 }}>
+      <CardMedia
+        component="img"
+        height="350"
+        image={product.imageUrl}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          name: {product.name}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          category: {product.category}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          quantity: {product.quantity}
+        </Typography>
+        <Typography variant="h6" color="text.primary" mt={1}>
+          ₪{product.price}
+        </Typography>
+      </CardContent>
+    </Card>
   )
 }
 
