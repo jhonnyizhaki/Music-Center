@@ -60,7 +60,7 @@ const UserOrders = () => {
               field: "totalPrice",
               headerName: "Total Price",
               width: 130,
-              valueGetter: (params) => `₪${params.row.totalPrice}`,
+              valueGetter: (params) => `₪${params}`,
             },
             {
               field: "isPaid",
@@ -68,12 +68,12 @@ const UserOrders = () => {
               width: 130,
               renderCell: (params) => (
                 <Chip
-                  label={params.row.isPaid ? "Paid" : "Pending"}
-                  color={params.row.isPaid ? "success" : "warning"}
+                  label={params ? "Paid" : "Pending"}
+                  color={params ? "success" : "warning"}
                   sx={{
                     color: "white",
                     borderColor: "gold",
-                    backgroundColor: params.row.isPaid ? "green" : "orange",
+                    backgroundColor: params ? "green" : "orange",
                   }}
                 />
               ),
@@ -82,7 +82,7 @@ const UserOrders = () => {
               field: "createdAt",
               headerName: "Order Date",
               width: 200,
-              valueGetter: (params) => formatDate(params.row.createdAt),
+              valueGetter: (params) => formatDate(params),
             },
             {
               field: "actions",
