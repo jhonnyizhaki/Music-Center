@@ -7,9 +7,9 @@ const urls = {
   LOGIN: `${BASE_URL}/auth/login`,
   LOGOUT: `${BASE_URL}/auth/logout`,
   REGISTER: `${BASE_URL}/auth/register`,
-  VERIFY:`${BASE_URL}/auth/verify`,
+  VERIFY: `${BASE_URL}/auth/verify`,
   INSTRUMENTS: `${BASE_URL}/instruments`,
-  RENTINSTRUMENTS: `${BASE_URL}/rent-instruments`,
+  RENTINSTRUMENTS: `${BASE_URL}/rentInstruments`,
   CATEGORIES: `${BASE_URL}/categories`,
   CART: `${BASE_URL}/cart`,
   ADD_TO_CART: `${BASE_URL}/cart/add`,
@@ -19,9 +19,8 @@ const urls = {
   GET_USER_ORDERS: `${BASE_URL}/orders/userOrders`,
   CREATE_BOOKING: `${BASE_URL}/bookings`,
   GET_USER_BOOKING: `${BASE_URL}/bookings/userBookings`,
+  GET_UNAVAILABLE_DATES: `${BASE_URL}/bookings/getUnavailable`,
 
-
-    
   ORDERS: `${BASE_URL}/orders`,
   ROOMS: `${BASE_URL}/rooms`,
   ADMIN: {

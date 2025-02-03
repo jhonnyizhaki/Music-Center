@@ -63,6 +63,7 @@ const PracticeRoomBooking = () => {
 
       const bookingPayload = {
         ...bookingData,
+        //rentInstruments:
         startDate: startDateTime,
         endTime: endDateTime,
         userId: user?.id,
@@ -95,7 +96,7 @@ const PracticeRoomBooking = () => {
     return (originalPrice * 0.05).toFixed(2)
   }
 
-  const handleInstrumentChange = (instrumentId, withArtist = undefined) => {
+  const handleInstrumentChange = (instrumentId, artist = undefined) => {
     setBookingData((prev) => {
       const existingIndex = prev.rentInstruments.findIndex(
         (item) => item.instrumentId === instrumentId
@@ -103,8 +104,8 @@ const PracticeRoomBooking = () => {
 
       if (existingIndex > -1) {
         const updatedInstruments = [...prev.rentInstruments]
-        if (withArtist !== undefined) {
-          updatedInstruments[existingIndex].withArtist = withArtist
+        if (artist !== undefined) {
+          updatedInstruments[existingIndex].artist = artist
         } else {
           updatedInstruments.splice(existingIndex, 1)
         }
@@ -114,11 +115,10 @@ const PracticeRoomBooking = () => {
           ...prev,
           rentInstruments: [
             ...prev.rentInstruments,
-            { instrumentId, withArtist: false },
+            { instrumentId, artist: false },
           ],
         }
       }
-      z
     })
   }
 
@@ -132,12 +132,12 @@ const PracticeRoomBooking = () => {
     let total = bookingData.isVIP ? 200 : 100
     total *= bookingData.howLong
 
-    bookingData.rentInstruments.forEach(({ instrumentId, withArtist }) => {
+    bookingData.rentInstruments.forEach(({ instrumentId, artist }) => {
       const instrument = instruments.find((i) => i._id === instrumentId)
       if (instrument) {
         total += instrument.rentPrice * bookingData.howLong
 
-        if (withArtist) {
+        if (artist) {
           total += 150 * bookingData.howLong
         }
       }
@@ -307,9 +307,9 @@ const PracticeRoomBooking = () => {
                     const isSelected = bookingData.rentInstruments.some(
                       (item) => item.instrumentId === instrument._id
                     )
-                    const withArtist = bookingData.rentInstruments.find(
+                    const artist = bookingData.rentInstruments.find(
                       (item) => item.instrumentId === instrument._id
-                    )?.withArtist
+                    )?.artist
 
                     return (
                       <div key={index} className={styles["instrument-card"]}>
@@ -324,7 +324,7 @@ const PracticeRoomBooking = () => {
                           <label className={styles["artist-checkbox"]}>
                             <input
                               type="checkbox"
-                              checked={withArtist || false}
+                              checked={artist || false}
                               onChange={(e) =>
                                 handleInstrumentChange(
                                   instrument._id,
@@ -358,7 +358,7 @@ const PracticeRoomBooking = () => {
           <div className={styles["selected-instruments"]}>
             <h4>Selected Instruments:</h4>
             {bookingData.rentInstruments.map(
-              ({ instrumentId, withArtist }, index) => {
+              ({ instrumentId, artist }, index) => {
                 const instrument = instruments.find(
                   (i) => i._id === instrumentId
                 )
@@ -367,7 +367,7 @@ const PracticeRoomBooking = () => {
                 return (
                   <div key={index} className={styles["selected-instrument"]}>
                     <span>{instrument.name}</span>
-                    {withArtist && (
+                    {artist && (
                       <span className={styles["with-artist"]}>With Artist</span>
                     )}
                     <button

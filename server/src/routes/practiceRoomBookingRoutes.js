@@ -1,5 +1,5 @@
 import express from "express";
-import { approveBooking, createBooking, getBookings, getAllBookings, getUnavailableDates, cancelBooking } from "../controllers/bookingController.js";
+import { approveBooking, createBooking, getUserBookings, getAllBookings, getUnavailableDates, cancelBooking } from "../controllers/bookingController.js";
 import authMiddleware, { adminAuthenticationMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -9,7 +9,7 @@ router.post("/", authMiddleware, createBooking);
 router.get("/getUnavailable", authMiddleware, getUnavailableDates);
 router.get("/approveBooking", approveBooking);
 router.get("/cancelBooking", cancelBooking);
-router.get("/userBookings", authMiddleware, getBookings);
+router.get("/userBookings", authMiddleware, getUserBookings);
 
 //router.delete('/', authMiddleware, deleteBooking);//To do
 //router.patch('/', authMiddleware, editBooking);//To do
