@@ -30,40 +30,40 @@ const Contact = () => {
     e.preventDefault()
     try {
       await axios.post(`${urls.BASE_URL}/contact`, formData)
-      showNotification("ההודעה נשלחה בהצלחה!", "success")
+      showNotification("Message sent successfully!", "success")
       setFormData({ name: "", email: "", subject: "", message: "" })
     } catch (error) {
-      showNotification("אירעה שגיאה בשליחת ההודעה", "error")
+      showNotification("An error occurred while sending the message", "error")
     }
   }
 
   const contactInfo = [
     {
       icon: <Phone />,
-      primary: "טלפון",
-      secondary: "03-1234567",
+      primary: "Phone",
+      secondary: "0503089987",
     },
     {
       icon: <Email />,
-      primary: "אימייל",
-      secondary: "info@musiccenter.com",
+      primary: "Email",
+      secondary: "creatoryry@gmail.com",
     },
     {
       icon: <LocationOn />,
-      primary: "כתובת",
-      secondary: "רחוב המוזיקה 123, תל אביב",
+      primary: "Address",
+      secondary: "Zvi Nishri St 6, Tel Aviv-Jaffa",
     },
     {
       icon: <AccessTime />,
-      primary: "שעות פעילות",
-      secondary: "ראשון-חמישי: 9:00-21:00, שישי: 9:00-14:00",
+      primary: "Working Hours",
+      secondary: "Sunday-Thursday: 9:00-21:00, Friday: 9:00-14:00",
     },
   ]
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h3" textAlign="center" gutterBottom>
-        צור קשר
+    <Container maxWidth="lg" sx={{ py: 8 ,backgroundColor: "#cfbe9641"}}>
+      <Typography variant="h3" textAlign="center" gutterBottom color={"#af934c"}>
+        Contact Us
       </Typography>
       <Typography
         variant="h6"
@@ -71,7 +71,7 @@ const Contact = () => {
         textAlign="center"
         paragraph
       >
-        נשמח לעמוד לרשותכם בכל שאלה או בקשה
+        We are happy to assist you with any question or request
       </Typography>
 
       <Grid container spacing={4} sx={{ mt: 4 }}>
@@ -79,7 +79,7 @@ const Contact = () => {
           <Card>
             <CardContent>
               <Typography variant="h5" gutterBottom>
-                פרטי התקשרות
+                Contact Information
               </Typography>
               <List>
                 {contactInfo.map((item) => (
@@ -100,12 +100,12 @@ const Contact = () => {
           <Card>
             <CardContent>
               <Typography variant="h5" gutterBottom>
-                טופס יצירת קשר
+                Contact Form
               </Typography>
               <Box component="form" onSubmit={handleSubmit}>
                 <TextField
                   fullWidth
-                  label="שם מלא"
+                  label="Full Name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -115,7 +115,7 @@ const Contact = () => {
                 />
                 <TextField
                   fullWidth
-                  label="אימייל"
+                  label="Email"
                   type="email"
                   value={formData.email}
                   onChange={(e) =>
@@ -126,7 +126,7 @@ const Contact = () => {
                 />
                 <TextField
                   fullWidth
-                  label="נושא"
+                  label="Subject"
                   value={formData.subject}
                   onChange={(e) =>
                     setFormData({ ...formData, subject: e.target.value })
@@ -136,7 +136,7 @@ const Contact = () => {
                 />
                 <TextField
                   fullWidth
-                  label="הודעה"
+                  label="Message"
                   multiline
                   rows={4}
                   value={formData.message}
@@ -153,7 +153,7 @@ const Contact = () => {
                   fullWidth
                   sx={{ mt: 2 }}
                 >
-                  שלח הודעה
+                  Send Message
                 </Button>
               </Box>
             </CardContent>

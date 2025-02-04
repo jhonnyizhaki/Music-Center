@@ -36,13 +36,13 @@ const AdminStats = () => {
     popularProducts: [],
     categoryStats: [],
   })
-  
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const response = await axios.get(`${urls.BASE_URL}/admin/stats`)
-        console.log("res.data", response.data);
-        
+        console.log("res.data", response.data)
+
         setStats(response.data)
       } catch (error) {
         console.error("Error fetching stats:", error)
@@ -53,8 +53,8 @@ const AdminStats = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white", mb: 4 }}>
-        Statistics Dashboard
+      <Typography variant="h5" gutterBottom sx={{ color: "white", mb: 4 , textAlign: "center" }}>
+        <h1>Statistics Dashboard</h1>
       </Typography>
       <Grid container spacing={3}>
         {/* Summary Cards */}

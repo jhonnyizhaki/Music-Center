@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import AdminRoutes from "./AdminRoutes.jsx"
 import Layout from "../components/Layout.jsx"
 import Login from "../pages/Login.jsx"
 import Register from "../pages/Register.jsx"
@@ -18,11 +17,16 @@ import AdminUsers from "../pages/admin/AdminUsers.jsx"
 import AdminRooms from "../pages/admin/AdminRooms.jsx"
 import AdminStats from "../pages/admin/AdminStats.jsx"
 import AdminCategories from "../pages/admin/AdminCategories.jsx"
+import AdminProducts from "../pages/admin/AdminProducts.jsx"
 import { useState } from "react"
-
+import AdminActivityLog from "../components/AdminActivityLog.jsx"
+import InteractiveMap from "../components/InteractiveMap.jsx"
+import NotFoundPage from "../../NotFoundPage.jsx"
+import UserOrders from "../pages/UserOrders.jsx"
+import AdminBookings from "../pages/admin/AdminBookings.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
-  const { user } = useAuth();
+  const { user } = useAuth()
 
   return (
     <Router>
@@ -44,30 +48,30 @@ export default function AppRoutes() {
             element={<PracticeRoomBooking />}
           />
           <Route path="admin-sidebar" element={<AdminSidebar />} />
-<Route path="about" element={<About />} />
+          <Route path="about" element={<About />} />
 
           <Route
             path="admin/"
-            // element={
-            //   <ProtectedRoute requiredRole="admin">
-                
-            //   </ProtectedRoute>
-            // }
-            >
-               <Route index element={<AdminDashboard />} />
-               <Route path="orders" element={<AdminOrders />} />
-      <Route path="users" element={<AdminUsers />} />
-      <Route path="rooms" element={<AdminRooms />} />
-      <Route path="stats" element={<AdminStats />} />
-      <Route path="edit-category" element={<AdminCategories />} />
-            </Route>
-       
-
+           
+          >
+            <Route index element={<AdminDashboard />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="rooms" element={<AdminRooms />} />
+            <Route path="stats" element={<AdminStats />} />
+            <Route path="edit-category" element={<AdminCategories />} />
+            <Route path="edit-products" element={<AdminProducts />} />
+            <Route path="edit-Bookings" element={<AdminBookings />} />
+            <Route path="admin-activity" element={<AdminActivityLog />} />
+          </Route>
 
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="user-orders" element={<UserOrders />} />
 
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="interactive-map" element={<InteractiveMap />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Router>

@@ -96,7 +96,7 @@ const AdminRooms = () => {
       field: "pricePerHour",
       headerName: "Price/Hour",
       width: 130,
-      valueGetter: (params) => `₪${params.value}`,
+      valueGetter: (params) => `₪${params}`,
     },
     {
       field: "isAvailable",
@@ -128,9 +128,9 @@ const AdminRooms = () => {
   ]
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white", mb: 4 }}>
-        Manage Practice Rooms
+    <Box sx={{ flexGrow: 1, p: 3, mt: 0 , backgroundColor: "#cfbe9641"}}>
+      <Typography variant="h5" gutterBottom sx={{ color: "white", mb: 4 , textAlign: "center"}}>
+       <h1> Manage Practice  Rooms</h1>
       </Typography>
       <Button
         variant="contained"

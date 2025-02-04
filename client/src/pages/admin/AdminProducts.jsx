@@ -41,6 +41,8 @@ const AdminProducts = () => {
     try {
       const response = await axios.get(urls.INSTRUMENTS)
       setProducts(response.data)
+      console.log("res.data", response.data);
+      
     } catch (error) {
       console.error("Error fetching products:", error)
     }
@@ -124,8 +126,8 @@ const AdminProducts = () => {
 
   return (
     <Box sx={{ height: 600, width: "100%", p: 3, mt: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: "white" }}>
-        Manage Products
+      <Typography variant="h5" gutterBottom sx={{ color: "white" , mb: 4, textAlign: "center" }}>
+        <h1>Manage Products</h1>
       </Typography>
       <Button
         variant="contained"
@@ -142,8 +144,7 @@ const AdminProducts = () => {
         <DataGrid
           rows={products}
           columns={columns}
-          getRowId={(row) => row._id}
-          pageSizeOptions={[5, 10, 25]}
+          getRowId={(row) => row._id || row.name + row.price}          pageSizeOptions={[5, 10, 25]}
           disableRowSelectionOnClick
         />
       </Box>

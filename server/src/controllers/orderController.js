@@ -35,7 +35,7 @@ export const crateOrder = async (req, res) => {
     for (const item of items) {
       const instrument = await Instrument.findOne({ _id: item.id });
       await instrument.updateOne({ stock: instrument.stock - item.quantity });
-      itemsForMap.push({ instrumentId: item.id, quantity: item.quantity });
+      itemsForMap.push({ instrumentId: item.id, quantity: item.quantity, originalPrice: instrument.price });
       totalPrice += instrument.price * item.quantity;
     }
 
@@ -127,10 +127,8 @@ export const getUserOrder = async (req, res) => {
 };
 
 export const getUserOrders = async (req, res) => {
-  console.log("banana error");
-
   try {
-    const orders = (await Order.find({ userId: req.user.id })) ?? [];
+    const orders = (await Order.find({ userId: req.user.id }).populate("items.instrumentId")) ?? [];
     res.status(200).json({ orders });
   } catch (error) {
     console.error(error);
