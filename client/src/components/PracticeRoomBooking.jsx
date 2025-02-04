@@ -16,7 +16,7 @@ const PracticeRoomBooking = () => {
     rentInstruments: [],
     date: "",
     time: "",
-    howLong: 1,
+    howLong: "1",
     isVIP: false,
     roomNumber: null,
     startDate: null,

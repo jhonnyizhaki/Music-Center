@@ -1,5 +1,5 @@
 import express from "express";
-import { approveBooking, createBooking, getBookings, getAllBookings, getUnavailableDates } from "../controllers/bookingController.js";
+import { approveBooking, createBooking, getBookings, getAllBookings, getUnavailableDates, cancelBooking } from "../controllers/bookingController.js";
 import authMiddleware, { adminAuthenticationMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/", authMiddleware, createBooking);
 router.get("/getUnavailable", authMiddleware, getUnavailableDates);
 router.get("/approveBooking", approveBooking);
+router.get("/cancelBooking", cancelBooking);
 router.get("/userBookings", authMiddleware, getBookings);
 router.get("/admin/getBookings", authMiddleware, adminAuthenticationMiddleware, getBookings);
 

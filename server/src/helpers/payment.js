@@ -78,7 +78,7 @@ async function createPaypalBooking(email, totalPrice) {
       ],
       applicationContext: {
         brandName: "music center",
-        cancelUrl: "http://localhost:5000/orders/cancelOrder",
+        cancelUrl: "http://localhost:5000/bookings/cancelBooking",
         returnUrl: "http://localhost:5000/bookings/approveBooking",
         userAction: "PAY_NOW",
       },

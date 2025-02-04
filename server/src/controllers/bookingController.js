@@ -46,7 +46,7 @@ const machRoomSchema = z.object({
     )
     .optional(),
   startDate: z.string().transform((value) => new Date(value)),
-  howLong: z.number().min(1),
+  howLong: z.string().transform((value) => parseInt(value)),
   isVIP: z.boolean().default(false),
 });
 
@@ -102,7 +102,9 @@ export const createBooking = async (req, res) => {
       redirectUrl: redirectUrl.href,
     });
   } catch (error) {
-    console.error("Error creating booking:", error);
+    //console.dir(error.errors[0].path);
+    console.log({ error });
+
     res.status(500).json({ message: "booking failed" });
   }
 };
@@ -114,6 +116,18 @@ export const approveBooking = async (req, res) => {
 
     res.status(200).redirect("http://localhost:5173");
   } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const cancelBooking = async (req, res) => {
+  try {
+    console.log({ req });
+
+    await Booking.findOneAndDelete({ paypalId: req.query.token });
+    res.status(200).redirect("http://localhost:5173/practice-room-booking");
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server error", error });
   }
 };
