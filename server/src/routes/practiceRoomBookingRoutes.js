@@ -9,6 +9,7 @@ router.post("/", authMiddleware, createBooking);
 router.get("/getUnavailable", authMiddleware, getUnavailableDates);
 router.get("/approveBooking", approveBooking);
 router.get("/userBookings", authMiddleware, getBookings);
+router.get("/admin/getBookings", authMiddleware, adminAuthenticationMiddleware, getBookings);
 
 //router.delete('/', authMiddleware, deleteBooking);//To do
 //router.patch('/', authMiddleware, editBooking);//To do

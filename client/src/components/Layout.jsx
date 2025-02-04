@@ -9,13 +9,13 @@ const Layout = () => {
   const location = useLocation()
   const { user } = useAuth()
 
-  useEffect(() => {
-    const publicPath = ["/login", "/", "/register", "/instruments"]
-    console.log({ user })
-    if (!user && !publicPath.includes(window.location.pathname)) {
-      window.location.pathname = "/login"
-    }
-  }, [location])
+  // useEffect(() => {
+  //   const publicPath = ["/login", "/", "/register", "/instruments"]
+  //   console.log({ user })
+  //   if (!user && !publicPath.includes(window.location.pathname)) {
+  //     window.location.pathname = "/login"
+  //   }
+  // }, [location])
 
   return (
     <div className="page-layout">

@@ -19,6 +19,7 @@ const urls = {
   GET_USER_ORDERS: `${BASE_URL}/orders/userOrders`,
   CREATE_BOOKING: `${BASE_URL}/bookings`,
   GET_USER_BOOKING: `${BASE_URL}/bookings/userBookings`,
+  BOOKINGS: `${BASE_URL}/bookings/admin/getBookings`,
 
 
     
