@@ -160,7 +160,7 @@ export const getAllBookings = async (req, res) => {
 
 export const getUserBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find({ userId: req.user.id }).populate("");
+    const bookings = (await Booking.find({ userId: req.user.id }).populate("rentInstruments.instrumentId")) ?? [];
 
     res.json(bookings);
   } catch (error) {

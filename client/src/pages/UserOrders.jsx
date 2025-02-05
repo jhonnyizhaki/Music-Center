@@ -33,7 +33,6 @@ const UserOrders = () => {
   const fetchOrders = async () => {
     const serverRes = await axios.get(urls.BASE_URL + "/orders/userOrders")
     setOrders(serverRes.data.orders)
-    console.log({ serverRes })
   }
   const { user } = useAuth()
 
@@ -88,6 +87,7 @@ const UserOrders = () => {
               width: 200,
               valueGetter: (params) => formatDate(params),
             },
+
             {
               field: "actions",
               headerName: "Actions",
