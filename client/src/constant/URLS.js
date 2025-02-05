@@ -21,6 +21,8 @@ const urls = {
   GET_USER_BOOKING: `${BASE_URL}/bookings/userBookings`,
   GET_UNAVAILABLE_DATES: `${BASE_URL}/bookings/getUnavailable`,
 
+  BOOKINGS: `${BASE_URL}/bookings/admin/getBookings`,
+
   ORDERS: `${BASE_URL}/orders`,
   ROOMS: `${BASE_URL}/rooms`,
   ADMIN: {

@@ -24,6 +24,7 @@ import InteractiveMap from "../components/InteractiveMap.jsx"
 import NotFoundPage from "../../NotFoundPage.jsx"
 import UserOrders from "../pages/UserOrders.jsx"
 import UserBookings from "../pages/UserBookings.jsx"
+import AdminBookings from "../pages/admin/AdminBookings.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { user } = useAuth()
@@ -62,6 +63,7 @@ export default function AppRoutes() {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="rooms" element={<AdminRooms />} />
+            <Route path="edit-Bookings" element={<AdminBookings />} />
             <Route path="stats" element={<AdminStats />} />
             <Route path="edit-category" element={<AdminCategories />} />
             <Route path="edit-products" element={<AdminProducts />} />
