@@ -38,9 +38,12 @@ const AdminUsers = () => {
   }
 
   const handleRoleChange = async () => {
+    console.log({ selectedUser })
+
     try {
-      await axios.put(`${urls.BASE_URL}/users/${selectedUser._id}/role`, {
+      await axios.put(`${urls.UPDATE_USER_ROLE}`, {
         role: selectedRole,
+        userId: selectedUser._id,
       })
       setOpenDialog(false)
       fetchUsers()
@@ -67,10 +70,9 @@ const AdminUsers = () => {
       field: "createdAt",
       headerName: "Join Date",
       width: 200,
-      valueGetter: (params) =>{
-        console.log(params);
-        
-        return new Date(params).toLocaleDateString()},
+      valueGetter: (params) => {
+        return new Date(params).toLocaleDateString()
+      },
     },
     {
       field: "actions",
@@ -81,6 +83,7 @@ const AdminUsers = () => {
           onClick={() => {
             setSelectedUser(params.row)
             setSelectedRole(params.row.role)
+            console.log(params)
             setOpenDialog(true)
           }}
         >
@@ -93,9 +96,10 @@ const AdminUsers = () => {
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
       <Typography
-       variant="h5"
-        gutterBottom 
-        sx={{ color: "white", mb: 4, textAlign: "center" }}>
+        variant="h5"
+        gutterBottom
+        sx={{ color: "white", mb: 4, textAlign: "center" }}
+      >
         <h1>Manage Users</h1>
       </Typography>
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
