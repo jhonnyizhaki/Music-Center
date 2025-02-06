@@ -51,7 +51,7 @@ const Contact = () => {
     {
       icon: <LocationOn />,
       primary: "Address",
-      secondary: "Music Street 123, Tel Aviv",
+      secondary: "Zvi Nishri St 6, Tel Aviv-Jaffa",
     },
     {
       icon: <AccessTime />,
@@ -61,8 +61,8 @@ const Contact = () => {
   ]
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h3" textAlign="center" gutterBottom>
+    <Container maxWidth="lg" sx={{ py: 8 ,backgroundColor: "#cfbe9641"}}>
+      <Typography variant="h3" textAlign="center" gutterBottom color={"#af934c"}>
         Contact Us
       </Typography>
       <Typography
