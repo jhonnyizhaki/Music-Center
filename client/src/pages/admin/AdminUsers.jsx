@@ -14,7 +14,7 @@ import {
   MenuItem,
 } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
-import { Edit as EditIcon } from "@mui/icons-material"
+import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
 import axios from "axios"
 import urls from "../../constant/URLS"
 
@@ -23,6 +23,11 @@ const AdminUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null)
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedRole, setSelectedRole] = useState("")
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
+
+  useEffect(() => {
+    console.log(selectedUser)
+  }, [selectedUser])
 
   useEffect(() => {
     fetchUsers()
@@ -37,10 +42,23 @@ const AdminUsers = () => {
     }
   }
 
-  const handleRoleChange = async () => {
+  const handleDeleteUser = async () => {
     try {
-      await axios.put(`${urls.BASE_URL}/users/${selectedUser._id}/role`, {
+      await axios.delete(`${urls.DELETE_USER}/${selectedUser._id}`)
+      setOpenDeleteDialog(false)
+      fetchUsers()
+    } catch (error) {
+      console.error("Error deleting user role:", error)
+    }
+  }
+
+  const handleRoleChange = async () => {
+    console.log({ selectedUser })
+
+    try {
+      await axios.put(`${urls.UPDATE_USER_ROLE}`, {
         role: selectedRole,
+        userId: selectedUser._id,
       })
       setOpenDialog(false)
       fetchUsers()
@@ -67,25 +85,35 @@ const AdminUsers = () => {
       field: "createdAt",
       headerName: "Join Date",
       width: 200,
-      valueGetter: (params) =>{
-        console.log(params);
-        
-        return new Date(params).toLocaleDateString()},
+      valueGetter: (params) => {
+        return new Date(params).toLocaleDateString()
+      },
     },
     {
       field: "actions",
       headerName: "Actions",
-      width: 130,
+      width: 200,
       renderCell: (params) => (
-        <Button
-          onClick={() => {
-            setSelectedUser(params.row)
-            setSelectedRole(params.row.role)
-            setOpenDialog(true)
-          }}
-        >
-          <EditIcon />
-        </Button>
+        <>
+          <Button
+            onClick={() => {
+              setSelectedUser(params.row)
+              setSelectedRole(params.row.role)
+              console.log(params)
+              setOpenDialog(true)
+            }}
+          >
+            <EditIcon />
+          </Button>
+          <Button
+            onClick={() => {
+              setSelectedUser(params.row)
+              setOpenDeleteDialog(true)
+            }}
+          >
+            <DeleteIcon style={{ fill: "red" }} />
+          </Button>
+        </>
       ),
     },
   ]
@@ -93,9 +121,10 @@ const AdminUsers = () => {
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
       <Typography
-       variant="h5"
-        gutterBottom 
-        sx={{ color: "white", mb: 4, textAlign: "center" }}>
+        variant="h5"
+        gutterBottom
+        sx={{ color: "white", mb: 4, textAlign: "center" }}
+      >
         <h1>Manage Users</h1>
       </Typography>
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
@@ -107,6 +136,28 @@ const AdminUsers = () => {
           rowsPerPageOptions={[5]}
         />
       </Box>
+
+      <Dialog
+        open={openDeleteDialog}
+        onClose={() => setOpenDeleteDialog(false)}
+      >
+        <DialogTitle>Delete User</DialogTitle>
+        <DialogContent>
+          <Typography>
+            are you shore you want to delete {selectedUser?.email}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
+          <Button
+            style={{ backgroundColor: "red" }}
+            onClick={handleDeleteUser}
+            variant="contained"
+          >
+            Delete User
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>Edit User Role</DialogTitle>

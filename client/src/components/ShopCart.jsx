@@ -16,12 +16,8 @@ const ShopCart = () => {
       const serverResponse = await axios.post(urls.CREATE_ORDER, reqBody)
       const redirectUrl = serverResponse.data.redirectUrl
       window.location.href = redirectUrl.href
-    } catch (error) {
-      console.log(error)
-    }
+    } catch (error) {}
   }
-
-  console.log(cart)
 
   return (
     <div className="shop-cart-page">

@@ -3,16 +3,14 @@ import Order from "../models/orderModel.js";
 import Instrument from "../models/instrumentModel.js";
 import PracticeRoom from "../models/practiceRoomModel.js";
 import Category from "../models/categoryModel.js";
+import { z } from "zod";
 
 export const getStats = async (req, res) => {
   try {
     // Get total orders and revenue
     const orders = await Order.find().populate("userId");
     const totalOrders = orders.length;
-    const totalRevenue = orders.reduce(
-      (sum, order) => sum + order.totalPrice,
-      0
-    );
+    const totalRevenue = orders.reduce((sum, order) => sum + order.totalPrice, 0);
 
     // Get total users
     const totalUsers = await User.countDocuments();
@@ -71,20 +69,13 @@ export const getStats = async (req, res) => {
   }
 };
 
+const updateUserRoleSchema = z.object({ userId: z.string(), role: z.string() });
+
 export const updateUserRole = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const { role } = req.body;
+    const { role, userId } = updateUserRoleSchema.parse(req.body);
 
-    if (!["user", "admin"].includes(role)) {
-      return res.status(400).json({ message: "Invalid role" });
-    }
-
-    const user = await User.findByIdAndUpdate(
-      userId,
-      { role },
-      { new: true }
-    ).select("-password");
+    const user = await User.findByIdAndUpdate(userId, { role }).select("-password");
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -94,6 +85,19 @@ export const updateUserRole = async (req, res) => {
   } catch (error) {
     console.error("Error updating user role:", error);
     res.status(500).json({ message: "Error updating user role" });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "user not found" });
+    }
+    res.json({ message: "user deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting room:", error);
+    res.status(500).json({ message: "Error deleting room" });
   }
 };
 

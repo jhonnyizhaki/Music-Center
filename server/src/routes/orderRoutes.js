@@ -9,7 +9,6 @@ router.post("/add", authMiddleware, crateOrder);
 router.get("/approveOrder", approveOrder);
 // Get order card
 router.get("/userOrders", authMiddleware, getUserOrders);
-//router.get("/:userId", authMiddleware, getUserOrder);
 router.get("/", authMiddleware, adminAuthenticationMiddleware, getOrders);
 router.delete("/", authMiddleware, adminAuthenticationMiddleware, deleteOrders);
 router.put("/updateInstrument", authMiddleware, adminAuthenticationMiddleware, updateInstrumentInOrder);

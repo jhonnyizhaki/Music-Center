@@ -39,9 +39,9 @@ const machRoomSchema = z.object({
   rentInstruments: z
     .array(
       z.object({
-        id: z.string(),
+        instrumentId: z.string(),
         artist: z.boolean().default(false),
-        quantity: z.number().min(1),
+        //quantity: z.number().min(1),
       })
     )
     .optional(),
@@ -65,16 +65,17 @@ export const createBooking = async (req, res) => {
 
     if (rentInstruments)
       for (const item of rentInstruments) {
-        const instrument = await RentInstrument.findById(item.id);
+        const instrument = await RentInstrument.findById(item.instrumentId);
         if (!instrument) return res.status(404).json({ message: "Instrument not found" });
         if (item.quantity > instrument.stock) return res.status(400).json({ message: "not a valid quantity" });
         instrumentsToInsert.push({ ...item, stock: instrument.stock });
-        totalPrice += instrument.price * item.quantity;
+        totalPrice += instrument.rentPrice;
       }
 
     for (const item of instrumentsToInsert) {
-      await RentInstrument.findOneAndUpdate({ id: item.id }, { stock: item.stock - item.quantity });
+      await RentInstrument.findOneAndUpdate({ id: item.instrumentId }, { stock: item.stock - 1 });
     }
+
     const ms = new Date(startDate);
     const me = new Date(1776926081761);
     const paypalBooking = await payment.createPaypalBooking(req.user.email, totalPrice);
@@ -157,9 +158,9 @@ export const getAllBookings = async (req, res) => {
   }
 };
 
-export const getBookings = async (req, res) => {
+export const getUserBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find({ userId: req.user.id });
+    const bookings = (await Booking.find({ userId: req.user.id }).populate("rentInstruments.instrumentId")) ?? [];
 
     res.json(bookings);
   } catch (error) {

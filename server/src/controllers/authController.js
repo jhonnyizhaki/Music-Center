@@ -10,11 +10,7 @@ export const register = async (req, res) => {
     console.log(user);
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.log(error.message);
-
-    res
-      .status(400)
-      .json({ message: "Registration failed", error: error.message });
+    res.status(400).json({ message: "Registration failed", error: error.message });
   }
 };
 
@@ -25,13 +21,9 @@ export const login = async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
-    const token = jwt.sign(
-      { id: user._id, role: user.role, email: user.email },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
+    const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.cookie("auth_token", token, {
       httpOnly: true,
@@ -41,14 +33,15 @@ export const login = async (req, res) => {
 
     res.cookie(
       "user",
-     
-      encodeURI(JSON.stringify({
-        id: user._id,
-        name: user.name,
-        role: user.role,
-        email: user.email,
-      }))
-      ,
+
+      encodeURI(
+        JSON.stringify({
+          id: user._id,
+          name: user.name,
+          role: user.role,
+          email: user.email,
+        })
+      ),
       {
         httpOnly: false,
       }

@@ -139,8 +139,7 @@ export const getUserOrders = async (req, res) => {
 export const getOrders = async (req, res) => {
   try {
     const orders = (await Order.find().populate("userId").populate("items.instrumentId")) ?? [];
-    console.log({"orders":orders});
-    
+
     res.status(200).json({ orders });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
