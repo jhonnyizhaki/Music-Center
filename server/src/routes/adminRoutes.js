@@ -1,6 +1,6 @@
 import express from "express";
 import { authMiddleware, adminAuthenticationMiddleware } from "../middlewares/authMiddleware.js";
-import { getStats, updateUserRole, getAllRooms, createRoom, updateRoom, deleteRoom } from "../controllers/adminController.js";
+import { getStats, updateUserRole, getAllRooms, deleteUser, createRoom, updateRoom, deleteRoom } from "../controllers/adminController.js";
 
 const router = express.Router();
 
@@ -9,6 +9,7 @@ router.get("/stats", authMiddleware, adminAuthenticationMiddleware, getStats);
 
 // User management routes
 router.put("/updateUserRole", authMiddleware, adminAuthenticationMiddleware, updateUserRole);
+router.delete("/deleteUser/:id", authMiddleware, adminAuthenticationMiddleware, deleteUser);
 
 // Room management routes
 router.get("/rooms", authMiddleware, adminAuthenticationMiddleware, getAllRooms);

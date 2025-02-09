@@ -14,7 +14,7 @@ import {
   MenuItem,
 } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
-import { Edit as EditIcon } from "@mui/icons-material"
+import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
 import axios from "axios"
 import urls from "../../constant/URLS"
 
@@ -23,6 +23,11 @@ const AdminUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null)
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedRole, setSelectedRole] = useState("")
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
+
+  useEffect(() => {
+    console.log(selectedUser)
+  }, [selectedUser])
 
   useEffect(() => {
     fetchUsers()
@@ -34,6 +39,16 @@ const AdminUsers = () => {
       setUsers(response.data.users)
     } catch (error) {
       console.error("Error fetching users:", error)
+    }
+  }
+
+  const handleDeleteUser = async () => {
+    try {
+      await axios.delete(`${urls.DELETE_USER}/${selectedUser._id}`)
+      setOpenDeleteDialog(false)
+      fetchUsers()
+    } catch (error) {
+      console.error("Error deleting user role:", error)
     }
   }
 
@@ -77,18 +92,28 @@ const AdminUsers = () => {
     {
       field: "actions",
       headerName: "Actions",
-      width: 130,
+      width: 200,
       renderCell: (params) => (
-        <Button
-          onClick={() => {
-            setSelectedUser(params.row)
-            setSelectedRole(params.row.role)
-            console.log(params)
-            setOpenDialog(true)
-          }}
-        >
-          <EditIcon />
-        </Button>
+        <>
+          <Button
+            onClick={() => {
+              setSelectedUser(params.row)
+              setSelectedRole(params.row.role)
+              console.log(params)
+              setOpenDialog(true)
+            }}
+          >
+            <EditIcon />
+          </Button>
+          <Button
+            onClick={() => {
+              setSelectedUser(params.row)
+              setOpenDeleteDialog(true)
+            }}
+          >
+            <DeleteIcon style={{ fill: "red" }} />
+          </Button>
+        </>
       ),
     },
   ]
@@ -111,6 +136,28 @@ const AdminUsers = () => {
           rowsPerPageOptions={[5]}
         />
       </Box>
+
+      <Dialog
+        open={openDeleteDialog}
+        onClose={() => setOpenDeleteDialog(false)}
+      >
+        <DialogTitle>Delete User</DialogTitle>
+        <DialogContent>
+          <Typography>
+            are you shore you want to delete {selectedUser?.email}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
+          <Button
+            style={{ backgroundColor: "red" }}
+            onClick={handleDeleteUser}
+            variant="contained"
+          >
+            Delete User
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>Edit User Role</DialogTitle>
