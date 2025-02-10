@@ -8,7 +8,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 const Home = () => {
   const [popularInstruments, setPopularInstruments] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
-
+const [page, setPage] = useState("home");
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
@@ -112,7 +112,14 @@ const Home = () => {
               <FaChevronRight />
             </button>
           </div>
-          <Link to="/practiceRoomBooking" className={styles.practiceRoomButton}>
+          <Link to="/practice-room-booking" 
+          className={styles.practiceRoomButton}
+       
+          
+          
+          
+          
+          >
             Book Practice Room
           </Link>
         </div>

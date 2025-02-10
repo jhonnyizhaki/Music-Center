@@ -57,8 +57,8 @@ const UserBookings = () => {
         <p>loading...</p>
       ) : (
         <Box sx={{ flexGrow: 1, p: 3, mt: 8, backgroundColor: "#f5f5f5" }}>
-          <Typography variant="h4" gutterBottom sx={{ color: "#333", mb: 4 }}>
-            Your Bookings
+          <Typography variant="h5" gutterBottom sx={{ color: "#333", mb: 4,textAlign:"center" }}>
+            <h1>My Bookings</h1>
           </Typography>
 
           <Box sx={{ height: 400, bgcolor: "white", borderRadius: "8px" }}>
