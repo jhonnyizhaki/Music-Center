@@ -61,8 +61,13 @@ const Contact = () => {
   ]
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 ,backgroundColor: "#cfbe9641"}}>
-      <Typography variant="h3" textAlign="center" gutterBottom color={"#af934c"}>
+    <Container maxWidth="lg" sx={{ py: 8, backgroundColor: "#cfbe9641" }}>
+      <Typography
+        variant="h3"
+        textAlign="center"
+        gutterBottom
+        color={"#af934c"}
+      >
         Contact Us
       </Typography>
       <Typography

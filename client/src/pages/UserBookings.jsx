@@ -199,7 +199,7 @@ const UserBookings = () => {
                     Total Price: ₪{selectedBooking.totalPrice}
                   </Typography>
                   <Typography sx={{ color: "#333" }}>
-                    booking Date: {formatDate(selectedBooking.createdAt)}
+                    booking Date: {formatDate(selectedBooking.startTime)}
                   </Typography>
                   <Typography sx={{ color: "#333" }}>
                     Payment Status:{" "}
