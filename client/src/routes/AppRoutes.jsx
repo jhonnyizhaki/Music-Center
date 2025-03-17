@@ -25,6 +25,7 @@ import NotFoundPage from "../../NotFoundPage.jsx"
 import UserOrders from "../pages/UserOrders.jsx"
 import UserBookings from "../pages/UserBookings.jsx"
 import AdminBookings from "../pages/admin/AdminBookings.jsx"
+import FAQ from "../components/common/FAQ.jsx"
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { user } = useAuth()
@@ -74,7 +75,7 @@ export default function AppRoutes() {
           <Route path="register" element={<Register />} />
           <Route path="user-orders" element={<UserOrders />} />
           <Route path="user-bookings" element={<UserBookings />} />
-
+          < Route path="faq" element={<FAQ />} />
           <Route path="contact" element={<Contact />} />
           <Route path="interactive-map" element={<InteractiveMap />} />
           <Route path="*" element={<NotFoundPage />} />

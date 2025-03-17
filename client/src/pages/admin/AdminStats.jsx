@@ -1,4 +1,4 @@
-import React from "react"
+      import React from "react"
 import { Box, Grid, Paper, Typography } from "@mui/material"
 import { styled } from "@mui/material/styles"
 import {
@@ -80,10 +80,10 @@ const AdminStats = () => {
         {/* Charts */}
         <Grid item xs={12} md={6}>
           <StatsCard>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" sx="text-align: center" gutterBottom>
               Sales by Category
             </Typography>
-            <PieChart width={400} height={300}>
+            <PieChart width={500} height={500} >
               <Pie
                 data={stats.categoryStats}
                 dataKey="value"
@@ -95,7 +95,7 @@ const AdminStats = () => {
               >
                 {stats.categoryStats.map((entry, index) => (
                   <Cell
-                    key={`cell-${index}`}
+                    key={Cell-{index}}
                     fill={COLORS[index % COLORS.length]}
                   />
                 ))}
@@ -127,7 +127,7 @@ const AdminStats = () => {
             <Typography variant="h6" gutterBottom>
               Monthly Revenue
             </Typography>
-            <LineChart width={900} height={300} data={stats.recentOrders}>
+            <LineChart width={1800} height={300} data={stats.recentOrders}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis />

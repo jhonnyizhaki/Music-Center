@@ -41,7 +41,7 @@ const FAQ = () => {
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>
       <Typography variant="h4" textAlign="center" gutterBottom>
-        Frequently Asked Questions
+        <h1>Frequently Asked Questions</h1>
       </Typography>
       <Box sx={{ mt: 4 }}>
         {faqs.map((faq, index) => (

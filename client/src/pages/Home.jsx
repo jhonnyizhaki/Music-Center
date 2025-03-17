@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import styles from "./Home.module.css"
 import axios from "axios"
 import urls from "../constant/URLS"
@@ -9,6 +9,7 @@ const Home = () => {
   const [popularInstruments, setPopularInstruments] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
 const [page, setPage] = useState("home");
+const location = useLocation();
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
@@ -114,7 +115,7 @@ const [page, setPage] = useState("home");
           </div>
           <Link to="/practice-room-booking" 
           className={styles.practiceRoomButton}
-       
+          // className={`${location.pathname === "/practice-room-booking" ? styles.activeLink : styles.link}`}
           
           
           

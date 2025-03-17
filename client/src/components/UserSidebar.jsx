@@ -39,6 +39,15 @@ const UserSidebar = ({ isOpen, closeSidebar }) => {
           >
             <ListItemText primary="Bookings" />
           </ListItem>
+
+          <ListItem
+            button
+            component={NavLink}
+            to="/faq"
+            onClick={closeSidebar}
+          >
+            <ListItemText primary="FAQ" />
+          </ListItem>
           <ListItem
             button
             component={NavLink}
