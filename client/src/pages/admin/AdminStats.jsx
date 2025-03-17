@@ -84,22 +84,20 @@ const AdminStats = () => {
               Sales by Category
             </Typography>
             <PieChart width={500} height={500} >
-              <Pie
-                data={stats.categoryStats}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                fill="#8884d8"
-              >
-                {stats.categoryStats.map((entry, index) => (
-                  <Cell
-                    key={Cell-{index}}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
+            <Pie
+  data={stats.categoryStats}
+  dataKey="value"
+  nameKey="name"
+  cx="50%"
+  cy="50%"
+  outerRadius={100}
+  fill="#8884d8"
+>
+  {stats.categoryStats.map((entry, index) => (
+    <Cell key={`cell-${index}`} fill={COLORS[index] || `#${Math.floor(Math.random() * 16777215).toString(16)}`} />
+  ))}
+</Pie>
+
               <Tooltip />
               <Legend />
             </PieChart>
