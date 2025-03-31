@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import axios from "axios"
+import { toast } from "sonner"
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -21,8 +22,13 @@ const Register = () => {
         email,
         password,
       })
+
+      toast.success("registered successfully", { duration: 12000 })
+
       navigate("/login")
     } catch (error) {
+      toast.error("registered failed", { duration: 1000 })
+
       setError("The register is failed")
       console.error(error)
     }
@@ -70,6 +76,7 @@ const Register = () => {
             const serverRes = await axios.post(
               "http://localhost:5000/auth/register/google"
             )
+
             window.location.href = serverRes.data.url
           }}
         >

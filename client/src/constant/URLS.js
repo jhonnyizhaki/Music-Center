@@ -34,7 +34,6 @@ const urls = {
   },
   CONTACT: `${BASE_URL}/contact`,
   CONSULTATIONS: `${BASE_URL}/consultations`,
-  // TODO: change to real rent-instruments in server
 }
 
 export default urls

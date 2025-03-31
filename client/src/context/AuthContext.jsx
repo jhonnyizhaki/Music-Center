@@ -19,6 +19,8 @@ export const AuthProvider = ({ children }) => {
   }
 
   const login = async (userData) => {
+    console.log("banana", userData)
+
     await axios.post(urls.LOGIN, userData)
     await verifyToken()
   }

@@ -7,6 +7,7 @@ import { z } from "zod";
 
 export const register = async (req, res) => {
   const { email, password } = req.body;
+  console.log({ email });
 
   try {
     const user = await User.create({ email, password });
@@ -46,6 +47,7 @@ const authWithGoogleQuerySchema = z.object({
 });
 const authWithGoogleCookieSchema = z.object({
   state: z.string(),
+
   codeVerifier: z.string(),
 });
 
