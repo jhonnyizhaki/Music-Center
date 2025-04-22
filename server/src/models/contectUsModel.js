@@ -12,4 +12,4 @@ const contactMessageSchema = new mongoose.Schema(
 
 const Message = mongoose.model("Message", contactMessageSchema);
 
-export default Message;
+//export default Message;

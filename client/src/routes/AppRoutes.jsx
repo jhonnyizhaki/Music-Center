@@ -7,10 +7,11 @@ import ShopCart from "../components/ShopCart.jsx"
 import Home from "../pages/Home.jsx"
 import { useAuth } from "../context/AuthContext.jsx"
 import PracticeRoomBooking from "../components/PracticeRoomBooking.jsx"
-import AdminSidebar from "../components/AdminSidebar.jsx"
 import About from "../pages/About.jsx"
 import Contact from "../pages/Contact.jsx"
 import ProtectedRoute from "../components/ProtectedRoute.jsx"
+// Admin pages
+import AdminSidebar from "../components/AdminSidebar.jsx"
 import AdminDashboard from "../pages/admin/AdminDashboard.jsx"
 import AdminOrders from "../pages/admin/AdminOrders.jsx"
 import AdminUsers from "../pages/admin/AdminUsers.jsx"
@@ -25,6 +26,8 @@ import NotFoundPage from "../../NotFoundPage.jsx"
 import UserOrders from "../pages/UserOrders.jsx"
 import UserBookings from "../pages/UserBookings.jsx"
 import AdminBookings from "../pages/admin/AdminBookings.jsx"
+import AdminContactMessages from "../pages/admin/AdminContactMessages.jsx"
+
 export default function AppRoutes() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { user } = useAuth()
@@ -68,6 +71,7 @@ export default function AppRoutes() {
             <Route path="edit-category" element={<AdminCategories />} />
             <Route path="edit-products" element={<AdminProducts />} />
             <Route path="admin-activity" element={<AdminActivityLog />} />
+            <Route path="contact-messages" element={<AdminContactMessages />} />
           </Route>
 
           <Route path="login" element={<Login />} />

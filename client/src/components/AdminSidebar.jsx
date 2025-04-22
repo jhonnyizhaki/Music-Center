@@ -1,7 +1,7 @@
-import React from 'react';
-import { Drawer, List, ListItem, ListItemText, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import '../AdminSidebar.css';
+import React from "react"
+import { Drawer, List, ListItem, ListItemText, Typography } from "@mui/material"
+import { NavLink } from "react-router-dom"
+import "../AdminSidebar.css"
 
 const AdminSidebar = ({ isOpen, closeSidebar }) => {
   return (
@@ -14,34 +14,77 @@ const AdminSidebar = ({ isOpen, closeSidebar }) => {
           <ListItem button component={NavLink} to="/" onClick={closeSidebar}>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/orders" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/orders"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="Orders" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/users" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/users"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="Users" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/rooms" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/rooms"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="Rooms" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/stats" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/stats"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="Statistics" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/edit-category" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/edit-category"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="edit-category" />
           </ListItem>
-          <ListItem button component={NavLink} to="admin/edit-products" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/edit-products"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="edit-products" />
           </ListItem>
           {/* <ListItem button component={NavLink} to="admin/admin-activity" onClick={closeSidebar}>
             <ListItemText primary="admin-activity" />
           </ListItem> */}
-          <ListItem button component={NavLink} to="admin/getBookings" onClick={closeSidebar}>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/getBookings"
+            onClick={closeSidebar}
+          >
             <ListItemText primary="edit-bookings" />
+          </ListItem>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/contact-messages"
+            onClick={closeSidebar}
+          >
+            <ListItemText primary="contact-messages" />
           </ListItem>
         </List>
       </div>
     </Drawer>
-  );
-};
+  )
+}
 
-export default AdminSidebar;
+export default AdminSidebar

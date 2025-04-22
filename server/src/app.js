@@ -14,6 +14,9 @@ import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import contactUsRoutes from "./routes/contactUsRoutes.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
+import messageRoutes from "./routes/messageRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+
 dotenv.config();
 
 const app = express();
@@ -44,6 +47,8 @@ app.use("/rentInstruments", RentInstrumentRoutes);
 app.use("/users", userRoutes);
 app.use("/contactUs", contactUsRoutes);
 app.use("/admin", adminRoutes);
+app.use("/messages", messageRoutes);
+app.use("/contact", contactRoutes);
 app.use("*", errorMiddleware);
 export default app;
 

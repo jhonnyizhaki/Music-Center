@@ -16,11 +16,12 @@ import {
 import { Phone, Email, LocationOn, AccessTime } from "@mui/icons-material"
 import { useNotification } from "../context/NotificationContext"
 import axios from "axios"
+import urls from "../constant/URLS"
 
 const Contact = () => {
   const { showNotification } = useNotification()
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     subject: "",
     message: "",
@@ -31,8 +32,10 @@ const Contact = () => {
     try {
       await axios.post(`${urls.BASE_URL}/contact`, formData)
       showNotification("Message sent successfully!", "success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      setFormData({ fullName: "", email: "", subject: "", message: "" })
     } catch (error) {
+      console.log({ error })
+
       showNotification("An error occurred while sending the message", "error")
     }
   }
@@ -113,7 +116,7 @@ const Contact = () => {
                   label="Full Name"
                   value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
+                    setFormData({ ...formData, fullName: e.target.value })
                   }
                   margin="normal"
                   required
@@ -152,6 +155,7 @@ const Contact = () => {
                   required
                 />
                 <Button
+                  onClick={handleSubmit}
                   type="submit"
                   variant="contained"
                   size="large"
