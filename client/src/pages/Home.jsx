@@ -112,7 +112,10 @@ const Home = () => {
               <FaChevronRight />
             </button>
           </div>
-          <Link to="/practiceRoomBooking" className={styles.practiceRoomButton}>
+          <Link
+            to="http://localhost:5173/practice-room-booking"
+            className={styles.practiceRoomButton}
+          >
             Book Practice Room
           </Link>
         </div>
