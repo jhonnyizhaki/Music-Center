@@ -113,13 +113,9 @@ const location = useLocation();
               <FaChevronRight />
             </button>
           </div>
-          <Link to="/practice-room-booking" 
-          className={styles.practiceRoomButton}
-          // className={`${location.pathname === "/practice-room-booking" ? styles.activeLink : styles.link}`}
-          
-          
-          
-          
+          <Link
+            to="http://localhost:5173/practice-room-booking"
+            className={styles.practiceRoomButton}
           >
             Book Practice Room
           </Link>

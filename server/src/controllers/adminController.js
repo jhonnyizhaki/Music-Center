@@ -149,3 +149,18 @@ export const deleteRoom = async (req, res) => {
     res.status(500).json({ message: "Error deleting room" });
   }
 };
+
+const reqInputSchema = z.object({ message: z.string(), userId: z.string() });
+/**
+ *
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+
+export const adminMessage = async (req, res) => {
+  const reqInput = reqInputSchema.parse(req.body);
+
+  const newMessage = new Message({ userId: reqInput.userId, message: reqInput.message });
+  await newMessage.save();
+  res.status(201).send("message created successfully");
+};

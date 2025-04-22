@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext"
 import urls from "../constant/URLS"
 import styles from "./PracticeRoomBooking.module.css"
 import { FaGuitar, FaDrum, FaMicrophone, FaMusic } from "react-icons/fa"
+import { addHours } from "date-fns"
 
 const PracticeRoomBooking = () => {
   const { user } = useAuth()
@@ -56,7 +57,10 @@ const PracticeRoomBooking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const startDateTime = new Date(bookingData.date)
+      const startDateTime = addHours(
+        new Date(bookingData.date),
+        parseInt(bookingData.time.split(":")[0])
+      )
       const endDateTime = new Date(
         startDateTime.getTime() + bookingData.howLong * 60 * 60 * 1000
       )

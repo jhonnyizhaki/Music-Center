@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Outlet, Link, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
-
+import { Toaster } from "sonner"
 import Footer from "./Footer"
 import { useAuth } from "../context/AuthContext"
 
@@ -18,16 +18,19 @@ const Layout = () => {
   // }, [location])
 
   return (
-    <div className="page-layout">
-      <Link to="/">
-        <div className="logo"></div>
-      </Link>
-      <Navbar />
-      <main className="page-content">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <div className="page-layout">
+        <Link to="/">
+          <div className="logo"></div>
+        </Link>
+        <Navbar />
+        <main className="page-content">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      <Toaster richColors={true} />
+    </>
   )
 }
 

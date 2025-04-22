@@ -132,6 +132,19 @@ body {
   font-size: 16px;
 }
 
+.outlineButton {
+  background-color: white;
+  color: rgb(31, 54, 31);
+  padding: 10px 20px;
+  border: 2px solid #81af4c;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .logoutBtn {
   background-color: #09000000;
   color: white;

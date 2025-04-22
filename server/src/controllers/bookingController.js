@@ -1,30 +1,30 @@
 import PracticeRoom from "../models/practiceRoomModel.js";
 import Booking from "../models/practiceRoomBookingModel.js";
-import { addHours } from "date-fns";
+import { addHours, isPast } from "date-fns";
 import RentInstrument from "../models/rentInstrumentModel.js";
 import payment from "../helpers/payment.js";
 import { z } from "zod";
 
 async function machRoom(startDate, endDate, isVIP, participantsCount) {
   try {
-    const ms = new Date(1776626081761);
-    const me = new Date(1776926081761);
-
+    // end of existing > start of new && start of existing < end of new
     const conflictedBookings = await Booking.find({
-      startTime: { $gte: ms },
-      endTime: { $lte: me },
+      endTime: { $gte: startDate },
+      startTime: { $lte: endDate },
     });
 
     const availableRoom = await PracticeRoom.findOne({
+      //$or: [{ endTime: { $lte: startDate } }, { startTime: { $gte: endDate } }],
       isVIP: isVIP,
       capacity: { $gte: participantsCount },
-      // roomNumber: { $nin: [2] },
+      roomNumber: { $nin: conflictedBookings.map((room) => room.roomNumber) },
+      //roomNumber: { $nin: [2] },
     });
 
     if (!availableRoom) {
-      console.error("filed to find room", { conflictedBookings }, availableRoom);
+      console.error("all rooms are occupied", availableRoom);
 
-      throw new Error("no available rooms");
+      throw new Error("filed to find room");
     }
 
     return availableRoom;
@@ -54,10 +54,13 @@ export const createBooking = async (req, res) => {
   try {
     const { howLong, rentInstruments, isVIP, participantsCount, startDate } = machRoomSchema.parse(req.body);
 
+    if (isPast(startDate)) {
+      throw new Error("invalid date");
+    }
     const endDate = addHours(startDate, howLong);
-    const date = new Date(1776626081761);
 
-    const room = await machRoom(date, endDate, isVIP, participantsCount);
+    console.log({ startDate, endDate, isVIP, participantsCount });
+    const room = await machRoom(startDate, endDate, isVIP, participantsCount);
 
     const instrumentsToInsert = [];
 
@@ -77,7 +80,7 @@ export const createBooking = async (req, res) => {
     }
 
     const ms = new Date(startDate);
-    const me = new Date(1776926081761);
+    const me = new Date(endDate);
     const paypalBooking = await payment.createPaypalBooking(req.user.email, totalPrice);
 
     const booking = new Booking({
@@ -123,8 +126,6 @@ export const approveBooking = async (req, res) => {
 
 export const cancelBooking = async (req, res) => {
   try {
-    console.log({ req });
-
     await Booking.findOneAndDelete({ paypalId: req.query.token });
     res.status(200).redirect("http://localhost:5173/practice-room-booking");
   } catch (error) {

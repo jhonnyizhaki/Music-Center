@@ -22,7 +22,9 @@ const urls = {
   GET_UNAVAILABLE_DATES: `${BASE_URL}/bookings/getUnavailable`,
   UPDATE_USER_ROLE: `${BASE_URL}/admin/updateUserRole`,
   DELETE_USER: `${BASE_URL}/admin/deleteUser`,
-  BOOKINGS: `${BASE_URL}/bookings`,
+  BOOKINGS: `${BASE_URL}/bookings/admin/getBookings`,
+  CONTACT: `${BASE_URL}/contact/getMessages`,
+  UPDATE_CONTACT_MSG_READ: `${BASE_URL}/contact/update-read`,
 
   ORDERS: `${BASE_URL}/orders`,
   ROOMS: `${BASE_URL}/rooms`,
@@ -32,9 +34,8 @@ const urls = {
     ROOMS: `${BASE_URL}/admin/rooms`,
     CONSULTATIONS: `${BASE_URL}/admin/consultations`,
   },
-  CONTACT: `${BASE_URL}/contact`,
+  // CONTACT: `${BASE_URL}/contact`,
   CONSULTATIONS: `${BASE_URL}/consultations`,
-  // TODO: change to real rent-instruments in server
 }
 
 export default urls

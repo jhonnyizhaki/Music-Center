@@ -49,7 +49,7 @@ const UserBookings = () => {
     fetchBookings()
   }, [])
   const formatDate = (date) => {
-    return format(new Date(date), "yyyy/MM/dd hh:mm")
+    return format(new Date(date), "dd/MM/yyyy HH:mm")
   }
   return (
     <div>
@@ -95,7 +95,7 @@ const UserBookings = () => {
                   ),
                 },
                 {
-                  field: "createdAt",
+                  field: "startTime",
                   headerName: "Order Date",
                   width: 200,
                   valueGetter: (params) => formatDate(params),
@@ -199,7 +199,7 @@ const UserBookings = () => {
                     Total Price: ₪{selectedBooking.totalPrice}
                   </Typography>
                   <Typography sx={{ color: "#333" }}>
-                    booking Date: {formatDate(selectedBooking.createdAt)}
+                    booking Date: {formatDate(selectedBooking.startTime)}
                   </Typography>
                   <Typography sx={{ color: "#333" }}>
                     Payment Status:{" "}
