@@ -12,6 +12,7 @@ import {
   updateRoom,
   deleteRoom,
 } from "../controllers/adminController.js";
+import { getAllBookings } from "../controllers/bookingController.js";
 
 const router = express.Router();
 
@@ -56,6 +57,13 @@ router.delete(
   authMiddleware,
   adminAuthenticationMiddleware,
   deleteRoom
+);
+
+router.get(
+  "/bookings/getBookings",
+  authMiddleware,
+  adminAuthenticationMiddleware,
+  getAllBookings
 );
 
 export default router;

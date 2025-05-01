@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import {
   Box,
   Typography,
@@ -9,48 +9,55 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { Visibility as VisibilityIcon } from "@mui/icons-material";
-import axios from "axios";
-import urls from "../../constant/URLS";
+} from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { Visibility as VisibilityIcon } from "@mui/icons-material"
+import axios from "axios"
+import urls from "../../constant/URLS"
 
 const AdminOrders = () => {
-  const [orders, setOrders] = useState([]);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false);
+  const [orders, setOrders] = useState([])
+  const [selectedOrder, setSelectedOrder] = useState(null)
+  const [openDialog, setOpenDialog] = useState(false)
 
   useEffect(() => {
-    fetchOrders();
-  }, []);
+    fetchOrders()
+  }, [])
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(urls.ORDERS);
-      setOrders(response.data.orders);
+      const response = await axios.get(urls.ORDERS)
+      setOrders(response.data.orders)
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      console.error("Error fetching orders:", error)
     }
-  };
+  }
 
   const formatDate = (date) => {
-    return new Date(date).toLocaleString();
-  };
+    return new Date(date).toLocaleString()
+  }
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3, mt: 0  , backgroundColor: "#cfbe9641"}}>
+    <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
       <Typography
         variant="h5"
         gutterBottom
         sx={{ color: "white", mb: 4, textAlign: "center" }}
       >
-<h1>Manage Orders </h1>      </Typography>
+        <h1>Manage Orders </h1>{" "}
+      </Typography>
 
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
         <DataGrid
           rows={orders}
           columns={[
-            { field: "_id", headerName: "Order ID", width: 220 },
+            {
+              field: "_id",
+              headerName: "Order ID",
+              width: 220,
+              renderCell: (id) =>
+                parseInt(id.id.slice(-8), 16).toString().slice(-6),
+            },
             {
               field: "userId",
               headerName: "User",
@@ -87,8 +94,8 @@ const AdminOrders = () => {
               renderCell: (params) => (
                 <Button
                   onClick={() => {
-                    setSelectedOrder(params.row);
-                    setOpenDialog(true);
+                    setSelectedOrder(params.row)
+                    setOpenDialog(true)
                   }}
                 >
                   <VisibilityIcon />
@@ -103,7 +110,12 @@ const AdminOrders = () => {
       </Box>
 
       {/* Dialog for Order Details */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        maxWidth="md"
+        fullWidth
+      >
         <DialogTitle>Order Details</DialogTitle>
         <DialogContent>
           {selectedOrder && (
@@ -111,17 +123,24 @@ const AdminOrders = () => {
               <Typography variant="h6">Order Items:</Typography>
               {selectedOrder.items.map((item, index) => (
                 <Paper key={index} sx={{ p: 2, my: 1 }}>
-                  <Typography>Product: {item.instrumentId?.name || "N/A"}</Typography>
+                  <Typography>
+                    Product: {item.instrumentId?.name || "N/A"}
+                  </Typography>
                   <Typography>Quantity: {item.quantity}</Typography>
-                  <Typography>Price: ₪{item.instrumentId?.price || 0}</Typography>
+                  <Typography>
+                    Price: ₪{item.instrumentId?.price || 0}
+                  </Typography>
                 </Paper>
               ))}
               <Typography variant="h6" sx={{ mt: 2 }}>
                 Total Price: ₪{selectedOrder.totalPrice}
               </Typography>
-              <Typography>Order Date: {formatDate(selectedOrder.createdAt)}</Typography>
               <Typography>
-                Payment Status: {selectedOrder.isPaid ? "Paid" : "Payment Pending"}
+                Order Date: {formatDate(selectedOrder.createdAt)}
+              </Typography>
+              <Typography>
+                Payment Status:{" "}
+                {selectedOrder.isPaid ? "Paid" : "Payment Pending"}
               </Typography>
             </Box>
           )}
@@ -131,7 +150,7 @@ const AdminOrders = () => {
         </DialogActions>
       </Dialog>
     </Box>
-  );
-};
+  )
+}
 
-export default AdminOrders;
+export default AdminOrders

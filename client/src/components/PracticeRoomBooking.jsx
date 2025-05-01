@@ -32,8 +32,8 @@ const PracticeRoomBooking = () => {
 
   const fetchUnavailableDates = async () => {
     try {
-      const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES)
-      setUnavailableDates(Array.isArray(data) ? data : [])
+      // const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES)
+      // setUnavailableDates(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error("Error fetching unavailable dates:", error)
       setUnavailableDates([])

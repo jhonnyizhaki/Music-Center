@@ -67,6 +67,7 @@ export default function AppRoutes() {
             <Route path="users" element={<AdminUsers />} />
             <Route path="rooms" element={<AdminRooms />} />
             <Route path="edit-bookings" element={<AdminBookings />} />
+            <Route path="get-bookings" element={<AdminBookings />} />
             <Route path="stats" element={<AdminStats />} />
             <Route path="edit-category" element={<AdminCategories />} />
             <Route path="edit-products" element={<AdminProducts />} />
@@ -78,7 +79,7 @@ export default function AppRoutes() {
           <Route path="register" element={<Register />} />
           <Route path="user-orders" element={<UserOrders />} />
           <Route path="user-bookings" element={<UserBookings />} />
-          < Route path="faq" element={<FAQ />} />
+          {/* <Route path="faq" element={<FAQ />} /> */}
           <Route path="contact" element={<Contact />} />
           <Route path="interactive-map" element={<InteractiveMap />} />
           <Route path="*" element={<NotFoundPage />} />

@@ -68,7 +68,12 @@ const AdminCategories = () => {
   }
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    {
+      field: "_id",
+      headerName: "ID",
+      width: 220,
+      renderCell: (id) => parseInt(id.id.slice(-8), 16).toString().slice(-6),
+    },
     { field: "name", headerName: "Name", width: 200 },
     {
       field: "actions",
@@ -95,7 +100,11 @@ const AdminCategories = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-      <Typography variant="h5" gutterBottom sx={{ color: "white", mb: 4, textAlign: "center" }}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        sx={{ color: "white", mb: 4, textAlign: "center" }}
+      >
         <h1>Manage Categories</h1>
       </Typography>
       <Button

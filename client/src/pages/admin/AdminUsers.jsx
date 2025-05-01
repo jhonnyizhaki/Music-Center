@@ -68,7 +68,12 @@ const AdminUsers = () => {
   }
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    {
+      field: "_id",
+      headerName: "ID",
+      width: 220,
+      renderCell: (id) => parseInt(id.id.slice(-8), 16).toString().slice(-6),
+    },
     { field: "email", headerName: "Email", width: 250 },
     {
       field: "role",
