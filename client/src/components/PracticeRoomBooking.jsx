@@ -322,7 +322,7 @@ const PracticeRoomBooking = () => {
                           <span>{instrument.name}</span>
                         </h4>
                         <p className={styles["price"]}>
-                          ₪{calculateHourlyRate(instrument.rentPrice)} / hour
+                          ${calculateHourlyRate(instrument.rentPrice)} / hour
                         </p>
                         <div className={styles["card-actions"]}>
                           <label className={styles["artist-checkbox"]}>

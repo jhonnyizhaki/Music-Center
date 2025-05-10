@@ -156,7 +156,7 @@ const UserOrders = () => {
                 </Paper>
               ))}
               <Typography variant="h6" sx={{ mt: 2, color: "#333" }}>
-                Total Price: ₪{selectedOrder.totalPrice}
+                Total Price: ${selectedOrder.totalPrice}
               </Typography>
               <Typography sx={{ color: "#333" }}>
                 Order Date: {formatDate(selectedOrder.createdAt)}
@@ -197,7 +197,7 @@ function ProductCard({ product }) {
           quantity: {product.quantity}
         </Typography>
         <Typography variant="h6" color="text.primary" mt={1}>
-          ₪{product.price}
+          ${product.price}
         </Typography>
       </CardContent>
     </Card>

@@ -16,6 +16,9 @@ import contactUsRoutes from "./routes/contactUsRoutes.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import popularRoutes from "./routes/popularRoutes.js";
+
+
 
 dotenv.config();
 
@@ -49,6 +52,7 @@ app.use("/contactUs", contactUsRoutes);
 app.use("/admin", adminRoutes);
 app.use("/messages", messageRoutes);
 app.use("/contact", contactRoutes);
+app.use("/", popularRoutes);
 app.use("*", errorMiddleware);
 export default app;
 

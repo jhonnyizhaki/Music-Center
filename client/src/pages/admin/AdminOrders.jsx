@@ -38,13 +38,13 @@ const AdminOrders = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3, mt: 0  , backgroundColor: "#cfbe9641"}}>
+    <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
       <Typography
         variant="h5"
         gutterBottom
         sx={{ color: "white", mb: 4, textAlign: "center" }}
       >
-<h1>Manage Orders </h1>      </Typography>
+        <h1>Manage Orders </h1>      </Typography>
 
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
         <DataGrid

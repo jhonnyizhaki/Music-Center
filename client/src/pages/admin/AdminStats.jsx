@@ -71,7 +71,7 @@ const AdminStats = () => {
         <Grid item xs={12} md={4}>
           <StatsCard>
             <Typography variant="h6">Total Revenue</Typography>
-            <Typography variant="h3">₪{stats.totalRevenue}</Typography>
+            <Typography variant="h3">${stats.totalRevenue}</Typography>
           </StatsCard>
         </Grid>
         <Grid item xs={12} md={4}>

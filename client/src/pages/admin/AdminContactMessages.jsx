@@ -93,7 +93,14 @@ const AdminContactMessages = () => {
               field: "email",
               headerName: "Email",
               width: 220,
-              valueGetter: (params) => params || "N/A",
+              renderCell: (params) => (
+                <a
+                  href={`mailto:${params.row.email}`}
+                  style={{ color: "#333", textDecoration: "none" }}
+                >
+                  {params.row.email || "N/A"}
+                </a>
+              ),
             },
             {
               field: "isReed",
@@ -163,7 +170,7 @@ const AdminContactMessages = () => {
             <Box>
               <Typography variant="h6">Order Items:</Typography>
               <Typography>Full Name: {selectedMsg.fullName}</Typography>
-              <Typography>Email: {selectedMsg.email}</Typography>
+              <Typography>  Email: <a href={`mailto:${selectedMsg.email}`}>{selectedMsg.email}</a></Typography>
               <Typography>Subject: {selectedMsg.subject}</Typography>
               <Typography>Message: {selectedMsg.message}</Typography>
 

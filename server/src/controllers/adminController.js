@@ -29,6 +29,7 @@ export const getStats = async (req, res) => {
         $project: {
           name: 1,
           sales: { $size: "$sales" },
+          _id: 1
         },
       },
       { $sort: { sales: -1 } },

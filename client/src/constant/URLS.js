@@ -25,7 +25,7 @@ const urls = {
   BOOKINGS: `${BASE_URL}/bookings/admin/getBookings`,
   CONTACT: `${BASE_URL}/contact/getMessages`,
   UPDATE_CONTACT_MSG_READ: `${BASE_URL}/contact/update-read`,
-
+POPULAR: `${BASE_URL}/popular-products`,
   ORDERS: `${BASE_URL}/orders`,
   ROOMS: `${BASE_URL}/rooms`,
   ADMIN: {
