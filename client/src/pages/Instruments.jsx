@@ -90,7 +90,7 @@ const InstrumentCard = ({ instrument }) => {
           max={instrument.stock}
           onChange={handleQuantityInputChange}
         />
-        <span className="price">${instrument.price * quantity}</span>
+        <span className="price">{instrument.price * quantity}$</span>
       </div>
       <button
         className="add-to-cart"

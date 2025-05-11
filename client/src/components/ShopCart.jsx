@@ -28,7 +28,7 @@ const ShopCart = () => {
           <div className="summary-details">
             <div className="summary-item">
               <span>Items ({cart?.items?.length || 0})</span>
-              <span>₪{totalPrice}</span>
+              <span>{totalPrice}$</span>
             </div>
             <div className="summary-item">
               <span>Shipping</span>
@@ -37,7 +37,7 @@ const ShopCart = () => {
           </div>
           <div className="total-price">
             <span>Total:</span>
-            <span>₪{totalPrice}</span>
+            <span>{totalPrice}$</span>
           </div>
           <button className="purchase-button" onClick={handlePurchase}>
             Purchase Now
@@ -89,7 +89,7 @@ const CartItem = ({ item }) => {
       <img src={instrument.imageUrl} alt={instrument.name} />
       <h3>{instrument.name}</h3>
       <p className="category">{instrument.category}</p>
-      <p className="price">₪{instrument.price}</p>
+      <p className="price">{instrument.price}$</p>
       <div
         style={{
           display: "flex",
@@ -119,19 +119,8 @@ const CartItem = ({ item }) => {
           }}
         />
       </div>
-      <p>Total Price: ₪{instrument.price * item.quantity}</p>
+      <p>Total Price: {instrument.price * item.quantity}$</p>
     </div>
   )
 }
-// _id
-// Object
-// name
-// "Mandolin"
-// price
-// 350
-// category
-// "String instruments"
-// imageUrl
-// "https://eastwoodguitars.com/cdn/shop/products/mando_8016d7bb-8b94-44e7…"
-// stock
-// 12
+

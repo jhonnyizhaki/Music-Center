@@ -198,7 +198,7 @@ const AdminBookings = () => {
                 <Typography>
                   End Time: {formatDate(selectedBooking.endTime)}
                 </Typography>
-                <Typography>Price: ₪{selectedBooking.totalPrice}</Typography>
+                <Typography>Price: ${selectedBooking.totalPrice}</Typography>
               </Paper>
             </Box>
           )}

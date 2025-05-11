@@ -126,7 +126,7 @@ const Home = () => {
                     >
                       <img src={instrument.imageUrl} alt={instrument.name} />
                       <h3>{instrument.name}</h3>
-                      <p>{instrument.price}₪</p>
+                      <p>{instrument.price}$</p>
                       <p>{instrument.sales} units sold</p>
                       <p>{<Rating name="half-rating" defaultValue={5} precision={0.5} size="small" />}</p>
                     </div>

@@ -96,7 +96,7 @@ const AdminRooms = () => {
       field: "pricePerHour",
       headerName: "Price/Hour",
       width: 130,
-      valueGetter: (params) => `₪${params}`,
+      valueGetter: (params) => `${params}$`,
     },
     {
       field: "isAvailable",

@@ -17,7 +17,6 @@ import {
 import { DataGrid } from "@mui/x-data-grid"
 import { Visibility as VisibilityIcon } from "@mui/icons-material"
 import axios from "axios"
-import * as jwt_decode from "jwt-decode" // הייבוא החדש של jwt-decode
 import urls from "./../constant/URLS"
 import { useAuth } from "../context/AuthContext"
 
@@ -68,7 +67,7 @@ const UserOrders = () => {
               field: "totalPrice",
               headerName: "Total Price",
               width: 130,
-              valueGetter: (params) => `₪${params}`,
+              valueGetter: (params) => `${params}$`,
             },
             {
               field: "isPaid",
@@ -197,7 +196,7 @@ function ProductCard({ product }) {
           quantity: {product.quantity}
         </Typography>
         <Typography variant="h6" color="text.primary" mt={1}>
-          ${product.price}
+          {product.price}$
         </Typography>
       </CardContent>
     </Card>

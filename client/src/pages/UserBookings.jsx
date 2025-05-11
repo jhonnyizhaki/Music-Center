@@ -18,7 +18,6 @@ import {
 } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { Visibility as VisibilityIcon } from "@mui/icons-material"
-import * as jwt_decode from "jwt-decode" // הייבוא החדש של jwt-decode
 import { useAuth } from "../context/AuthContext"
 import { format, isBefore } from "date-fns"
 
@@ -76,7 +75,7 @@ const UserBookings = () => {
                   field: "totalPrice",
                   headerName: "Total Price",
                   width: 130,
-                  valueGetter: (params) => `₪${params}`,
+                  valueGetter: (params) => `${params}$`,
                 },
                 {
                   field: "isPaid",
@@ -159,7 +158,6 @@ const UserBookings = () => {
             />
           </Box>
 
-          {/* Dialog for Order Details */}
           <Dialog
             open={openDialog}
             onClose={() => setOpenDialog(false)}
@@ -196,7 +194,7 @@ const UserBookings = () => {
                     room number: {selectedBooking.roomNumber}
                   </Typography>
                   <Typography variant="h6" sx={{ mt: 2, color: "#333" }}>
-                    Total Price: ₪{selectedBooking.totalPrice}
+                    Total Price: {selectedBooking.totalPrice}$
                   </Typography>
                   <Typography sx={{ color: "#333" }}>
                     booking Date: {formatDate(selectedBooking.startTime)}
@@ -242,7 +240,7 @@ function BookingCard({ product }) {
           {product.withArtist ? "with artist" : ""}
         </Typography>
         <Typography variant="h6" color="text.primary" mt={1}>
-          price per hour ₪{product.rentPrice}
+          price per hour {product.rentPrice}$
         </Typography>
       </CardContent>
     </Card>
