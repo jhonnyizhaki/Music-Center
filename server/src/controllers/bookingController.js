@@ -109,7 +109,7 @@ export const createBooking = async (req, res) => {
     //console.dir(error.errors[0].path);
     console.log({ error });
 
-    res.status(500).json({ message: "booking failed" });
+    res.status(500).json({ message: "invalid date" });
   }
 };
 
