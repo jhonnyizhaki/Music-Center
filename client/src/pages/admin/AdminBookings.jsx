@@ -56,7 +56,10 @@ const AdminBookings = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`${urls.BOOKINGS}/${id}`, { withCredentials: true })
+      prompt("send a massage to the user", "enter the massage")
+      await axios.delete(`${urls.ADMIN.DELETE_BOOKING}/${id}`, {
+        withCredentials: true,
+      })
       setSuccess("Booking deleted successfully!")
       fetchBookings()
     } catch (error) {
@@ -150,7 +153,7 @@ const AdminBookings = () => {
             {
               field: "actions",
               headerName: "Actions",
-              width: 180,
+              width: 245,
               renderCell: (params) => (
                 <>
                   <Button

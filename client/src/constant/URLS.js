@@ -29,6 +29,7 @@ POPULAR: `${BASE_URL}/popular-products`,
   ORDERS: `${BASE_URL}/orders`,
   ROOMS: `${BASE_URL}/rooms`,
   ADMIN: {
+    DELETE_BOOKING: `${BASE_URL}/admin/booking`,
     STATS: `${BASE_URL}/admin/stats`,
     LOGS: `${BASE_URL}/admin/logs`,
     ROOMS: `${BASE_URL}/admin/rooms`,
