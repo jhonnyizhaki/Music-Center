@@ -15,8 +15,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
-  const [firstLoading, setFirstLoading] = useState(false);
-
+  
   // ------------------------------------------
   // פונקציית הרשמה
   const register = async (userData) => {
@@ -86,20 +85,17 @@ export const AuthProvider = ({ children }) => {
   // ------------------------------------------
   // useEffect לבדיקת התחברות קיימת
   useEffect(() => {
-    if (firstLoading) {
-      const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token")
 
-      if (!token || isLoggingOut) {   // ✅ אם יוצאים או אין טוקן — לא בודקים בכלל
-        setUser(null)
-        return
-      }
-
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-
-      verifyToken()
-    } else {
-      setFirstLoading(true);
+    if (!token || isLoggingOut) {   // ✅ אם יוצאים או אין טוקן — לא בודקים בכלל
+      setUser(null)
+      return
     }
+
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+
+    verifyToken()
+
   }, [isLoggingOut])  // ✅ נוספה תלות
 
 
