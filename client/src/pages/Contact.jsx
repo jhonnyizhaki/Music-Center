@@ -35,22 +35,13 @@ const Contact = () => {
       setFormData({ fullName: "", email: "", subject: "", message: "" })
     } catch (error) {
       console.log({ error })
-
       showNotification("An error occurred while sending the message", "error")
     }
   }
 
   const contactInfo = [
-    {
-      icon: <Phone />,
-      primary: "Phone",
-      secondary: "0503089987",
-    },
-    {
-      icon: <Email />,
-      primary: "Email",
-      secondary: "creatoryry@gmail.com",
-    },
+    { icon: <Phone />, primary: "Phone", secondary: "050-3089987" },
+    { icon: <Email />, primary: "Email", secondary: "creatoryry@gmail.com" },
     {
       icon: <LocationOn />,
       primary: "Address",
@@ -59,43 +50,76 @@ const Contact = () => {
     {
       icon: <AccessTime />,
       primary: "Working Hours",
-      secondary: "Sunday-Thursday: 9:00-21:00, Friday: 9:00-14:00",
+      secondary: "Sun-Thu: 9:00-21:00, Fri: 9:00-14:00",
     },
   ]
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8, backgroundColor: "#cfbe9641" }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        py: 10,
+        backgroundColor: "#f3eee2",
+        borderRadius: 4,
+        boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+      }}
+    >
+      {/* כותרת */}
       <Typography
         variant="h3"
         textAlign="center"
         gutterBottom
-        color={"#af934c"}
+        sx={{
+          color: "#8c7437",
+          fontWeight: "bold",
+          fontFamily: "serif",
+        }}
       >
         Contact Us
       </Typography>
+
       <Typography
         variant="h6"
         color="text.secondary"
         textAlign="center"
-        paragraph
+        sx={{ maxWidth: 600, mx: "auto", mb: 6 }}
       >
-        We are happy to assist you with any question or request
+        We'd love to hear from you! Fill out the form or contact us directly.
       </Typography>
 
-      <Grid container spacing={4} sx={{ mt: 4 }}>
-        <Grid item xs={12} md={6}>
-          <Card>
+      {/* תוכן עמוד */}
+      <Grid container spacing={5} justifyContent="center">
+        {/* מידע */}
+        <Grid item xs={12} md={6} display="flex" justifyContent="center">
+          <Card
+            sx={{
+              width: "100%",
+              maxWidth: 420,
+              backgroundColor: "#fffaf3",
+              borderRadius: 3,
+              boxShadow: "0 6px 18px rgba(0,0,0,0.07)",
+              transition: "transform 0.3s",
+              "&:hover": { transform: "translateY(-4px)" },
+            }}
+          >
             <CardContent>
-              <Typography variant="h5" gutterBottom>
+              <Typography
+                variant="h5"
+                gutterBottom
+                sx={{ color: "#af934c", fontWeight: 600 }}
+              >
                 Contact Information
               </Typography>
               <List>
                 {contactInfo.map((item) => (
                   <ListItem key={item.primary}>
-                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemIcon sx={{ color: "#af934c" }}>
+                      {item.icon}
+                    </ListItemIcon>
                     <ListItemText
                       primary={item.primary}
                       secondary={item.secondary}
+                      primaryTypographyProps={{ fontWeight: "bold" }}
                     />
                   </ListItem>
                 ))}
@@ -104,17 +128,32 @@ const Contact = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={6}>
-          <Card>
+        {/* טופס */}
+        <Grid item xs={12} md={6} display="flex" justifyContent="center">
+          <Card
+            sx={{
+              width: "100%",
+              maxWidth: 420,
+              backgroundColor: "#fffaf3",
+              borderRadius: 3,
+              boxShadow: "0 6px 18px rgba(0,0,0,0.07)",
+              transition: "transform 0.3s",
+              "&:hover": { transform: "translateY(-4px)" },
+            }}
+          >
             <CardContent>
-              <Typography variant="h5" gutterBottom>
+              <Typography
+                variant="h5"
+                gutterBottom
+                sx={{ color: "#af934c", fontWeight: 600 }}
+              >
                 Contact Form
               </Typography>
               <Box component="form" onSubmit={handleSubmit}>
                 <TextField
                   fullWidth
                   label="Full Name"
-                  value={formData.name}
+                  value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
                   }
@@ -155,12 +194,20 @@ const Contact = () => {
                   required
                 />
                 <Button
-                  onClick={handleSubmit}
                   type="submit"
                   variant="contained"
-                  size="large"
                   fullWidth
-                  sx={{ mt: 2 }}
+                  size="large"
+                  sx={{
+                    mt: 3,
+                    backgroundColor: "#af934c",
+                    color: "white",
+                    fontWeight: 600,
+                    borderRadius: 2,
+                    "&:hover": {
+                      backgroundColor: "#8c7437",
+                    },
+                  }}
                 >
                   Send Message
                 </Button>

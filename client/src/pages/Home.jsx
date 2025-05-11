@@ -4,28 +4,54 @@ import styles from "./Home.module.css"
 import axios from "axios"
 import urls from "../constant/URLS"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import Rating from '@mui/material/Rating';
 
 const Home = () => {
   const [popularInstruments, setPopularInstruments] = useState([])
+  const [instruments, setInstruments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0)
-const [page, setPage] = useState("home");
-const location = useLocation();
-  useEffect(() => {
-    const fetchInstruments = async () => {
-      try {
-        const response = await axios.get(urls.INSTRUMENTS)
-        setPopularInstruments(response.data.slice(0, 9)) // לוקח 9 מכשירים
-      } catch (error) {
-        console.error("Error fetching instruments:", error)
-      }
-    }
+  const [page, setPage] = useState("home");
+  const location = useLocation();
 
-    fetchInstruments()
-  }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // שליפת המכשירים הכלליים
+        const instrumentsResponse = await axios.get(urls.INSTRUMENTS);
+        const instrumentsData = instrumentsResponse.data;
+
+        // שליפת המכשירים הפופולריים
+        const popularResponse = await axios.get(`${urls.BASE_URL}/popular-products`);
+        const popularData = popularResponse.data;
+
+        // התאמה בין פופולריים לכלים - מוסיף imageUrl
+        const enrichedPopular = popularData.map(prod => {
+          const match = instrumentsData.find(ins => ins._id === prod._id);
+          return {
+            ...prod,
+            imageUrl: match?.imageUrl || null
+          };
+        });
+
+        // רק עכשיו שמור לסטייט
+        setInstruments(instrumentsData);
+        setPopularInstruments(enrichedPopular);
+
+      } catch (error) {
+        console.error("Error fetching instruments or stats:", error);
+      }
+    };
+
+
+    fetchData();
+  }, []);
+
 
   // גלילה אוטומטית - רק אם יש כלים
   useEffect(() => {
     if (popularInstruments.length === 0) return
+
+    console.log(popularInstruments);
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -100,7 +126,9 @@ const location = useLocation();
                     >
                       <img src={instrument.imageUrl} alt={instrument.name} />
                       <h3>{instrument.name}</h3>
-                      <p>{instrument.price}₪</p>
+                      <p>{instrument.price}$</p>
+                      <p>{instrument.sales} units sold</p>
+                      <p>{<Rating name="half-rating" defaultValue={5} precision={0.5} size="small" />}</p>
                     </div>
                   )
               )}

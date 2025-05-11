@@ -32,7 +32,7 @@ const RoomRentals = () => {
         {rooms.map((room) => (
           <li key={room._id}>
             <span>{room.name}</span>
-            <span>₪{room.price} לשעה</span>
+            <span>${room.price} לשעה</span>
             <p>{room.description}</p>
             <button className="button">הזמן עכשיו</button>
           </li>

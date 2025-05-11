@@ -148,7 +148,7 @@ const AdminBookings = () => {
               field: "totalPrice",
               headerName: "Price",
               width: 100,
-              valueGetter: (params) => `₪${params}`,
+              valueGetter: (params) => `${params}$`,
             },
             {
               field: "actions",
@@ -207,7 +207,7 @@ const AdminBookings = () => {
                 <Typography>
                   End Time: {formatDate(selectedBooking.endTime)}
                 </Typography>
-                <Typography>Price: ₪{selectedBooking.totalPrice}</Typography>
+                <Typography>Price: {selectedBooking.totalPrice}$</Typography>
               </Paper>
             </Box>
           )}

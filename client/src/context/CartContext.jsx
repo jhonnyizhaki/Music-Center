@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { createContext, useContext, useEffect, useState } from "react"
 import urls from "../constant/URLS"
+import { useAuth } from "./AuthContext" // ✅ הוספתי – כדי לדעת מתי המשתמש מחובר
 
 const CartContext = createContext()
 
@@ -14,6 +15,7 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(null)
+  const { user } = useAuth() // ✅ הוספתי – כדי לבדוק מתי המשתמש קיים
 
   const fetchUserCart = async () => {
     try {
@@ -78,9 +80,17 @@ export const CartProvider = ({ children }) => {
     }
   }
 
+  // ✅ שינוי משמעותי – טוען את העגלה רק אחרי ש-user קיים (כלומר אחרי התחברות ואימות)
   useEffect(() => {
-    fetchUserCart()
-  }, [])
+    const token = localStorage.getItem("token")
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    }
+
+    if (user) { // ✅ טוען את העגלה רק כשהמשתמש אומת בהצלחה
+      fetchUserCart()
+    }
+  }, [user]) // ✅ יופעל כל פעם ש-user משתנה (למשל אחרי login)
 
   return (
     <CartContext.Provider

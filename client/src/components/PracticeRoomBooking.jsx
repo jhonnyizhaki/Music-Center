@@ -32,8 +32,7 @@ const PracticeRoomBooking = () => {
 
   const fetchUnavailableDates = async () => {
     try {
-      // const { data } = await axios.get(urls.GET_UNAVAILABLE_DATES)
-      // setUnavailableDates(Array.isArray(data) ? data : [])
+      
     } catch (error) {
       console.error("Error fetching unavailable dates:", error)
       setUnavailableDates([])
@@ -67,7 +66,7 @@ const PracticeRoomBooking = () => {
 
       const bookingPayload = {
         ...bookingData,
-        //rentInstruments:
+      
         startDate: startDateTime,
         endTime: endDateTime,
         userId: user?.id,
@@ -288,11 +287,7 @@ const PracticeRoomBooking = () => {
                     onClick={() => setShowInstrumentModal(false)}
                     className={styles["close-btn"]}
                   >
-                    <img
-                      src="/istockphoto-1210969290-1024x1024-removebg-preview.png"
-                      alt="Close"
-                      className={styles["close-icon"]}
-                    />
+                    ❌
                   </button>
                 </div>
 
@@ -322,7 +317,7 @@ const PracticeRoomBooking = () => {
                           <span>{instrument.name}</span>
                         </h4>
                         <p className={styles["price"]}>
-                          ₪{calculateHourlyRate(instrument.rentPrice)} / hour
+                          {calculateHourlyRate(instrument.rentPrice)}$ / hour
                         </p>
                         <div className={styles["card-actions"]}>
                           <label className={styles["artist-checkbox"]}>
@@ -338,7 +333,7 @@ const PracticeRoomBooking = () => {
                               disabled={!isSelected}
                             />
                             <p className={styles["with-artist"]}>
-                              Include Artist (+₪150/hour)
+                              Include Artist (+150$/hour)
                             </p>
                           </label>
                           <button
@@ -388,7 +383,7 @@ const PracticeRoomBooking = () => {
           </div>
 
           <div className={styles["total-price"]}>
-            Total Price: ₪{calculateTotalPrice()}
+            Total Price: {calculateTotalPrice()}$
           </div>
 
           <button type="submit" className={styles["submit-btn"]}>

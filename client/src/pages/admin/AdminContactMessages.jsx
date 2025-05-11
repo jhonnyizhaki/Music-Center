@@ -93,7 +93,14 @@ const AdminContactMessages = () => {
               field: "email",
               headerName: "Email",
               width: 220,
-              valueGetter: (params) => params || "N/A",
+              renderCell: (params) => (
+                <a
+                  href={`mailto:${params.row.email}`}
+                  style={{ color: "#333", textDecoration: "none" }}
+                >
+                  {params.row.email || "N/A"}
+                </a>
+              ),
             },
             {
               field: "isReed",

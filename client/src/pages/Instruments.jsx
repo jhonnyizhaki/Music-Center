@@ -10,8 +10,7 @@ const Instruments = ({ params }) => {
   const [showInstruments, setShowInstruments] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const { addToCart } = useCart() // שימוש בקונטקסט של העגלה
-
+  const { addToCart } = useCart() 
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
@@ -75,15 +74,7 @@ const InstrumentCard = ({ instrument }) => {
     }
   }
 
-  // const handleQuantityInputChange = (e) => {
-  //   if (e.target.value > instrument.stock) {
-  //     setQuantity(instrument.stock)
-  //   } else if (e.target.value === "" || e.target.value < 1) {
-  //     setQuantity(1)
-  //   } else {
-  //     setQuantity(e.target.value)
-  //   }
-  // }
+
 
   return (
     <div className="card">
@@ -99,7 +90,7 @@ const InstrumentCard = ({ instrument }) => {
           max={instrument.stock}
           onChange={handleQuantityInputChange}
         />
-        <span className="price">₪{instrument.price * quantity}</span>
+        <span className="price">{instrument.price * quantity}$</span>
       </div>
       <button
         className="add-to-cart"

@@ -44,8 +44,7 @@ const AdminOrders = () => {
         gutterBottom
         sx={{ color: "white", mb: 4, textAlign: "center" }}
       >
-        <h1>Manage Orders </h1>{" "}
-      </Typography>
+        <h1>Manage Orders </h1>      </Typography>
 
       <Box sx={{ height: 400, bgcolor: "background.paper" }}>
         <DataGrid
@@ -68,7 +67,7 @@ const AdminOrders = () => {
               field: "totalPrice",
               headerName: "Total Price",
               width: 130,
-              valueGetter: (params) => `₪${params}`,
+              valueGetter: (params) => `${params}$`,
             },
             {
               field: "isPaid",
@@ -127,17 +126,13 @@ const AdminOrders = () => {
                     Product: {item.instrumentId?.name || "N/A"}
                   </Typography>
                   <Typography>Quantity: {item.quantity}</Typography>
-                  <Typography>
-                    Price: ₪{item.instrumentId?.price || 0}
-                  </Typography>
+                  <Typography>Price: {item.instrumentId?.price || 0}$</Typography>
                 </Paper>
               ))}
               <Typography variant="h6" sx={{ mt: 2 }}>
-                Total Price: ₪{selectedOrder.totalPrice}
+                Total Price: {selectedOrder.totalPrice}$
               </Typography>
-              <Typography>
-                Order Date: {formatDate(selectedOrder.createdAt)}
-              </Typography>
+              <Typography>Order Date: {formatDate(selectedOrder.createdAt)}</Typography>
               <Typography>
                 Payment Status:{" "}
                 {selectedOrder.isPaid ? "Paid" : "Payment Pending"}
@@ -154,3 +149,4 @@ const AdminOrders = () => {
 }
 
 export default AdminOrders
+
