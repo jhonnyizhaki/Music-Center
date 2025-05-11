@@ -62,13 +62,18 @@ const AdminSidebar = ({ isOpen, closeSidebar }) => {
           >
             <ListItemText primary="edit-products" />
           </ListItem>
-          {/* <ListItem button component={NavLink} to="admin/admin-activity" onClick={closeSidebar}>
-            <ListItemText primary="admin-activity" />
-          </ListItem> */}
           <ListItem
             button
             component={NavLink}
-            to="admin/getBookings"
+            to="admin/admin-activity"
+            onClick={closeSidebar}
+          >
+            <ListItemText primary="admin-activity" />
+          </ListItem>
+          <ListItem
+            button
+            component={NavLink}
+            to="admin/get-Bookings"
             onClick={closeSidebar}
           >
             <ListItemText primary="edit-bookings" />

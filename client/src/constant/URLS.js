@@ -22,7 +22,7 @@ const urls = {
   GET_UNAVAILABLE_DATES: `${BASE_URL}/bookings/getUnavailable`,
   UPDATE_USER_ROLE: `${BASE_URL}/admin/updateUserRole`,
   DELETE_USER: `${BASE_URL}/admin/deleteUser`,
-  BOOKINGS: `${BASE_URL}/bookings/admin/getBookings`,
+  BOOKINGS: `${BASE_URL}/admin/bookings/getBookings`,
   CONTACT: `${BASE_URL}/contact/getMessages`,
   UPDATE_CONTACT_MSG_READ: `${BASE_URL}/contact/update-read`,
 POPULAR: `${BASE_URL}/popular-products`,

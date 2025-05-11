@@ -48,15 +48,25 @@ const UserOrders = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 8, backgroundColor: "#f5f5f5" }}>
-      <Typography variant="h5" gutterBottom sx={{ color: "#333", mb: 4, textAlign: "center" }}>
-       <h1> My Orders</h1>
+      <Typography
+        variant="h5"
+        gutterBottom
+        sx={{ color: "#333", mb: 4, textAlign: "center" }}
+      >
+        <h1> My Orders</h1>
       </Typography>
 
       <Box sx={{ height: 400, bgcolor: "white", borderRadius: "8px" }}>
         <DataGrid
           rows={orders}
           columns={[
-            { field: "_id", headerName: "Order ID", width: 220 },
+            {
+              field: "_id",
+              headerName: "Order ID",
+              width: 220,
+              renderCell: (id) =>
+                parseInt(id.id.slice(-8), 16).toString().slice(-6),
+            },
             {
               field: "userEmail",
               headerName: "Email",

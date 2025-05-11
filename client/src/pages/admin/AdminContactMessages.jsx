@@ -170,7 +170,10 @@ const AdminContactMessages = () => {
             <Box>
               <Typography variant="h6">Order Items:</Typography>
               <Typography>Full Name: {selectedMsg.fullName}</Typography>
-              <Typography>  Email: <a href={`mailto:${selectedMsg.email}`}>{selectedMsg.email}</a></Typography>
+              <Typography>
+                Email:{" "}
+                <a href={`mailto:${selectedMsg.email}`}>{selectedMsg.email}</a>
+              </Typography>
               <Typography>Subject: {selectedMsg.subject}</Typography>
               <Typography>Message: {selectedMsg.message}</Typography>
 

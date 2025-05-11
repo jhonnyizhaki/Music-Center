@@ -95,7 +95,12 @@ const AdminProducts = () => {
   }
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    {
+      field: "_id",
+      headerName: "ID",
+      width: 220,
+      renderCell: (id) => parseInt(id.id.slice(-8), 16).toString().slice(-6),
+    },
     { field: "name", headerName: "Name", width: 200 },
     { field: "price", headerName: "Price", width: 130 },
     { field: "category", headerName: "Category", width: 150 },

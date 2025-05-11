@@ -114,7 +114,13 @@ const AdminBookings = () => {
         <DataGrid
           rows={bookings}
           columns={[
-            { field: "_id", headerName: "Booking ID", width: 220 },
+            {
+              field: "_id",
+              headerName: "Booking ID",
+              width: 220,
+              renderCell: (id) =>
+                parseInt(id.id.slice(-8), 16).toString().slice(-6),
+            },
             {
               field: "userId",
               headerName: "User",

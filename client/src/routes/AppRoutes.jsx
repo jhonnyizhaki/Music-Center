@@ -67,6 +67,7 @@ export default function AppRoutes() {
             <Route path="users" element={<AdminUsers />} />
             <Route path="rooms" element={<AdminRooms />} />
             <Route path="edit-bookings" element={<AdminBookings />} />
+            <Route path="get-bookings" element={<AdminBookings />} />
             <Route path="stats" element={<AdminStats />} />
             <Route path="edit-category" element={<AdminCategories />} />
             <Route path="edit-products" element={<AdminProducts />} />
