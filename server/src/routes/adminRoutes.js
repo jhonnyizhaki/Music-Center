@@ -11,6 +11,7 @@ import {
   createRoom,
   updateRoom,
   deleteRoom,
+  deleteBooking,
 } from "../controllers/adminController.js";
 import { getAllBookings } from "../controllers/bookingController.js";
 
@@ -57,6 +58,13 @@ router.delete(
   authMiddleware,
   adminAuthenticationMiddleware,
   deleteRoom
+);
+
+router.delete(
+  "/booking/:id",
+  authMiddleware,
+  adminAuthenticationMiddleware,
+  deleteBooking
 );
 
 router.get(

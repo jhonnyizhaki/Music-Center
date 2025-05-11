@@ -4,13 +4,17 @@ import Instrument from "../models/instrumentModel.js";
 import PracticeRoom from "../models/practiceRoomModel.js";
 import Category from "../models/categoryModel.js";
 import { z } from "zod";
+import Booking from "../models/practiceRoomBookingModel.js";
 
 export const getStats = async (req, res) => {
   try {
     // Get total orders and revenue
     const orders = await Order.find().populate("userId");
     const totalOrders = orders.length;
-    const totalRevenue = orders.reduce((sum, order) => sum + order.totalPrice, 0);
+    const totalRevenue = orders.reduce(
+      (sum, order) => sum + order.totalPrice,
+      0
+    );
 
     // Get total users
     const totalUsers = await User.countDocuments();
@@ -75,7 +79,9 @@ export const updateUserRole = async (req, res) => {
   try {
     const { role, userId } = updateUserRoleSchema.parse(req.body);
 
-    const user = await User.findByIdAndUpdate(userId, { role }).select("-password");
+    const user = await User.findByIdAndUpdate(userId, { role }).select(
+      "-password"
+    );
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -150,6 +156,19 @@ export const deleteRoom = async (req, res) => {
   }
 };
 
+export const deleteBooking = async (req, res) => {
+  try {
+    const booking = await Booking.findByIdAndDelete(req.params.id);
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+    res.json({ message: "booking deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    res.status(500).json({ message: "Error deleting booking" });
+  }
+};
+
 const reqInputSchema = z.object({ message: z.string(), userId: z.string() });
 /**
  *
@@ -160,7 +179,10 @@ const reqInputSchema = z.object({ message: z.string(), userId: z.string() });
 export const adminMessage = async (req, res) => {
   const reqInput = reqInputSchema.parse(req.body);
 
-  const newMessage = new Message({ userId: reqInput.userId, message: reqInput.message });
+  const newMessage = new Message({
+    userId: reqInput.userId,
+    message: reqInput.message,
+  });
   await newMessage.save();
   res.status(201).send("message created successfully");
 };
