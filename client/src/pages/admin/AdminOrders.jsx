@@ -39,7 +39,6 @@ const AdminOrders = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
-    <Box sx={{ flexGrow: 1, p: 3, mt: 0, backgroundColor: "#cfbe9641" }}>
       <Typography
         variant="h5"
         gutterBottom
@@ -150,3 +149,4 @@ const AdminOrders = () => {
 }
 
 export default AdminOrders
+
