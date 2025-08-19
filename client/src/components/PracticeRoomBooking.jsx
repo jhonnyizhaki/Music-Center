@@ -260,7 +260,7 @@ const PracticeRoomBooking = () => {
               required
             />
           </div>
-          <label htmlFor="isVIPinput">VIP room</label>
+          <label htmlFor="isVIPinput">VIP room (+Photography and production) </label>
           <input
             type="checkbox"
             id="isVIPinput"
